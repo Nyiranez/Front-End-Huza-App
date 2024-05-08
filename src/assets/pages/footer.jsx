@@ -1,0 +1,40 @@
+import React from 'react'
+import { RiSendPlane2Line } from "react-icons/ri";
+import Logo from '../images/huza.jpeg'
+export const Footer = () => {
+    return (
+        <div>
+            <div className='flex flex-row justify-around h-64 bg-slate-800 pt-8 pb-8'>
+                <div>
+
+                    <div className='flex flex-row'>
+                        <img src={Logo} alt="" className='h-20 w-20'></img>
+                        <p className='text-white font-bold'>GO STARTUP</p>
+                    </div>
+
+                    <p>Lorem ipsum dolor sit amet, </p>
+                    <p>consectetur adipiscing elit.</p>
+
+
+                </div>
+                <div className='space-y-6'>
+                    <p className='text-white font-bold'>SUPPORT</p>
+                    <div>
+                        <p>Our Blogs</p>
+                        <p>Contact Us</p>
+                    </div>
+
+                    <div className='flex flex-row justify-center'>
+                        <input type="text" placeholder='Email Address' className='px-6 py-4 h-12 bg-slate-600'></input>
+                        <button className='bg-slate-600 w-14 h-12 border-l-2 border-gray-500 pl-4' ><RiSendPlane2Line /></button>
+                    </div>
+
+                </div>
+                <div>
+                    <p className='text-white font-bold'>Get in Touch</p>
+                    <p1>copyright &copy; {new Date().getFullYear()} All rights reserved</p1>
+                </div>
+            </div>
+        </div>
+    )
+}
