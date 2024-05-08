@@ -17,10 +17,10 @@ export const Layout = () => {
                 </div>
                 <div className='space-x-8 flex flex-row items-center'>
                     <button className='bg-gradient-to-r from-sky-500 to-indigo-500 px-6 py-4 text-white font-bold'>
-                        <NavLink to="/login">Sign In</NavLink>
+                        <NavLink to='#'>Sign In</NavLink>
                     </button>
                     <button className='bg-gradient-to-r from-slate-400 to-slate-500 px-6 py-4 text-white font-bold'>
-                        <NavLink to="/signUp">Sign Up</NavLink>
+                        <NavLink to="#">Sign Up</NavLink>
                     </button>
                     {mode ? <MdOutlineModeNight onClick={() => setMode(!mode)} /> : <MdLightMode onClick={() => setMode(!mode)} />}
                    
