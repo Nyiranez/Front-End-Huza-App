@@ -20,7 +20,7 @@ export const Layout = () => {
                 </div>
                 <div className='space-x-8 flex flex-row items-center'>
                     <button className='bg-gradient-to-r from-sky-500 to-indigo-500 px-6 py-4 text-white font-bold rounded-md'>
-                        <NavLink to='Signin'>Sign In</NavLink>
+                        <NavLink to='/Signin'>Sign In</NavLink>
                     </button>
                     <button className={` px-6 py-4 rounded-md ${!mode ? "bg-gradient-to-r from-slate-400 to-slate-500" : "bg-black"} text-white font-bold`}>
                         <NavLink to="/Signup">Sign Up</NavLink>

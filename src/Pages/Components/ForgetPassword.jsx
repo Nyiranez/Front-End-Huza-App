@@ -58,7 +58,7 @@ const ForgetPassword = () => {
           </button>
           <div className=' flex text-gray-400 justify-center hover:text-blue-600'>
           <MdKeyboardDoubleArrowLeft className=' mt-1'/>
-          <Link to={"/"}><a className={`${!mode ? "hover:text-white" : " hover:text-blue-900"} text-blue-600 ml-2`}>Back To Login</a></Link>
+          <Link to={"/Signin"}><a className={`${!mode ? "hover:text-white" : " hover:text-blue-900"} text-blue-600 ml-2`}>Back To Login</a></Link>
           </div>
           
         </form>
