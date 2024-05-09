@@ -1,8 +1,9 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 2rem; */
+  /* text-align: center; */
+ 
 }
 
 .logo {
@@ -40,3 +41,38 @@
 .read-the-docs {
   color: #888;
 }
+.boddy{
+  min-height: calc(100vh - 16rem);
+  
+}
+#animated-text{
+  color: gray; 
+  font-family: "Courier";
+  font-size: 20px;
+  margin: 10px 0 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 30em;
+  animation: type 10s infinite; 
+  /* text-decoration: underline; */
+}
+
+@keyframes type{ 
+  from { width: 0; } 
+} 
+
+#animated{
+  color: gray; 
+  font-family: "Courier";
+  font-size: 20px;
+  margin: 10px 0 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 30em;
+  animation: type 10s infinite;
+  /* text-decoration: underline; */
+}
+
+@keyframes type{ 
+  from { width: 0; } 
+} 
