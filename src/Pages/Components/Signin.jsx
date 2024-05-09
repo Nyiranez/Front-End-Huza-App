@@ -98,11 +98,15 @@ const Signin = () => {
       >
         Sign in
       </button>
-
+      <div className=' flex justify-between'>
       <p class="text-center text-sm text-gray-500">
         No account?
         <Link to={"/Signup"}><a className=' hover:text-blue-600'>Sign up</a></Link>
       </p>
+      <Link to={'/ForgetPassword'}><a className=' hover:text-blue-600 text-gray-500'>Forgot Password</a></Link>
+      </div>
+      
+      
     </form>
   </div>
 </div>
