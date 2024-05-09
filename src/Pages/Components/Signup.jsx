@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { useContext } from 'react'
+import { AppContext } from '../../../src/assets/pages/context'
 const Signup = () => {
+  const { mode } = useContext(AppContext)
   const [formData, setFormData] = useState({
     fullname: '',
     email: '',
@@ -40,9 +42,9 @@ const Signup = () => {
   };
 
   return (
-    <div className="bg-gray-50">
-      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-lg">
+    <div className={!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'}>
+      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 h-[48rem]">
+        <div className={`mx-auto mt-16 pt-16 max-w-lg ${!mode ? "bg-gray-800" : "bg-slate-50"} `}>
           <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl font-serif">
             REGISTRATION FORM
           </h1>
@@ -56,13 +58,13 @@ const Signup = () => {
                 Full Name
               </label>
 
-              <div className="relative">
+              <div>
                 <input
                   type="text"
                   name="fullname"
                   value={formData.fullname}
                   onChange={handleChange}
-                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                  className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-slate-100"} p-4  text-sm shadow-sm`}
                   placeholder="Enter Full Name"
                 />
                 {errors.fullname && (
@@ -76,13 +78,13 @@ const Signup = () => {
                 Email
               </label>
 
-              <div className="relative">
+              <div className="">
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                  className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-slate-100"} p-4  text-sm shadow-sm`}
                   placeholder="Enter Your Email"
                 />
                 {errors.email && (
@@ -102,7 +104,7 @@ const Signup = () => {
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                  className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-slate-100"} p-4  text-sm shadow-sm`}
                   placeholder="Enter Password"
                 />
                 {errors.password && (
@@ -122,7 +124,7 @@ const Signup = () => {
                   name="cpassword"
                   value={formData.cpassword}
                   onChange={handleChange}
-                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                  className={`w-full rounded-lg ${!mode ? "bg-gray-700" : "bg-slate-100"} border-gray-200   p-4  text-sm shadow-sm`}
                   placeholder="Confirm Password"
                 />
                 {errors.cpassword && (
@@ -133,7 +135,7 @@ const Signup = () => {
 
             <button
               type="submit"
-              className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white hover:bg-blue-900"
+              className={`block w-full rounded-lg ${!mode ? "bg-blue-900" : "bg-indigo-600"}  px-5 py-3 text-sm font-medium text-white hover:bg-slate-900`}
             >
               Create an account
             </button>
@@ -141,7 +143,7 @@ const Signup = () => {
             <p className="text-center text-sm text-gray-500">
               Already have an account?{' '}
               <Link to={'/'}>
-                <a className="hover:text-blue-600">Login</a>
+                <a className={`${!mode ? "hover:text-white" : " hover:text-blue-900"} text-blue-600`}>Login</a>
               </Link>
             </p>
           </form>

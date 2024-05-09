@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import { useContext } from 'react'
+import { AppContext } from '../../../src/assets/pages/context'
 const Signin = () => {
+  const { mode } = useContext(AppContext)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -26,22 +28,22 @@ const Signin = () => {
     setErrors(newErrors);
   }
   return (
-    <div className='bg-gray-50'>
-    <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-  <div class="mx-auto max-w-lg mt-40">
+    <div className={!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'}>
+    <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 h-[50rem] ">
+  <div class={`mx-auto mt-16 pt-16 max-w-lg ${!mode ? "bg-gray-800" : "bg-slate-50"} `}>
     <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl font-serif">SIGNIN INTO YOUR ACCOUNT</h1>
 
     <form onSubmit={handleSubmit} class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 font-serif">
       <div>
         <label for="UserName" class="sr-only">UserName</label>
 
-        <div class="relative">
+        <div >
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+            className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-slate-100"} p-4  text-sm shadow-sm`}
             placeholder="Enter UserName"
             
           />
@@ -57,11 +59,11 @@ const Signin = () => {
         <div class="relative">
           <input
             type="password"
-            name='password'
+            name="password"
             value={formData.password}
             onChange={handleChange}
-            className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-            placeholder="Enter password"
+            className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-slate-100"} p-4  text-sm shadow-sm`}
+            placeholder="Enter Password"
           />
           {errors.password && (
                   <p className="text-red-300">{errors.password}</p>
@@ -94,14 +96,14 @@ const Signin = () => {
 
       <button
         type="submit"
-        class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white hover:bg-blue-900"
+        className={`block w-full rounded-lg ${!mode ? "bg-blue-900" : "bg-indigo-600"}  px-5 py-3 text-sm font-medium text-white hover:bg-slate-900`}
       >
         Sign in
       </button>
 
       <p class="text-center text-sm text-gray-500">
         No account?
-        <Link to={"/Signup"}><a className=' hover:text-blue-600'>Sign up</a></Link>
+        <Link to={"/Signup"}><a className={`${!mode ? "hover:text-white" : " hover:text-blue-900"} text-blue-600 ml-2`}>Sign up</a></Link>
       </p>
     </form>
   </div>
