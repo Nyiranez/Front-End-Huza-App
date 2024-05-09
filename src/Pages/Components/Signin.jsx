@@ -1,24 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Signin = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = {};
+
+    if (formData.email === '') {
+      newErrors.email = 'Please enter your UserName';
+    }
+    if (formData.password === '') {
+      newErrors.password = 'Please enter your Password';
+    }
+    setErrors(newErrors);
+  }
   return (
     <div className='bg-gray-50'>
     <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-  <div class="mx-auto max-w-lg">
+  <div class="mx-auto max-w-lg mt-40">
     <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl font-serif">SIGNIN INTO YOUR ACCOUNT</h1>
 
-    <form action="#" class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 font-serif">
+    <form onSubmit={handleSubmit} class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 font-serif">
       <div>
         <label for="UserName" class="sr-only">UserName</label>
 
         <div class="relative">
           <input
-            type="text"
-            class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
             placeholder="Enter UserName"
-            required
+            
           />
+          {errors.email && (
+           <p className="text-red-300">{errors.email}</p>
+          )}
         </div>
       </div>
 
@@ -28,10 +57,15 @@ const Signin = () => {
         <div class="relative">
           <input
             type="password"
-            class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+            name='password'
+            value={formData.password}
+            onChange={handleChange}
+            className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
             placeholder="Enter password"
-            required
           />
+          {errors.password && (
+                  <p className="text-red-300">{errors.password}</p>
+                )}
 
           <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
             <svg
