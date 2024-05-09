@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
-import { AppContext } from '../../../src/assets/pages/context'
+import { AppContext } from '../../assets/pages/context'
 const Signin = () => {
   const { mode } = useContext(AppContext)
   const [formData, setFormData] = useState({
@@ -100,11 +100,15 @@ const Signin = () => {
       >
         Sign in
       </button>
-
+      <div className=' flex justify-between'>
       <p class="text-center text-sm text-gray-500">
         No account?
         <Link to={"/Signup"}><a className={`${!mode ? "hover:text-white" : " hover:text-blue-900"} text-blue-600 ml-2`}>Sign up</a></Link>
       </p>
+      <Link to={'/ForgetPassword'}><a className=' hover:text-blue-600 text-gray-500'>Forgot Password</a></Link>
+      </div>
+      
+      
     </form>
   </div>
 </div>

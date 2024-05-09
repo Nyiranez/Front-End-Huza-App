@@ -1,25 +1,25 @@
 import React from 'react'
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Signin from './Pages/Components/Signin'
 import Signup from './Pages/Components/Signup'
 import Internship from './Pages/Internship'
 import MakeupDesign from './Pages/MakeupDesign'
 import Plainters from './Pages/Plainters'
+import ForgetPassword from './Pages/Components/ForgetPassword'
 
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from '../src/layout'
-
 import { Home } from './assets/pages/home'
 import { Contact } from './assets/pages/contact'
 import { Services } from './assets/pages/services'
-import { AboutUs } from './assets/pages/aboutUs'
+import  AboutUs  from './assets/pages/aboutUs'
 import { Footer } from './assets/pages/footer'
 import ContextUser from './assets/pages/context';
 function App() {
 
 
   return (
+
     <>
 
       <ContextUser>
@@ -37,6 +37,7 @@ function App() {
                 <Route path="/Internship" element={<Internship />} />
                 <Route path="/MakeupDesign" element={<MakeupDesign />} />
                 <Route path="/Plainters" element={<Plainters />} />
+                <Route path="/ForgetPassword" element={<ForgetPassword/>}/>
               </Route>
 
             </Routes>
@@ -50,6 +51,7 @@ function App() {
 
 
     </>
+
   )
 }
 
