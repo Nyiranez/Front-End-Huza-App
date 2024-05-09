@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem; */
   /* text-align: center; */
+ 
 }
 
 .logo {
@@ -42,16 +43,17 @@
 }
 .boddy{
   min-height: calc(100vh - 16rem);
+  
 }
 #animated-text{
-  color: Pink; 
+  color: gray; 
   font-family: "Courier";
   font-size: 20px;
   margin: 10px 0 0 10px;
   white-space: nowrap;
   overflow: hidden;
   width: 30em;
-  animation: type 4s steps(60, end); 
+  animation: type 10s infinite; 
   /* text-decoration: underline; */
 }
 
@@ -60,14 +62,14 @@
 } 
 
 #animated{
-  color: Pink; 
+  color: gray; 
   font-family: "Courier";
   font-size: 20px;
   margin: 10px 0 0 10px;
   white-space: nowrap;
   overflow: hidden;
   width: 30em;
-  animation: type 4s steps(60, end); 
+  animation: type 10s infinite;
   /* text-decoration: underline; */
 }
 

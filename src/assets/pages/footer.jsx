@@ -1,10 +1,13 @@
 import React from 'react'
 import { RiSendPlane2Line } from "react-icons/ri";
-import Logo from '../images/huza.jpeg'
+import Logo from '../images/huzaa.jpeg'
+import { useContext } from 'react'
+import { AppContext } from './context'
 export const Footer = () => {
+    const { mode } = useContext(AppContext)
     return (
         <div>
-            <div className='flex flex-row justify-around h-64 bg-slate-900 pt-8 pb-8'>
+            <div className={`flex flex-row justify-around h-64 border-1 border-t border-gray-700 ${!mode ?  'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'} bg-slate-900 pt-8 pb-8`}>
                 <div className='space-y-4'>
 
                     <div className='flex flex-row space-x-4'>
