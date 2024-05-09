@@ -8,12 +8,14 @@ import { Contact } from './assets/pages/contact'
 import { Services } from './assets/pages/services'
 import { AboutUs } from './assets/pages/aboutUs'
 import { Footer } from './assets/pages/footer'
+import  ContextUser  from './assets/pages/context';
 function App() {
 
 
   return (
     <>
       <div className='boddy'>
+        <ContextUser>
         <BrowserRouter>
           <Routes>
             
@@ -26,6 +28,7 @@ function App() {
 
           </Routes>
         </BrowserRouter>
+        </ContextUser>
       </div>
       <div className='h-24'>
         <Footer />

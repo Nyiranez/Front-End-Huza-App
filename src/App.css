@@ -43,3 +43,34 @@
 .boddy{
   min-height: calc(100vh - 16rem);
 }
+#animated-text{
+  color: Pink; 
+  font-family: "Courier";
+  font-size: 20px;
+  margin: 10px 0 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 30em;
+  animation: type 4s steps(60, end); 
+  /* text-decoration: underline; */
+}
+
+@keyframes type{ 
+  from { width: 0; } 
+} 
+
+#animated{
+  color: Pink; 
+  font-family: "Courier";
+  font-size: 20px;
+  margin: 10px 0 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 30em;
+  animation: type 4s steps(60, end); 
+  /* text-decoration: underline; */
+}
+
+@keyframes type{ 
+  from { width: 0; } 
+} 

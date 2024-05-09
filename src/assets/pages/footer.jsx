@@ -4,24 +4,26 @@ import Logo from '../images/huza.jpeg'
 export const Footer = () => {
     return (
         <div>
-            <div className='flex flex-row justify-around h-64 bg-slate-800 pt-8 pb-8'>
-                <div>
+            <div className='flex flex-row justify-around h-64 bg-slate-900 pt-8 pb-8'>
+                <div className='space-y-4'>
 
-                    <div className='flex flex-row'>
+                    <div className='flex flex-row space-x-4'>
                         <img src={Logo} alt="" className='h-20 w-20'></img>
                         <p className='text-white font-bold'>GO STARTUP</p>
                     </div>
+                    <div>
+                        <p className='text-slate-400'>Lorem ipsum dolor sit amet, </p>
+                        <p className='text-slate-400'>consectetur adipiscing elit.</p>
+                    </div>
 
-                    <p>Lorem ipsum dolor sit amet, </p>
-                    <p>consectetur adipiscing elit.</p>
 
 
                 </div>
                 <div className='space-y-6'>
                     <p className='text-white font-bold'>SUPPORT</p>
                     <div>
-                        <p>Our Blogs</p>
-                        <p>Contact Us</p>
+                        <p className='text-slate-400'>Our Blogs</p>
+                        <p className='text-slate-400'>Contact Us</p>
                     </div>
 
                     <div className='flex flex-row justify-center'>
@@ -32,7 +34,7 @@ export const Footer = () => {
                 </div>
                 <div>
                     <p className='text-white font-bold'>Get in Touch</p>
-                    <p1>copyright &copy; {new Date().getFullYear()} All rights reserved</p1>
+                    <p1 className='text-slate-400'>copyright &copy; {new Date().getFullYear()} All rights reserved</p1>
                 </div>
             </div>
         </div>
