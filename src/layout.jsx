@@ -29,7 +29,7 @@ export const Layout = () => {
                                 <Popover.Button
                                 className={`
                                     ${open ? 'text-white' : 'text-white/90'}
-                                    group inline-flex items-center rounded-md   px-3 py-2 text-base font-medium hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
+                                    group inline-flex items-center rounded-md text-base font-medium hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
                                 >
                                 <p className={`text-gray-500 ${!mode ? "hover:text-white" : "hover:text-blue-600"} `}>Services</p>
                                 <IoIosArrowDown className={`text-gray-500 ${!mode ? "hover:text-white" : "hover:text-blue-600 mt-1"} `}/>
