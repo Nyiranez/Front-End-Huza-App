@@ -9,12 +9,15 @@ export const Footer = () => {
     const { mode } = useContext(AppContext)
     return (
         <div>
-            <div className={`flex flex-row justify-around h-64 border-1 border-t border-gray-700 ${!mode ?  'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'} bg-slate-900 pt-8 pb-8`}>
+            <div className={`flex flex-row justify-between h-64 border-1 border-t border-gray-700  px-40 ${!mode ?  'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'} bg-slate-900 pt-8 pb-8`}>
                 <div className='space-y-4'>
 
                     <div className='flex flex-row space-x-4'>
-                    {mode ? <img src={Logo} alt="" className='h-24 w-24'></img> : <img src={Huza} alt="" className='h-24 w-24'></img>}
+
+                       
+            {mode ? <img src={Logo} alt="" className='h-24 w-24'></img> : <img src={Huza} alt="" className='h-24 w-24'></img>}
                         <p className={` font-bold ${!mode ? "text-white" : "text-black"} text-4xl` }>GO STARTUP</p>
+
                     </div>
                     <div>
                         <p className='text-slate-500'>Lorem ipsum dolor sit amet, </p>
@@ -33,16 +36,14 @@ export const Footer = () => {
                         <p className='text-slate-500'>Makeup Design</p>
                     </div>
 
-                    
-                  
-                    
 
-                </div>
+                    
                 <div className='space-y-6'>
                     <p className={` font-bold ${!mode ? "text-white" : "text-black"}`}>SUPPORT</p>
                     <div>
                         <p className='text-slate-500'>Our Blogs</p>
                         <p className='text-slate-500'>Contact Us</p>
+
                     </div>
                     <p className={`text-gray-500 ${!mode ? "hover:text-white" : "hover:text-blue-600"} `}>Email Address</p>
                         {/* <button className=' w-14 h-12 border-l-2 border-gray-500 pl-4' ><RiSendPlane2Line /></button> */}
