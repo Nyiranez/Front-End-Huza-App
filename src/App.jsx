@@ -6,6 +6,7 @@ import MakeupDesign from './Pages/MakeupDesign'
 import Plainters from './Pages/Plainters'
 import ForgetPassword from './Pages/Components/ForgetPassword'
 
+
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from '../src/layout'
@@ -15,6 +16,8 @@ import { Services } from './assets/pages/services'
 import  AboutUs  from './assets/pages/aboutUs'
 import { Footer } from './assets/pages/footer'
 import ContextUser from './assets/pages/context';
+import Verify from './Pages/Components/Verify'
+import Homepage from './assets/pages/Homepage'
 function App() {
 
 
@@ -28,7 +31,8 @@ function App() {
             <Routes>
 
               <Route path="/" element={<Layout />} >
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Homepage />} />
+                <Route path="/home" element={<Home/>} />
                 <Route path="layout/contact" element={<Contact />} />
                 <Route path="layout/services" element={<Services />} />
                 <Route path="layout/aboutUs" element={<AboutUs />} />
@@ -38,6 +42,7 @@ function App() {
                 <Route path="/MakeupDesign" element={<MakeupDesign />} />
                 <Route path="/Plainters" element={<Plainters />} />
                 <Route path="/ForgetPassword" element={<ForgetPassword/>}/>
+                <Route path="/verify" element={<Verify/>}/>
               </Route>
 
             </Routes>

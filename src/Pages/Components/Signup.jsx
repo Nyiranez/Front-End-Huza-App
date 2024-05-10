@@ -48,11 +48,17 @@ const Signup = () => {
           <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl font-serif">
             REGISTRATION FORM
           </h1>
-
+          <div className=' flex justify-center mt-5'>
+          <button className=' bg-gray-700 flex justify-center rounded-lg gap-5 px-5'>
+            <img src='/gogle.png' className=' w-10'/>
+            <p className='mt-2 text-gray-300'>Sign up with Google</p>
+          </button>
+          </div>
           <form
             onSubmit={handleSubmit}
             className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 font-serif"
           >
+            <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
             <div>
               <label htmlFor="FullName" className="sr-only">
                 Full Name
@@ -92,7 +98,8 @@ const Signup = () => {
                 )}
               </div>
             </div>
-
+           </div>
+           <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
             <div>
               <label htmlFor="password" className="sr-only">
                 Password
@@ -132,7 +139,7 @@ const Signup = () => {
                 )}
               </div>
             </div>
-
+            </div>
             <button
               type="submit"
               className={`block w-full rounded-lg ${!mode ? "bg-blue-900" : "bg-indigo-600"}  px-5 py-3 text-sm font-medium text-white hover:bg-slate-900`}

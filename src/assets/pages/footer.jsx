@@ -7,11 +7,11 @@ export const Footer = () => {
     const { mode } = useContext(AppContext)
     return (
         <div>
-            <div className={`flex flex-row justify-around h-64 border-1 border-t border-gray-700 ${!mode ?  'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'} bg-slate-900 pt-8 pb-8`}>
+            <div className={`flex flex-row justify-between h-64 border-1 border-t border-gray-700  px-40 ${!mode ?  'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'} bg-slate-900 pt-8 pb-8`}>
                 <div className='space-y-4'>
 
                     <div className='flex flex-row space-x-4'>
-                        <img src={Logo} alt="" className='h-20 w-20'></img>
+                        <img src={Logo} alt="" className='h-10 w-10'></img>
                         <p className='text-white font-bold'>GO STARTUP</p>
                     </div>
                     <div>
@@ -30,7 +30,7 @@ export const Footer = () => {
                     </div>
 
                     <div className='flex flex-row justify-center'>
-                        <input type="text" placeholder='Email Address' className='px-6 py-4 h-12 bg-slate-600'></input>
+                        <input type="text" placeholder='Email Address' className='py-4 h-12 bg-slate-600'></input>
                         <button className='bg-slate-600 w-14 h-12 border-l-2 border-gray-500 pl-4' ><RiSendPlane2Line /></button>
                     </div>
 
