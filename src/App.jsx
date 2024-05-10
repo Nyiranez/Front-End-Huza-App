@@ -41,7 +41,9 @@ function App() {
               </Route>
 
             </Routes>
+            
           </BrowserRouter>
+       
         </div>
         <div className='h-24'>
           <Footer />

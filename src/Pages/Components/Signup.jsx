@@ -44,7 +44,7 @@ const Signup = () => {
   return (
     <div className={!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'}>
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 h-[48rem]">
-        <div className={`mx-auto mt-16 pt-16 max-w-lg ${!mode ? "bg-gray-800" : "bg-slate-50"} `}>
+        <div className={`mx-auto mt-24 pt-16 max-w-lg ${!mode ? "bg-gray-800" : "bg-slate-50"} `}>
           <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl font-serif">
             REGISTRATION FORM
           </h1>
