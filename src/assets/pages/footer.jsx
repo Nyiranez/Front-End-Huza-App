@@ -15,7 +15,7 @@ export const Footer = () => {
                     <div className='flex flex-row space-x-4'>
 
                        
-            {mode ? <img src={Logo} alt="" className='h-24 w-24'></img> : <img src={Huza} alt="" className='h-24 w-24'></img>}
+                        {mode ? <img src={Logo} alt="" className='h-24 w-24'></img> : <img src={Huza} alt="" className='h-24 w-24'></img>}
                         <p className={` font-bold ${!mode ? "text-white" : "text-black"} text-4xl` }>GO STARTUP</p>
 
                     </div>
@@ -37,7 +37,7 @@ export const Footer = () => {
                     </div>
 
 
-                    
+                 </div>   
                 <div className='space-y-6'>
                     <p className={` font-bold ${!mode ? "text-white" : "text-black"}`}>SUPPORT</p>
                     <div>
