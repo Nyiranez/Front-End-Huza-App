@@ -17,13 +17,13 @@ export const Layout = () => {
 
     return (
         <div>
-
             <div className={`flex flex-row justify-between items-center fixed z-10 top-0 w-full h-24 pt-5 px-40 ${!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'}`}>
                 <Link to={"/"}> {mode ? <img src={Logo} alt="" className='h-24 w-24'></img> : <img src={Huza} alt="" className='h-24 w-24'></img>} </Link>
                 <div className=' flex gap-10'>
                     <NavLink to="/home" className={`text-gray-500 ${!mode ? "hover:text-white" : "hover:text-blue-600"} `}>Home</NavLink>
                     <NavLink to="layout/aboutus" className={`text-gray-500 ${!mode ? "hover:text-white" : "hover:text-blue-600"} `}>AboutUs</NavLink>
                     <NavLink to="layout/contact" className={`text-gray-500 ${!mode ? "hover:text-white" : "hover:text-blue-600"} `}>Contact</NavLink>
+
 
                     <Popover className='relative'>
                         {({ open }) => (
@@ -56,6 +56,7 @@ export const Layout = () => {
                             </div>
                         )}
                     </Popover>
+                    </div>
                     <div className='space-x-8 flex flex-row items-center'>
                         <button className='bg-gradient-to-r from-sky-500 to-indigo-500 px-6 py-4 text-white font-bold rounded-md'>
                             <NavLink to='/Signin'>Sign In</NavLink>
@@ -64,10 +65,10 @@ export const Layout = () => {
                             <NavLink to="/Signup">Sign Up</NavLink>
                         </button>
                         {mode ? <MdOutlineModeNight onClick={() => setMode(!mode)} /> : <MdLightMode onClick={() => setMode(!mode)} className='bg-white' />}
-
-                    </div>
+</div>
+                   
                 </div>
                 <Outlet />
-            </div>
-         </div>   )
+            </div >
+            )
 }
