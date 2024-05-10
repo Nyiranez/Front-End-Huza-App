@@ -30,7 +30,7 @@ const Signin = () => {
   return (
     <div className={!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'}>
     <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 h-[50rem] ">
-  <div class={`mx-auto mt-16 pt-16 max-w-lg ${!mode ? "bg-gray-800" : "bg-slate-50"} `}>
+  <div class={`mx-auto mt-32 pt-16 max-w-lg ${!mode ? "bg-gray-800" : "bg-slate-50"} `}>
     <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl font-serif">SIGNIN INTO YOUR ACCOUNT</h1>
 
     <form onSubmit={handleSubmit} class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 font-serif">

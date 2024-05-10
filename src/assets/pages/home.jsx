@@ -11,8 +11,9 @@ export const Home = () => {
 
       <div className={`flex flex-row justify-around items-center pt-8 mt-24 ${!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'} h-screen`}>
         <div className='space-y-8'>
-          <div className='bg-slate-100 px-6 py-4 rounded-full text-blue-500 flex flex-col justify-center items-center'>
-            <p className='text-2xl'>Get your opportunities</p>
+          <div className={`${!mode ? "bg-gradient-to-r from-slate-800 to-slate-700" : " bg-slate-100"}  px-4 py-2 rounded-full text-blue-500 flex flex-row space-x-2 items-center w-72 justify-center`}>
+            <div className='bg-blue-400  rounded-full w-2 h-2 ' ></div>
+            <p className={`text-xl ${!mode ? "text-white" : "text-blue-700"}`}>Get your opportunities</p>
           </div>
           <div>
             
@@ -21,10 +22,10 @@ export const Home = () => {
           </div>
 
           <div>
-            <p className={!mode ? "text-white" : "text-black"}>Lorem ipsum dolor sit amet consectetur adipisicing elit .</p>
-            <p className={!mode ? "text-white" : "text-black"}>Officia voluptates, ea beatae obcaecati unde sint soluta. </p>
-            <p className={!mode ? "text-white" : "text-black"}>Corporis perspiciatis obcaecati magni quam,</p>
-            <p className={!mode ? "text-white" : "text-black"}> quos in distinctio dicta, excepturi eius unde, mollitia voluptatum.</p>
+            <p className={!mode ? "text-white" : "text-black"}>Huza Website turns your dream to true .</p>
+            <p className={!mode ? "text-white" : "text-black"}>Come and meet with us with confidence </p>
+            <p className={!mode ? "text-white" : "text-black"}>and we will help you direct to  </p>
+            <p className={!mode ? "text-white" : "text-black"}>  meet with your needs</p>
           </div>
           <div className='space-y-4 flex flex-row  items-center'>
             <div className='bg-blue-500 rounded-md w-48 h-12 text-white font-bold flex flex-row justify-center items-center space-x-4'>
