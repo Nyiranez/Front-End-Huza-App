@@ -49,9 +49,9 @@ const Signup = () => {
             REGISTRATION FORM
           </h1>
           <div className=' flex justify-center mt-5'>
-          <button className=' bg-gray-700 flex justify-center rounded-lg gap-5 px-5'>
+          <button className={` flex justify-center rounded-lg gap-5 px-5 border-gray-200 ${!mode ? "bg-gray-700" : "bg-slate-100"}`}>
             <img src='/gogle.png' className=' w-10'/>
-            <p className='mt-2 text-gray-300'>Sign up with Google</p>
+            <p className='mt-2 text-gray-400'>Sign up with Google</p>
           </button>
           </div>
           <form
