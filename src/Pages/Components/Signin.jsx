@@ -28,12 +28,12 @@ const Signin = () => {
     setErrors(newErrors);
   }
   return (
-    <div className={!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'}>
+    <div className={!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-gray-50'}>
     <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 h-[50rem] ">
-  <div class={`mx-auto mt-32 pt-16 max-w-lg ${!mode ? "bg-gray-800" : "bg-slate-50"} `}>
+  <div class={`mx-auto mt-32 pt-16 max-w-lg ${!mode ? "bg-gray-800" : "bg-white"} `}>
     <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl font-serif">SIGNIN INTO YOUR ACCOUNT</h1>
     <div className=' flex justify-center mt-5'>
-          <button className={` flex justify-center rounded-lg gap-5 px-5 border-gray-400 ${!mode ? "bg-gray-700" : "bg-slate-100"}`}>
+          <button className={` flex justify-center rounded-lg gap-5 px-5 border-gray-200 ${!mode ? "bg-gray-700" : "bg-gray-100"}`}>
             <img src='/gogle.png' className=' w-10'/>
             <p className='mt-2 text-gray-400'>Sign in with Google</p>
           </button>
@@ -48,7 +48,7 @@ const Signin = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-slate-100"} p-4  text-sm shadow-sm`}
+            className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-gray-100"} p-4  text-sm shadow-sm`}
             placeholder="Enter UserName"
             
           />
@@ -67,7 +67,7 @@ const Signin = () => {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-slate-100"} p-4  text-sm shadow-sm`}
+            className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-gray-100"} p-4  text-sm shadow-sm`}
             placeholder="Enter Password"
           />
           {errors.password && (

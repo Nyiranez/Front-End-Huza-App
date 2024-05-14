@@ -1,9 +1,10 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react'
 import { AppContext } from '../../src/assets/pages/context'
 
-const Internship = () => {
+const Brainding = () => {
   const { mode } = useContext(AppContext)
   const [formData, setFormData] = useState({
     email: '',
@@ -121,4 +122,5 @@ const Internship = () => {
 </div>
   )
 }
-export default Internship
+
+export default Brainding
