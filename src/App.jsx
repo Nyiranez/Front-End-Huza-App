@@ -18,6 +18,7 @@ import { Footer } from './assets/pages/footer'
 import ContextUser from './assets/pages/context';
 import Verify from './Pages/Components/Verify'
 import Homepage from './assets/pages/Homepage'
+import { User } from './assets/pages/user'
 function App() {
 
 
@@ -43,6 +44,7 @@ function App() {
                 <Route path="/Plainters" element={<Plainters />} />
                 <Route path="/ForgetPassword" element={<ForgetPassword/>}/>
                 <Route path="/verify" element={<Verify/>}/>
+                <Route path="/user" element={<User/>}/>
               </Route>
 
             </Routes>

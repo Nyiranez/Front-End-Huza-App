@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 import { useContext } from 'react'
 import { AppContext } from '../../assets/pages/context'
 const Signin = () => {
@@ -27,6 +28,8 @@ const Signin = () => {
     }
     setErrors(newErrors);
   }
+
+
   return (
     <div className={!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'}>
     <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 h-[50rem] ">
