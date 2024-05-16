@@ -53,11 +53,19 @@ const Services = () => {
                       It's a versatile and popular method used in hairstyling, crafting, and 
                       textiles around the world
                   </p>
+                  <div >
                   <Link to={"/Branding"} class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">Find out more
                     <span aria-hidden="true" class="block transition-all group-hover:ms-0.5 rtl:rotate-180">
                       &rarr;
                     </span>
-                    </Link> 
+                   </Link> 
+                   {/* <Link to={"/Branding"} class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">Hiring
+                    <span aria-hidden="true" class="block transition-all group-hover:ms-0.5 rtl:rotate-180">
+                      &rarr;
+                    </span>
+                   </Link>  */}
+                  </div>
+                
               </div>
           </article>
           <article class={`overflow-hidden rounded-lg border border-gray-100 bg-white shadow-sm  w-[17rem]`}>
