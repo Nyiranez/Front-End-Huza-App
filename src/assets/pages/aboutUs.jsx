@@ -6,8 +6,8 @@ const AboutUs = () => {
   const { mode } = useContext(AppContext)
   return (
      <div>
-         <div className={`${!mode ? "bg-gradient-to-r from-slate-900 to-blue-950" : "bg-white"}  px-40 pt-40 pb-20`}>
-            <div className='flex justify-around gap-10 pt-5 text-2xl'>
+         <div className={`${!mode ? "bg-gradient-to-r from-slate-950 to-gray-900" : "bg-white"}  px-32 pb-20`}>
+            <div className='flex justify-around gap-10 pt-36 text-2xl'>
                 <Link to={""}>
                 <a className={`${!mode ? "text-white" : "text-black"} hover:underline decoration-blue-500 underline-offset-[1.7vh] `}>About Us</a> 
                 </Link>
@@ -19,9 +19,9 @@ const AboutUs = () => {
                 </Link>  
             </div>
             <hr className='mt-6'></hr>   
-            <div className=' grid lg:grid-cols-2 grid-cols-1 mt-14 justify-between'>
+            <div className=' grid lg:grid-cols-2 grid-cols-1 justify-between mt-10'>
                   <div className='relative'>
-                      <img src='https://go-tailwind.preview.uideck.com/src/images/about/image-2.jpg' className=' absolute top-10 left-40 shadow-[-25px_-25px_0px_rgba(255,255,255,0.5)]'/>
+                      <img src='https://go-tailwind.preview.uideck.com/src/images/about/image-2.jpg' className=' absolute top-10 left-36 shadow-[-25px_-25px_0px_rgba(255,255,255,0.5)]'/>
                       <img src='https://go-tailwind.preview.uideck.com/src/images/about/image-1.jpg'/>
                   </div>
                    <div className=' mt-14 flex flex-col gap-10' >

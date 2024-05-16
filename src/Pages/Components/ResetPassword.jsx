@@ -28,15 +28,14 @@ const ResetPassword = () => {
     setErrors(newErrors);
   }
   return (
-    <div className={!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'}>
+    <div className={!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-gray-50'}>
     <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 h-[50rem] ">
-  <div class={`mx-auto mt-32 pt-16 max-w-lg ${!mode ? "bg-gray-800" : "bg-slate-50"} `}>
+  <div class={`mx-auto mt-32 pt-16 max-w-lg ${!mode ? "bg-gray-800" : "bg-white"} `}>
     <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl font-serif">RESET PASSWORD</h1>
     
     <form onSubmit={handleSubmit} class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 font-serif">
-      <div>
-        <label for="password" class="sr-only">password</label>
-
+    
+        
         <div >
           <input
             type="password"
@@ -50,10 +49,9 @@ const ResetPassword = () => {
            <p className="text-red-300">{errors.password}</p>
           )}
         </div>
-      </div>
+     
 
-      <div>
-        <label for="password" class="sr-only">Password</label>
+     
 
         <div class="relative">
           <input
@@ -91,7 +89,7 @@ const ResetPassword = () => {
             </svg>
           </span>
         </div>
-      </div>
+      
       <Link to={"/signin"}>
       <button
         type="submit"

@@ -10,7 +10,7 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from '../src/layout'
 import { Home } from './assets/pages/home'
-import { Contact } from './assets/pages/contact'
+
 import  AboutUs  from './assets/pages/aboutUs'
 import { Footer } from './assets/pages/footer'
 import ContextUser from './assets/pages/context';
@@ -19,6 +19,11 @@ import Homepage from './assets/pages/Homepage'
 import ResetPassword from './Pages/Components/ResetPassword'
 import Brainding from './Pages/Brainding'
 import CurnaryArt from './Pages/CurnaryArt'
+import Contact from './Pages/Contact'
+import Register from './Pages/Components/Register'
+import Services from './Pages/Services'
+
+
 function App() {
 
 
@@ -34,7 +39,6 @@ function App() {
               <Route path="/" element={<Layout />} >
                 <Route path="/" element={<Homepage />} />
                 <Route path="/home" element={<Home/>} />
-                <Route path="layout/contact" element={<Contact />} />
                 <Route path="layout/aboutUs" element={<AboutUs />} />
                 <Route path='/Signin' element={<Signin />} />
                 <Route path="/Signup" element={<Signup />} />
@@ -45,6 +49,9 @@ function App() {
                 <Route path='/resetPassword' element={<ResetPassword/>}/>
                 <Route path='/Branding' element={<Brainding/>}/>
                 <Route path='/CurnaryArt' element={<CurnaryArt/>}/>
+                <Route path='/Contact' element ={<Contact/>}/>
+                <Route path='/Register' element ={<Register/>}/>
+                <Route path='/Services' element={<Services/>}/>
                 </Route>
 
             </Routes>

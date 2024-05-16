@@ -36,10 +36,12 @@ const Verify = ({ length = 6, onOtpSubmit = () => {} }) => {
     }
   };
   return (
-    < div className={`mx-auto items-center justify-center flex pt-60 pb-52 ${!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'}`}>
-    <div className={` bg-gray-50  w-[30rem] h-[20rem] pt-20 px-14 rounded-sm flex flex-col gap-10 ${!mode ? "bg-gray-800" : "bg-slate-50"} `}>
-      <h2>Verify your account</h2>
-      <p>ENTER 6 DIGIT </p>
+    < div className={`mx-auto items-center justify-center flex pt-60 pb-52 ${!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-gray-50'}`}>
+    <div className={` bg-gray-100  w-[35rem] h-[27rem] pt-10 px-14 rounded-sm flex flex-col gap-10 ${!mode ? "bg-gray-800" : "bg-white"} rounded-xl shadow-lg`}>
+      <div className=' flex flex-col justify-center text-gray-500 gap-2 items-center'>
+        <h2 className=' font-bold text-2xl'>Verify Your Account</h2>
+        <p>Enter 6 digit code sent to the registered email id. </p>
+      </div>
       <div>
         {otp.map((value, index) => (
           <input
@@ -50,16 +52,18 @@ const Verify = ({ length = 6, onOtpSubmit = () => {} }) => {
             onChange={(e) => handleChange(index, e)}
             onClick={() => handleClick(index)}
             onKeyDown={(e) => handleKeyDown(index, e)}
-            className='w-[50px] h-[50px] m-[5px] text-center text-xl border-2 border-gray-500'
+            className='w-[55px] h-[50px] m-[7px] text-center text-xl border-2 border-gray-500'
           />
         ))}
     
       </div>
+      <p className='text-gray-500'>Did not receive a code ? <Link to={"/signin"} className=' text-blue-600'>Resend</Link></p>
        <div>
        <button
               type="submit"
               className={`block w-full rounded-lg ${!mode ? "bg-blue-900" : "bg-indigo-600"}  px-5 py-3 text-sm font-medium text-white hover:bg-slate-700`}><Link to ="/Signin">Verify</Link></button>
        </div>
+       <p className='text-red-400'>Don't share the verification code with anyone!</p>
     </div>
    </div>
   );
