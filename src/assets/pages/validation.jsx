@@ -1,11 +1,10 @@
-import * as yup from 'yup'
+import * as Yup from 'yup';
 
-export const userSchema = yup.object().shape({
-    firstName: yup.string().required(),
-    lastName: yup.string().required(),
-    email: yup.string().email().required(),
-    phoneNumber: yup.string().min(10). max(10).required(),
-    role: yup.string().required(),
-    password: yup.string().min(4).max(8).required(),
-
+export const userSchema = Yup.object().shape({
+    firstName: Yup.string().required('First name is required'),
+    lastName: Yup.string().required('Last name is required'),
+    email: Yup.string().email('Invalid email').required('Email is required'),
+    phoneNumber: Yup.string().required('Phone number is required'),
+    password: Yup.string().required('Password is required'),
+    confirmpassword: Yup.string().oneOf([Yup.ref("password"), null])
 });
