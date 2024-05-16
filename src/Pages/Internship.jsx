@@ -3,7 +3,7 @@ import React from 'react'
 const Internship = () => {
   return (
     <div>
-      <p>this page fetch</p>
+      <p>this fetch page</p>
     </div>
   )
 }
