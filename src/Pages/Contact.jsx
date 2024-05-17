@@ -13,7 +13,7 @@ const contact = () => {
         <form action="#" class="space-y-4">
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className=' flex flex-col gap-10'>
-            <label className=' text-gray-200'>First Name:</label>
+            <label className=' text-gray-500'>First Name:</label>
             <input
               class={`w-full rounded-lg  border-gray-200 p-3 text-sm ${!mode ? "bg-gray-700" : "bg-slate-50"} `}
               type="text"
@@ -21,7 +21,7 @@ const contact = () => {
             />
           </div>
           <div className=' flex flex-col gap-10'>
-            <label className=' text-gray-200'>Last Name:</label>
+            <label className=' text-gray-500'>Last Name:</label>
             <input
               class={`w-full rounded-lg  border-gray-200 p-3 text-sm ${!mode ? "bg-gray-700" : "bg-slate-50"} `}
               type="text"
@@ -32,7 +32,7 @@ const contact = () => {
 
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className='flex flex-col gap-10'>
-              <label className=' text-gray-200'>Email:</label>
+              <label className=' text-gray-500'>Email:</label>
               <input
                 class={`w-full rounded-lg  border-gray-200 p-3 text-sm ${!mode ? "bg-gray-700" : "bg-slate-50"} `}
                 type="email"
@@ -41,7 +41,7 @@ const contact = () => {
             </div>
 
             <div className=' flex flex-col gap-10'>
-              <label className=' text-gray-200'>Phone Number:</label>
+              <label className=' text-gray-500'>Phone Number:</label>
               <input
                 class={`w-full rounded-lg  border-gray-200 p-3 text-sm ${!mode ? "bg-gray-700" : "bg-slate-50"} `}
                 type="tel"
@@ -54,7 +54,7 @@ const contact = () => {
           </div> */}
 
           <div className=' flex flex-col gap-10'>
-            <label className=' text-gray-200'>Message:</label>
+            <label className=' text-gray-500'>Message:</label>
 
             <textarea
               class={`w-full rounded-lg  border-gray-200 p-3 text-sm ${!mode ? "bg-gray-700" : "bg-slate-50"} `}

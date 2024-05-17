@@ -1,7 +1,10 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react'
 import { AppContext } from '../../assets/pages/context'
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Verify = ({ length = 6, onOtpSubmit = () => {} }) => {
@@ -35,6 +38,23 @@ const Verify = ({ length = 6, onOtpSubmit = () => {} }) => {
       inputRefs.current[index - 1].focus();
     }
   };
+  const [op,setOp]= useState(" ");
+  const [error,setError]=useState(" ");
+  const navigate = useNavigate();
+  const handleOtp =async(e)=>{
+    e.preventDefault();
+    try{
+      const response= await axios.post('https://huza-backend-app-api.onrender.com/api/allUsers/verify',{op}
+
+      );
+      console.log('response.data',response.data);
+      navigate('/Sigin');
+    } catch(error){
+      console.log(error)
+      setError("invalid OTP")
+    }
+  };
+
   return (
     < div className={`mx-auto items-center justify-center flex pt-60 pb-52 ${!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-gray-50'}`}>
     <div className={` bg-gray-100  w-[35rem] h-[27rem] pt-10 px-14 rounded-sm flex flex-col gap-10 ${!mode ? "bg-gray-800" : "bg-white"} rounded-xl shadow-lg`}>
@@ -42,20 +62,21 @@ const Verify = ({ length = 6, onOtpSubmit = () => {} }) => {
         <h2 className=' font-bold text-2xl'>Verify Your Account</h2>
         <p>Enter 6 digit code sent to the registered email id. </p>
       </div>
+      <form onSubmit={handleOtp}>
       <div>
         {otp.map((value, index) => (
           <input
             key={index}
             ref={(input) => (inputRefs.current[index] = input)}
             type="text"
-            value={value}
-            onChange={(e) => handleChange(index, e)}
+            value={op}
+            onChange={(e) =>setOp(handleChange(index, e))  }
             onClick={() => handleClick(index)}
             onKeyDown={(e) => handleKeyDown(index, e)}
             className='w-[55px] h-[50px] m-[7px] text-center text-xl border-2 border-gray-500'
           />
         ))}
-    
+     {error &&<p>{error}</p>}
       </div>
       <p className='text-gray-500'>Did not receive a code ? <Link to={"/signin"} className=' text-blue-600'>Resend</Link></p>
        <div>
@@ -64,8 +85,11 @@ const Verify = ({ length = 6, onOtpSubmit = () => {} }) => {
               className={`block w-full rounded-lg ${!mode ? "bg-blue-900" : "bg-indigo-600"}  px-5 py-3 text-sm font-medium text-white hover:bg-slate-700`}><Link to ="/Signin">Verify</Link></button>
        </div>
        <p className='text-red-400'>Don't share the verification code with anyone!</p>
+       </form>
     </div>
+   
    </div>
   );
 };
+
 export default Verify;

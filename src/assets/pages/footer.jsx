@@ -54,6 +54,7 @@ export const Footer = () => {
                     <p className={` font-bold ${mode ? "text-blue-400" : "text-white"}`}>+250786170670</p>
                     <p className="text-slate-500">Connect With Us WIth confidence</p>
                     <p className='text-slate-500'>copyright &copy; {new Date().getFullYear()} All rights reserved</p>
+                    <p className="text-slate-500">Developed by Sylvie and Louise</p>
                 </div>
                 </div>
                 <div  className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-b from-gray-800 via-transparent to-transparent"></div>
