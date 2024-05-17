@@ -40,14 +40,14 @@ export const NavBar = () => {
                             <div className='flex flex-row justify-center items-center space-x-4'>
                                 <div className='px-2 py-1 bg-gray-800'> <FcBarChart  className=' text-white '/></div>
                                
-                                <NavLink to="/team" className='text-white'>Analytics</NavLink>
+                                <NavLink to="dashboard/team" className='text-white'>Analytics</NavLink>
                             </div>
                         </div>
                         <div className='flex flex-row justify-center items-center  hover:bg-gray-800 py-4  '>
                             <div className='flex flex-row justify-center items-center space-x-4'>
                                 <div className='px-2 py-1 bg-gray-800'><CgProfile  className=' text-white'/></div>
                                 
-                                <NavLink to="/enhancedTable" className='text-white'>Users</NavLink>
+                                <NavLink to="dashboard/enhancedTable" className='text-white'>Users</NavLink>
                             </div>
 
                         </div>
@@ -55,7 +55,7 @@ export const NavBar = () => {
                             <div className='flex flex-row justify-center items-center space-x-4'>
                                 <div className='px-2 py-1 bg-gray-800'><RiLockPasswordFill className=' text-white' /></div>
                                 
-                                <NavLink to="/users" className='text-white'>Login</NavLink>
+                                <NavLink to="dashboard/users" className='text-white'>Login</NavLink>
                             </div>
 
                         </div>
@@ -64,7 +64,7 @@ export const NavBar = () => {
                                 <div className='px-2 py-1 bg-gray-800'>  <MdOutlineDoNotDisturbAlt className=' text-white' /></div>
                               
                                
-                                <NavLink to="/users" className='text-white'>Not Found</NavLink>
+                                <NavLink to="dashboard/users" className='text-white'>Not Found</NavLink>
                             </div>
 
                         </div>

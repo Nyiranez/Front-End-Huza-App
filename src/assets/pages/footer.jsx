@@ -1,8 +1,8 @@
 import React from 'react'
 // import { NavLink } from 'react-router-dom'
 // import { RiSendPlane2Line } from "react-icons/ri";
-import Huza from '../images/huzaa.jpeg'
-import Logo from '../images/logo.jpeg'
+import Huza from '../images/black.jpeg'
+import Logo from '../images/white.jpeg'
 import { useContext } from 'react'
 import { AppContext } from './context'
 export const Footer = () => {
@@ -11,25 +11,28 @@ export const Footer = () => {
         <div>
 
 
-            <div className={`grid lg:grid-cols-4 grid-cols-1 justify-between  border-1 border-t border-gray-700 gap-12  px-40 ${!mode ?  'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'} bg-slate-900 pt-8 pb-8`}>
-                <div className='space-y-5'>
+
+         
+
+            <div className={`relative shadow-lg ${!mode ?  'bg-gradient-to-r from-slate-950 to-gray-900' : 'bg-white'} bg-slate-900 pt-8 pb-8`}>
+                <div className=' grid lg:grid-cols-4 grid-cols-2 justify-between   gap-12  px-32'>                <div className='space-y-5'>
                     <div className='flex flex-row space-x-5'>
 
                         {mode ? <img src={Logo} alt="" className='h-24 w-24'></img> : <img src={Huza} alt="" className='h-24 w-24'></img>}
-                        <p className={` font-bold ${!mode ? "text-white" : "text-black"} text-4xl` }>GO STARTUP</p>
+                        
 
                     </div>
                     <div className=' flex flex-col gap-3'>
-                        <p className='text-slate-500'>Lorem ipsum dolor sit amet, </p>
-                        <p className='text-slate-500'>consectetur adipiscing elit.</p>
+                        <p className='text-slate-500'>HUZA APP </p>
+                        <p className='text-slate-500'> Based on Unemployement.</p>
                     </div>
                 </div>
                 <div className='space-y-6'>
                     <p className={` font-bold ${!mode ? "text-white" : "text-black"}`}>HUZA</p>
                     <div className='flex flex-col gap-3'>
                         <p className='text-slate-500'>Home</p>
-                        <p className='text-slate-500'>Internship</p>
-                        <p className='text-slate-500'>Plainters</p>
+                        <p className='text-slate-500'>Curnary Art</p>
+                        <p className='text-slate-500'>Painting</p>
                         <p className='text-slate-500'>Makeup Design</p>
                     </div>
                 </div>
@@ -52,6 +55,8 @@ export const Footer = () => {
                     <p className="text-slate-500">Connect With Us WIth confidence</p>
                     <p className='text-slate-500'>copyright &copy; {new Date().getFullYear()} All rights reserved</p>
                 </div>
+                </div>
+                <div  className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-b from-gray-800 via-transparent to-transparent"></div>
             </div>
         </div>
     )
