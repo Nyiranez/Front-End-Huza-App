@@ -2,30 +2,76 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { AppContext } from '../../assets/pages/context'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 const Signin = () => {
   const { mode } = useContext(AppContext)
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
+  // const [formData, setFormData] = useState({
+  //   email: '',
+  //   password: '',
+  // });
 
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-  const handleSubmit = (e) => {
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({ ...formData, [name]: value });
+  // };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const newErrors = {};
+
+  //   if (formData.email === '') {
+  //     newErrors.email = 'Please enter your UserName';
+  //   }
+  //   if (formData.password === '') {
+  //     newErrors.password = 'Please enter your Password';
+  //   }
+  //   setErrors(newErrors);
+  // }
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const navigate = useNavigate();
+  const isValid = () => {
+    let valid = true;
+    if (!email.trim()) {
+      setEmailError("LastName is required");
+      valid = false;
+    } else {
+      setEmailError("");
+    }
+    if (!password.trim()) {
+      setPasswordError("LastName is required");
+      valid = false;
+    } else {
+      setPasswordError("");
+    }
+  }
+  const handleSignUp = async (e) => {
     e.preventDefault();
-    const newErrors = {};
-
-    if (formData.email === '') {
-      newErrors.email = 'Please enter your UserName';
-    }
-    if (formData.password === '') {
-      newErrors.password = 'Please enter your Password';
-    }
-    setErrors(newErrors);
+  await axios({
+    url: "https://huza-backend-app-api.onrender.com/api/allUsers/login",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: {
+      
+      email: email,
+      
+      password: password,
+      
+    },
+  })
+    .then((response) => {
+      console.log(response.data);
+      navigate ("/CurnaryArt");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
   return (
     <div className={!mode ? 'bg-gradient-to-r from-slate-950 to-gray-950' : 'bg-gray-50'}>
@@ -33,22 +79,22 @@ const Signin = () => {
   <div class={`mx-auto mt-32 pt-16 max-w-lg ${!mode ? "bg-gradient-to-r from-gray-800 to-gray-800" : "bg-white"} `}>
     <h1 class={`text-center text-2xl font-bold  sm:text-3xl font-serif ${!mode ? "text-white" : "text-indigo-600"}`}>WELCOME TO MY PAGE</h1>
     
-    <form onSubmit={handleSubmit} class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 font-serif">
+    <form onSubmit={handleSignUp} class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 font-serif">
 
 
         <div >
           <input
             type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
+            value={email}
+            
+            onChange={(e) => setEmail(e.target.value)}
             className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-gray-100"} p-4  text-sm shadow-sm`}
             placeholder="Enter UserName"
             
           />
-          {errors.email && (
-           <p className="text-red-300">{errors.email}</p>
-          )}
+          {emailError ? (
+                  <p className="text-red-300">{emailError}</p>
+                ) : null}
         </div>
       
 
@@ -58,14 +104,14 @@ const Signin = () => {
           <input
             type="password"
             name="password"
-            value={formData.password}
-            onChange={handleChange}
+            value={password}
+                  onChange={(v) => setPassword(v.target.value)}
             className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-gray-100"} p-4  text-sm shadow-sm`}
             placeholder="Enter Password"
           />
-          {errors.password && (
-                  <p className="text-red-300">{errors.password}</p>
-                )}
+          {passwordError ? (
+                  <p className="text-red-500">{passwordError}</p>
+                ) : null}
 
           <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
             <svg
@@ -94,6 +140,7 @@ const Signin = () => {
 
       <button
         type="submit"
+        onClick={handleSignUp}
         className={`block w-full rounded-lg ${!mode ? "bg-blue-900" : "bg-indigo-600"}  px-5 py-3 text-sm font-medium text-white hover:bg-slate-900`}
       >
         Sign in

@@ -6,7 +6,8 @@ const Services = () => {
   const { mode } = useContext(AppContext)
   return (
     <div className={!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-gray-50'}>
-      <div className=' flex flex-wrap justify-between px-32 py-40 gap-2 '>
+      {/* <h2 className='text-gray-500 flex justify-center text-4xl  pt-20'>SERVICES</h2> */}
+      <div className=' flex flex-wrap justify-between px-32 py-40 gap-2'>
        
           <article class={`overflow-hidden rounded-lg border border-gray-100 bg-white shadow-sm w-[17rem]`}>
               <div class="sm:p-6 ">
@@ -53,13 +54,13 @@ const Services = () => {
                       It's a versatile and popular method used in hairstyling, crafting, and 
                       textiles around the world
                   </p>
-                  <div >
+                  <div className='flex justify-between'>
                   <Link to={"/Branding"} class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">Find out more
                     <span aria-hidden="true" class="block transition-all group-hover:ms-0.5 rtl:rotate-180">
                       &rarr;
                     </span>
                    </Link> 
-                   {/* <Link to={"/Branding"} class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">Hiring
+                   {/* <Link to={"/Signin"} class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">Hiring
                     <span aria-hidden="true" class="block transition-all group-hover:ms-0.5 rtl:rotate-180">
                       &rarr;
                     </span>
