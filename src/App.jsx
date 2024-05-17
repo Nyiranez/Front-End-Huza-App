@@ -39,9 +39,7 @@ function App() {
           </BrowserRouter>
 
         </div>
-        {/* <div className='h-64'> */}
-        {/* <Footer /> */}
-        {/* </div> */}
+      
       </ContextUser>
 
 
