@@ -45,7 +45,7 @@
   min-height: calc(100vh - 16rem);
   
 }
-#animated-text{
+/* #animated-text{
   color: gray; 
   font-family: "Courier";
   font-size: 20px;
@@ -54,25 +54,25 @@
   overflow: hidden;
   width: 30em;
   animation: type 10s infinite; 
-  /* text-decoration: underline; */
+
 }
 
 @keyframes type{ 
   from { width: 0; } 
-} 
+}  */
 
-#animated{
-  color: gray; 
+/* #animated{
   font-family: "Courier";
   font-size: 20px;
   margin: 10px 0 0 10px;
   white-space: nowrap;
   overflow: hidden;
   width: 30em;
-  animation: type 10s infinite;
-  /* text-decoration: underline; */
+  animation: type 3s infinite;
+  
+
 }
 
 @keyframes type{ 
   from { width: 0; } 
-} 
+}  */

@@ -9,8 +9,8 @@ export const Home = () => {
   return (
     <div>
 
-      <div className={`flex flex-row justify-around items-center pt-8 mt-24 px-40 ${!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-white'} h-screen`}>
-        <div className='space-y-8'>
+      <div className={` flex flex-wrap justify-between py-24 px-32 ${!mode ? 'bg-gradient-to-r from-slate-950 to-slate-700' : 'bg-gray-50'} h-full`}>
+        <div className='space-y-10 pt-52'>
           <div className={`${!mode ? "bg-gradient-to-r from-slate-800 to-slate-700" : " bg-slate-100"}  px-4 py-2 rounded-full text-blue-500 flex flex-row space-x-2 items-center w-72 justify-center`}>
             <div className='bg-blue-400  rounded-full w-2 h-2 ' ></div>
             <p className={`text-xl ${!mode ? "text-white" : "text-blue-700"}`}>Get your opportunities</p>
@@ -39,12 +39,10 @@ export const Home = () => {
           </div>
 
         </div>
-        <div className=''>
+        <div className=' mt-10'>
           <img src='https://go-tailwind.preview.uideck.com/src/images/hero/image-2.jpg' alt="" className=' ml-8  '></img> 
           <img src="https://go-tailwind.preview.uideck.com/src/images/hero/image-1.jpg" alt="" className='relative -mt-96 shadow-[25px_-25px_0px_rgba(255,255,255,0.5)]'></img>
-          <div className=' '> 
         </div>
-     </div>
    </div>
     </div>
   )

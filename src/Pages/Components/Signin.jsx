@@ -28,19 +28,13 @@ const Signin = () => {
     setErrors(newErrors);
   }
   return (
-    <div className={!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-gray-50'}>
-    <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 h-[50rem] ">
-  <div class={`mx-auto mt-32 pt-16 max-w-lg ${!mode ? "bg-gray-800" : "bg-white"} `}>
-    <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl font-serif">SIGNIN INTO YOUR ACCOUNT</h1>
-    <div className=' flex justify-center mt-5'>
-          <button className={` flex justify-center rounded-lg gap-5 px-5 border-gray-200 ${!mode ? "bg-gray-700" : "bg-gray-100"}`}>
-            <img src='/gogle.png' className=' w-10'/>
-            <p className='mt-2 text-gray-400'>Sign in with Google</p>
-          </button>
-     </div>
+    <div className={!mode ? 'bg-gradient-to-r from-slate-950 to-gray-950' : 'bg-gray-50'}>
+    <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 h-[65rem] ">
+  <div class={`mx-auto mt-32 pt-16 max-w-lg ${!mode ? "bg-gradient-to-r from-gray-800 to-gray-800" : "bg-white"} `}>
+    <h1 class={`text-center text-2xl font-bold  sm:text-3xl font-serif ${!mode ? "text-white" : "text-indigo-600"}`}>WELCOME TO MY PAGE</h1>
+    
     <form onSubmit={handleSubmit} class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 font-serif">
-      <div>
-        <label for="UserName" class="sr-only">UserName</label>
+
 
         <div >
           <input
@@ -56,10 +50,9 @@ const Signin = () => {
            <p className="text-red-300">{errors.email}</p>
           )}
         </div>
-      </div>
+      
 
-      <div>
-        <label for="password" class="sr-only">Password</label>
+      
 
         <div class="relative">
           <input
@@ -97,7 +90,7 @@ const Signin = () => {
             </svg>
           </span>
         </div>
-      </div>
+      
 
       <button
         type="submit"
@@ -105,6 +98,13 @@ const Signin = () => {
       >
         Sign in
       </button>
+      <div className=' flex justify-center mt-5'>
+          <button className={` flex justify-center rounded-lg gap-5 px-5 w-full border-gray-200 ${!mode ? "bg-gray-700" : "bg-gray-100"}`}>
+            <img src='/gogle.png' className=' w-10'/>
+            <p className='mt-2 text-gray-400'>Sign in with Google</p>
+          </button>
+     </div>
+     
       <div className=' flex justify-between'>
       <p class="text-center text-sm text-gray-500">
         No account?
