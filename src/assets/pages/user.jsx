@@ -11,27 +11,31 @@ export const User = () => {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
     const [confirmpassword, setConfirmPassword] = useState("");
+    const [role, setRole] = useState("");
+
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(userSchema),
     });
 
-    const createUser = (data) => {
-        console.log(data); // Log the form data to the console
+    const createUser = () => {
+        // console.log(data); // Log the form data to the console
 
-        axios({
+      axios({
             method: 'POST',
-            url: "https://huza-backend-app-api.onrender.com/api/user/create",
+            url: "https://huza-backend-app-api.onrender.com/api/allUsers/create",
             headers: {
                 "Content-Type": "application/json",
             },
             data: {
-                firstName: data.firstName,
-                lastName: data.lastName,
-                email: data.email,
-                phoneNumber: data.phoneNumber,
-                password: data.password,
-                confirmpassword: data.confirmPassword,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                phoneNumber:phoneNumber,
+                role: role,
+                password:password,
+                confirmpassword: confirmpassword,
+               
             },
         }).then(response => {
             console.log(response.data);
@@ -39,6 +43,7 @@ export const User = () => {
             console.log(err);
         });
     };
+  
 
     return (
         <div className='flex flex-col items-center mt-10'>
@@ -78,7 +83,13 @@ export const User = () => {
                     className='mt-4 pl-4 pb-2 pt-2'
                 />
                 <p className='text-red-600'>{errors.phoneNumber?.message}</p>
-
+                <select value={role} onChange={(e)=> setRole(e.target.value)}>
+                    <option value="">admin</option>
+                    <option value="user">user</option>
+                    <option value="skilled">skilled</option>
+                </select>
+                <p className='text-red-600'>{errors.role?.message}</p>
+                {/* {} */}
                 <input
                     type="password"
                     placeholder='Password'

@@ -40,7 +40,7 @@ function createData(id, FirstName, LastName,  Category) {
 }
 
 const rows = [
-  createData(1, 'IZERE', "Paradis", "CarnaryArt"),
+  createData(1, 'ISHAMI', "Gaelle", "CarnaryArt"),
   createData(2, 'ISHIMWE', "Paradis",  "Brainding"),
   createData(3, 'IZERE', "Paradis",  "CarnaryArt"),
   createData(4, 'GWIZA', "Paradis",  "MakeUp"),
@@ -52,7 +52,7 @@ const rows = [
   createData(10, 'IZERE', "Paradis",  "Brainding"),
   createData(11, 'BEZA', "Paradis",  "CarnaryArt"),
   createData(13, 'IZERE', "Paradis",  "Plainters"),
-  createData(13, 'KEZA', "Paradis",  "CarnaryArt"),
+  createData(13, 'SINGIZWA', "Moses",  "CarnaryArt"),
 ];
 
 function descendingComparator(a, b, orderBy) {
