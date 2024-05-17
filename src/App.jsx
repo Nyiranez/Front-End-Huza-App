@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from '../src/layout'
 
 import { Home } from './assets/pages/home'
-import { User } from './assets/pages/user'
+
 import { Dashboard } from './assets/pages/dashbord'
 import { Users } from './assets/pages/users'
 import Team from './assets/pages/team'
@@ -56,7 +56,7 @@ function App() {
                 <Route path='/Contact' element={<Contact />} />
                 <Route path='/Register' element={<Register />} />
                 <Route path='/Services' element={<Services />} />
-                <Route path="/user" element={<User />} />
+               
               </Route>
               <Route path='/dashboard' element={<Dashboard></Dashboard>}>
                 <Route path='dashboard/team' element={<Team />} />
