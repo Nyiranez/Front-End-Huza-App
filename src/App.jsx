@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 // import React from 'react'
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from '../src/layout'
+=======
+// import React from "react";
+import Signin from "./Pages/Components/Signin";
+import Signup from "./Pages/Components/Signup";
+import MakeupDesign from "./Pages/MakeupDesign";
+import Plainters from "./Pages/Plainters";
+import ForgetPassword from "./Pages/Components/ForgetPassword";
+>>>>>>> main
 
 import { Home } from './assets/pages/home'
 
