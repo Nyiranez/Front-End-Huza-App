@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from '../src/layout'
@@ -9,7 +9,7 @@ import { Dashboard } from './assets/pages/dashbord'
 import { Users } from './assets/pages/users'
 import Team from './assets/pages/team'
 import EnhancedTable from './assets/pages/enhancedTable'
-import More from './assets/pages/more';
+// import More from './assets/pages/more';
 import AboutUs from './assets/pages/aboutUs'
 import ContextUser from './assets/pages/context';
 import Verify from './Pages/Components/Verify'

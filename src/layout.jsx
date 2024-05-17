@@ -5,14 +5,14 @@ import Logo from './assets/images/white.jpeg'
 import Huza from './assets/images/black.jpeg'
 import { useContext, useEffect, useState } from 'react'
 import { AppContext } from './assets/pages/context'
-import { Popover, Transition } from '@headlessui/react';
+import { Popover, Transition ,Fragment} from '@headlessui/react';
 import { FiSun } from 'react-icons/fi';
 import { Footer } from './assets/pages/footer';
 
 
 export const Layout = () => {
     const { mode, setMode } = useContext(AppContext)
-    const [menu, setMenu] = useState(false)
+    // const [menu, setMenu] = useState(false)
     const [isSmallScreen ,setIsSmallScreen]=useState(false);
     const handleResize=()=>{
         setIsSmallScreen(window.innerWidth<1024);
@@ -23,9 +23,9 @@ export const Layout = () => {
             window.addEventListener('resize',handleResize);
         };
     },[]);
-    function handlemenu() {
-        setMenu(!menu)
-    }
+    // function handlemenu() {
+    //     setMenu(!menu)
+    // }
     return (
         <div>
             <div className={`flex flex-row justify-between items-center fixed w-full z-10 top-0   pt-3 px-32 shadow-sm  ${!mode ? 'bg-gradient-to-r from-slate-950 to-slate-700' : 'bg-white'}`}>
