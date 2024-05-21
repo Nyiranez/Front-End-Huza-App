@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react'
@@ -90,4 +91,5 @@ const Verify = ({ length = 6, onOtpSubmit = () => {} }) => {
    </div>
   );
 };
+
 export default Verify;

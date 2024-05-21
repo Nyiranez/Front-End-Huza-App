@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 // import { NavLink } from 'react-router-dom'
 // import { RiSendPlane2Line } from "react-icons/ri";
 import Huza from '../images/black.jpeg'
@@ -9,10 +9,15 @@ export const Footer = () => {
     const { mode } = useContext(AppContext)
     return (
         <div>
+
+
+
+         
+
             <div className={`relative shadow-lg ${!mode ?  'bg-gradient-to-r from-slate-950 to-gray-900' : 'bg-white'} bg-slate-900 pt-8 pb-8`}>
-                <div className=' grid lg:grid-cols-4 grid-cols-2 justify-between   gap-12  px-32'>
-                <div className='space-y-5'>
+                <div className=' grid lg:grid-cols-4 grid-cols-2 justify-between   gap-12  px-32'>                <div className='space-y-5'>
                     <div className='flex flex-row space-x-5'>
+
                         {mode ? <img src={Logo} alt="" className='h-24 w-24'></img> : <img src={Huza} alt="" className='h-24 w-24'></img>}
                         
 
@@ -31,6 +36,7 @@ export const Footer = () => {
                         <p className='text-slate-500'>Makeup Design</p>
                     </div>
                 </div>
+
                 <div className='space-y-6'>
                     <p className={` font-bold ${!mode ? "text-white" : "text-black"}`}>SUPPORT</p>
                     <div>

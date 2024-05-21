@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import { MdKeyboardDoubleArrowLeft } from 'react-icons/md';
 import { Link } from 'react-router-dom'
@@ -78,5 +79,4 @@ const ForgetPassword = () => {
     </div>
       )
     }
-
 export default ForgetPassword

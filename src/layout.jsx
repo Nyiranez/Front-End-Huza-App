@@ -1,28 +1,31 @@
-import React, { Fragment, useState, useEffect } from 'react';
+// import React, {  useState } from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
-import { MdOutlineModeNight} from 'react-icons/md';
+import { MdOutlineModeNight } from 'react-icons/md';
 import Logo from './assets/images/white.jpeg'
 import Huza from './assets/images/black.jpeg'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AppContext } from './assets/pages/context'
 import { Popover, Transition } from '@headlessui/react';
 import { FiSun } from 'react-icons/fi';
+import { Footer } from './assets/pages/footer';
+
 
 export const Layout = () => {
     const { mode, setMode } = useContext(AppContext)
+    // const [menu, setMenu] = useState(false)
     const [isSmallScreen, setIsSmallScreen] = useState(false);
-
     const handleResize = () => {
-        setIsSmallScreen(window.innerWidth < 1024); 
+        setIsSmallScreen(window.innerWidth < 1024);
     }
-
     useEffect(() => {
         window.addEventListener('resize', handleResize);
         return () => {
-            window.removeEventListener('resize', handleResize);
+            window.addEventListener('resize', handleResize);
         };
     }, []);
-
+    // function handlemenu() {
+    //     setMenu(!menu)
+    // }
     return (
         <div>
             <div className={`flex flex-row justify-between items-center fixed w-full z-10 top-0   pt-3 px-32 shadow-sm  ${!mode ? 'bg-gradient-to-r from-slate-950 to-slate-700' : 'bg-white'}`}>
@@ -44,7 +47,7 @@ export const Layout = () => {
                                         </svg>
                                     </Popover.Button>
                                     <Transition
-                                        as={Fragment}
+                                        // as={Fragment}
                                         enter="transition ease-out duration-200"
                                         enterFrom="opacity-0 translate-y-1"
                                         enterTo="opacity-100 translate-y-0"
@@ -68,7 +71,7 @@ export const Layout = () => {
                                                         </button>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                         </Popover.Panel>
                                     </Transition>
@@ -82,22 +85,29 @@ export const Layout = () => {
                         <NavLink to="/layout/aboutus" className={`text-gray-500 ${!mode ? "hover:text-white" : "hover:text-blue-600"} `}>AboutUs</NavLink>
                         <NavLink to="/Contact" className={`text-gray-500 ${!mode ? "hover:text-white" : "hover:text-blue-600"} `}>Contact</NavLink>
                         <NavLink to="/Services" className={`text-gray-500 ${!mode ? "hover:text-white" : "hover:text-blue-600"} `}>Services</NavLink>
-                        
+
                     </div>
-                
+
                 )}
-                  <div className='flex gap-5 pb-5 pt-5 '>
-                       <button className='bg-gradient-to-r from-sky-500 to-indigo-500 px-6 py-3 text-white font-bold rounded-md'>
-                             <NavLink to='/Signin'>Sign In</NavLink>
-                        </button>
-                        <button className={` px-6 py-3 rounded-md ${!mode ? "bg-gradient-to-r from-slate-700  to-slate-800" : "bg-black"} text-white font-bold`}>
-                             <NavLink to="/Signup">Sign Up</NavLink>
-                        </button>
-                        {mode ? <MdOutlineModeNight onClick={() => setMode(!mode)} className=' text-2xl mt-4' /> : <FiSun onClick={() => setMode(!mode)} className=' text-white text-2xl mt-4' />}
-                 </div>
-               
+                <div className='flex gap-5 pb-5 pt-5 '>
+                    <button className='bg-gradient-to-r from-sky-500 to-indigo-500 px-6 py-3 text-white font-bold rounded-md'>
+                        <NavLink to='/Signin'>Sign In</NavLink>
+                    </button>
+                    <button className={` px-6 py-3 rounded-md ${!mode ? "bg-gradient-to-r from-slate-700  to-slate-800" : "bg-black"} text-white font-bold`}>
+                        <NavLink to="/Signup">Sign Up</NavLink>
+                    </button>
+                    {mode
+                        ?
+                        <MdOutlineModeNight onClick={() => setMode(!mode)} className=' text-2xl mt-4' />
+                        :
+                        <FiSun onClick={() => setMode(!mode)} className=' text-white text-2xl mt-4' />
+                    }
+                </div>
+
             </div>
             <Outlet />
+            <Footer />
         </div>
+
     );
 };
