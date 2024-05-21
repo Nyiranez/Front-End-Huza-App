@@ -21,6 +21,7 @@ import CurnaryArt from "./Pages/CurnaryArt";
 import Contact from "./Pages/Contact";
 import Register from "./Pages/Components/Register";
 import Services from "./Pages/Services";
+import Profile from "./Pages/Components/Profile";
 // import Mission from "./Pages/Mission";
 // import Vision from "./Pages/Vision";
 // import Componets from './Pages/Componets'
@@ -48,6 +49,7 @@ function App() {
                 <Route path="/Contact" element={<Contact />} />
                 <Route path="/Register" element={<Register />} />
                 <Route path="/Services" element={<Services />} />
+                <Route path="/Profile" element={<Profile/>}/>
               </Route>
                 {/* <Route path="/" element={<Componets/>}>
                 <Route path="/Mission" element={<Mission />} />

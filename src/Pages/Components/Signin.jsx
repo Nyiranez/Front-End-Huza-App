@@ -4,8 +4,12 @@ import { useContext } from 'react'
 import { AppContext } from '../../assets/pages/context'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+
 const Signin = () => {
   const { mode } = useContext(AppContext)
+   const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   // const [formData, setFormData] = useState({
   //   email: '',
   //   password: '',
@@ -51,28 +55,70 @@ const Signin = () => {
   }
   const handleSignUp = async (e) => {
     e.preventDefault();
-  await axios({
-    url: "https://huza-backend-app-api.onrender.com/api/allUsers/login",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: {
+    if(!validateForm()){
+      return;
+    }
+    setLoading(true);
+  // await axios({
+  //   url: "https://huza-backend-app-api.onrender.com/api/allUsers/login",
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   data: {
       
-      email: email,
+  //     email: email,
       
-      password: password,
+  //     password: password,
       
-    },
-  })
-    .then((response) => {
-      console.log(response.data);
-      navigate ("/CurnaryArt");
-    })
-    .catch((err) => {
-      console.log(err);
+  //   },
+  // })
+  //   .then((response) => {
+  //     console.log(response.data);
+  //     navigate ("/CurnaryArt");
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+  // }
+  try {
+    const response = await axios.post("https://huza-backend-app-api.onrender.com/api/allUsers/login", {
+      email,
+      password,
+    }, {
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
+    setSuccessMessage("You have login into your account is successfully");
+    setErrorMessage("");
+    console.log(response.data);
+    setTimeout(()=>{
+      if(response.data.user.role === "skilled"){
+        navigate ('/MakeupDesign');
+      }
+      else if(response.data.user.role === "user"){
+        navigate("/Profile");
+      }
+      else if(response.data.user.role === "admin"){
+        navigate("/CurnaryArt");
+      }
+    }, 3000)
+   
+  } catch (err) {
+    setErrorMessage("Something went wrong, please try again");
+    console.log(err);
+  } finally {
+    setLoading(false);
   }
+};
+  const validateForm = () => {
+    return (
+      
+      email.trim() !== '' &&
+      password.trim() !== ''
+    );
+  };
   return (
     <div className={!mode ? 'bg-gradient-to-r from-slate-950 to-gray-950' : 'bg-gray-50'}>
     <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 h-[65rem] ">
@@ -85,6 +131,7 @@ const Signin = () => {
         <div >
           <input
             type="email"
+            name='email'
             value={email}
             
             onChange={(e) => setEmail(e.target.value)}
@@ -142,15 +189,17 @@ const Signin = () => {
         type="submit"
         onClick={handleSignUp}
         className={`block w-full rounded-lg ${!mode ? "bg-blue-900" : "bg-indigo-600"}  px-5 py-3 text-sm font-medium text-white hover:bg-slate-900`}
+        disabled={loading || !validateForm()}
       >
-        Sign in
+         {loading ? "Sign in loading..." : "Sign in"}
+        
       </button>
-      <div className=' flex justify-center mt-5'>
+      {/* <div className=' flex justify-center mt-5'>
           <button className={` flex justify-center rounded-lg gap-5 px-5 w-full border-gray-200 ${!mode ? "bg-gray-700" : "bg-gray-100"}`}>
             <img src='/gogle.png' className=' w-10'/>
             <p className='mt-2 text-gray-400'>Sign in with Google</p>
           </button>
-     </div>
+     </div> */}
      
       <div className=' flex justify-between'>
       <p class="text-center text-sm text-gray-500">
@@ -160,7 +209,8 @@ const Signin = () => {
       <Link to={'/ForgetPassword'}><a className=' hover:text-blue-600 text-gray-500'>Forgot Password</a></Link>
       </div>
       
-      
+      {successMessage && <p className="text-green-700">{successMessage}</p>}
+        {errorMessage && <p className="text-red-700">{errorMessage}</p>}
     </form>
   </div>
 </div>
