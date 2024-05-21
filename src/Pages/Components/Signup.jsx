@@ -77,33 +77,7 @@ const Signup = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
 
-    // if(!isValid()){
-    //   return;
-    // }
-
-    // const data = {
-    //   firstName: firstName,
-    //   lastName: lastName,
-    //   email: email,
-    //   phoneNumber: phoneNumber,
-    //   password: password,
-    //   confirmpassword: confirmpassword,
-    // };
-
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // };
-
-    // if (isValid() === true) {
-    // await axios.post("https://huza-backend-app-api.onrender.com/api/allUsers/create", data, config)
-    //   .then((response) => {
-    //     console.log("response.data", response.data);
-    //    navigate ("/verify");
-    //   })
-    //   .catch((Error) => {
-    //     console.log(Error);
+ 
     await axios({
       url: "https://huza-backend-app-api.onrender.com/api/allUsers/create",
       method: "POST",

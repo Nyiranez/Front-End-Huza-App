@@ -1,24 +1,13 @@
-<<<<<<< HEAD
-// import React from 'react'
+
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from '../src/layout'
-=======
-// import React from "react";
-import Signin from "./Pages/Components/Signin";
-import Signup from "./Pages/Components/Signup";
-import MakeupDesign from "./Pages/MakeupDesign";
-import Plainters from "./Pages/Plainters";
-import ForgetPassword from "./Pages/Components/ForgetPassword";
->>>>>>> main
-
 import { Home } from './assets/pages/home'
-
 import { Dashboard } from './assets/pages/dashbord'
 import { Users } from './assets/pages/users'
 import Team from './assets/pages/team'
 import EnhancedTable from './assets/pages/enhancedTable'
-// import More from './assets/pages/more';
+import More from './assets/pages/more';
 import AboutUs from './assets/pages/aboutUs'
 import ContextUser from './assets/pages/context';
 import Verify from './Pages/Components/Verify'
@@ -67,11 +56,12 @@ function App() {
                 <Route path='/Services' element={<Services />} />
                
               </Route>
-              <Route path='/dashboard' element={<Dashboard></Dashboard>}>
+              <Route path='/dashboard' element={<Dashboard/>}>
+              <Route path='/dashboard/' element={<Team />} />
                 <Route path='dashboard/team' element={<Team />} />
                 <Route path='dashboard/users' element={<Users />} />
                 <Route path='dashboard/enhancedTable' element={<EnhancedTable />} />
-                {/* <Route path='/more' element={<More />} /> */}
+                <Route path='dashboard/more' element={<More />} />
 
               </Route>
 

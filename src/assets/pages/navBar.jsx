@@ -3,7 +3,7 @@
 import { CgProfile } from "react-icons/cg";
 import { FcBarChart } from "react-icons/fc";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { MdOutlineDoNotDisturbAlt } from "react-icons/md";
+import { GrServices } from "react-icons/gr";
 import { GiNetworkBars } from "react-icons/gi";
 import { FaArrowTrendUp } from "react-icons/fa6";
 
@@ -26,8 +26,8 @@ export const NavBar = () => {
                 <div >
                    
                     <div className=' flex flex-col space-y-4  pt-32  mt-4 '>
-                        <div className='flex flex-row justify-center items-center  hover:bg-gray-800 py-4  '>
-                            <div className='flex flex-row justify-center items-center space-x-4'>
+                        <div className='flex flex-row justify-center items-center  bg-gray-800 py-4  '>
+                            <div className='flex flex-row justify-center items-center space-x-4 '>
                                 <div className='px-2 py-1 bg-gray-800'>
                                 <FaArrowTrendUp  className=' text-white '/>
                                 <GiNetworkBars  className=' text-white'/>
@@ -51,20 +51,21 @@ export const NavBar = () => {
                             </div>
 
                         </div>
-                        <div className='flex flex-row justify-center items-center  hover:bg-gray-800 py-4 '>
-                            <div className='flex flex-row justify-center items-center space-x-4'>
-                                <div className='px-2 py-1 bg-gray-800'><RiLockPasswordFill className=' text-white' /></div>
-                                
-                                <NavLink to="dashboard/users" className='text-white'>Login</NavLink>
+                      
+                        <div className='flex flex-row justify-center items-center  hover:bg-gray-800 py-4'>
+                            <div  className='flex flex-row justify-center items-center space-x-4'>
+                                <div className='px-2 py-1 bg-gray-800'>  <GrServices  className=' text-white' /></div>
+                              
+                               
+                                <NavLink to="dashboard/more" className='text-white'>Services</NavLink>
                             </div>
 
                         </div>
-                        <div className='flex flex-row justify-center items-center  hover:bg-gray-800 py-4'>
-                            <div  className='flex flex-row justify-center items-center space-x-4'>
-                                <div className='px-2 py-1 bg-gray-800'>  <MdOutlineDoNotDisturbAlt className=' text-white' /></div>
-                              
-                               
-                                <NavLink to="dashboard/users" className='text-white'>Not Found</NavLink>
+                        <div className='flex flex-row justify-center items-center  hover:bg-gray-800 py-4 mt-24'>
+                            <div className='flex flex-row justify-center items-center space-x-4 '>
+                                <div className='px-2 py-1 bg-gray-800'><RiLockPasswordFill className=' text-white' /></div>
+                                
+                                <NavLink to="" className='text-red-500'>LogOut</NavLink>
                             </div>
 
                         </div>

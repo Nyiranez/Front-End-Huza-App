@@ -4,6 +4,7 @@ import { Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 
 import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 
+
 const datapi = [
     { name: 'Group A', value: 400 },
     { name: 'Group B', value: 300 },
@@ -65,9 +66,11 @@ const data = [
 ];
 
 class Team extends PureComponent {
+    
     render() {
+        
         return (
-            <div className='mt-10   ml-[38rem] '>
+            <div className='mt-10    '>
                 <div className='w-full   mt-[2rem] '>
 
                     <h1 className='font-bold text-xl ml-[6rem]'>This Week's Overview</h1>
@@ -75,7 +78,7 @@ class Team extends PureComponent {
 
                     <div className='flex flex-row space-x-2 mt-4 w-10/12 justify-center items-center ml-[4rem]'>
                         <div className='flex flex-row space-x-2'>
-                            <div className='border-2 border-blue-100  h-32 w-64 flex flex-col items-center justify-center shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]'>
+                            <div className= "border-blue-100 border-2   h-32 w-64 flex flex-col items-center justify-center shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
                                 <div className='space-y-1 pb-2'>
                                     {/* <p className='font-bold text-2xl'>197</p> */}
                                     <p className='text-gray-500'>MakeUp Design</p>
@@ -119,7 +122,7 @@ class Team extends PureComponent {
                             </div>
                         </div>
                     </div>
-                    <div className='flex flex-row justify-between mt-8'>
+                    <div className='flex flex-row justify-between mt-8 pt-4 bg-blue-950'>
 
                         <div className='w-96 ' style={{ height: 500, width: 800 }}>
                             <ResponsiveContainer>
@@ -131,7 +134,7 @@ class Team extends PureComponent {
                                         top: 20,
                                         right: 20,
                                         bottom: 20,
-                                        left: 20,
+                                        left: 4,
                                     }}
                                 >
                                     <CartesianGrid stroke="#f5f5f5" />
@@ -145,27 +148,27 @@ class Team extends PureComponent {
                                 </ComposedChart>
                             </ResponsiveContainer>
                         </div>
-                        <div className=' w-86 mr-16 bg-blue-950 ' style={{ height: 500 }}>
+                        <div className=' w-86 mr-16 mt-4 bg-slate-100 px-4 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px flex flex-col items-center justify-center ' style={{ height: 450 }}>
                             <div className='flex flex-col items-center justify-center mt-8'>
-                                <p className='text-gray-400 text-4xl'>Admin analyisis</p>
+                                <p className='text-gray-400 text-2xl'>Admin analyisis</p>
                             </div>
 
                             <div className='flex flex-row justify-center space-x-4 items-center mt-8'>
-                                <div>
-                                    <div className='bg-blue-500 w-10 h-5'></div>
+                                <div className='flex flex-col justify-center items-center'>
+                                    <div className='bg-blue-500 w-4 h-5'></div>
                                    <p className='text-gray-400'> Carnary Art</p>
                                 </div>
-                                <div>
-                                    <div className='bg-yellow-400 w-10 h-5'></div>
+                                <div className='flex flex-col justify-center items-center'>
+                                    <div className='bg-yellow-400 w-4 h-5'></div>
                                     <p className='text-gray-400'>Painters</p>
                                 </div>
-                                <div>
-                                    <div className='bg-orange-400 w-10 h-5'></div>
+                                <div className='flex flex-col justify-center items-center'>
+                                    <div className='bg-orange-400 w-4 h-5'></div>
                                     <p className='text-gray-400'>Brainding</p>
                                 </div>
-                                <div>
-                                    <div className='bg-green-400 w-10 h-5'></div>
-                                    <p className='text-gray-400'>MakeUp Artist</p>
+                                <div className='flex flex-col justify-center items-center'>
+                                    <div className='bg-green-400 w-4 h-5'></div>
+                                    <p className='text-gray-400'>MakeUp </p>
                                 </div>
 
                             </div>

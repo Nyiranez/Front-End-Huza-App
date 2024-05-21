@@ -7,29 +7,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 const Signin = () => {
   const { mode } = useContext(AppContext)
-  // const [formData, setFormData] = useState({
-  //   email: '',
-  //   password: '',
-  // });
 
-  // const [errors, setErrors] = useState({});
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData({ ...formData, [name]: value });
-  // };
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const newErrors = {};
-
-  //   if (formData.email === '') {
-  //     newErrors.email = 'Please enter your UserName';
-  //   }
-  //   if (formData.password === '') {
-  //     newErrors.password = 'Please enter your Password';
-  //   }
-  //   setErrors(newErrors);
-  // }
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Profile from '../images/IMG_8112.png'
+import Profile from '../images/IMG_8112.png';
 import { RiDeleteBinLine } from "react-icons/ri";
 import { MdViewCompact } from "react-icons/md";
 import { alpha } from '@mui/material/styles';
@@ -26,33 +26,34 @@ import { GoSearch } from "react-icons/go";
 // import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useContext } from 'react'
+import { AppContext } from './context'
 
-function createData(id, FirstName, LastName,  Category) {
+function createData(id, FirstName, LastName, Category) {
   return {
     id,
     FirstName,
     LastName,
-    
     Category,
-
   };
 }
 
-const rows = [
+const rowsData = [
   createData(1, 'ISHAMI', "Gaelle", "CarnaryArt"),
-  createData(2, 'ISHIMWE', "Paradis",  "Brainding"),
-  createData(3, 'IZERE', "Paradis",  "CarnaryArt"),
-  createData(4, 'GWIZA', "Paradis",  "MakeUp"),
-  createData(5, 'IZERE', "Paradis",  "Plainters"),
-  createData(6, 'MBABAZI', "Paradis",  "Brainding"),
-  createData(7, 'IZERE', "Paradis",  "CarnaryArt"),
-  createData(8, 'IZERE', "Paradis",  "Plainters"),
-  createData(9, 'MWIZA', "Paradis",  "CarnaryArt"),
-  createData(10, 'IZERE', "Paradis",  "Brainding"),
-  createData(11, 'BEZA', "Paradis",  "CarnaryArt"),
-  createData(13, 'IZERE', "Paradis",  "Plainters"),
-  createData(13, 'SINGIZWA', "Moses",  "CarnaryArt"),
+  createData(2, 'ISHIMWE', "Paradis", "Brainding"),
+  createData(3, 'IZERE', "Paradis", "CarnaryArt"),
+  createData(4, 'GWIZA', "Paradis", "MakeUp"),
+  createData(5, 'IZERE', "Paradis", "Plainters"),
+  createData(6, 'MBABAZI', "Paradis", "Brainding"),
+  createData(7, 'IZERE', "Paradis", "CarnaryArt"),
+  createData(8, 'IZERE', "Paradis", "Plainters"),
+  createData(9, 'MWIZA', "Paradis", "CarnaryArt"),
+  createData(10, 'IZERE', "Paradis", "Brainding"),
+  createData(11, 'BEZA', "Paradis", "CarnaryArt"),
+  createData(13, 'IZERE', "Paradis", "Plainters"),
+  createData(13, 'SINGIZWA', "Moses", "CarnaryArt"),
+  createData(14, 'SINGIZWA', "Moses", "CarnaryArt"),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -71,10 +72,6 @@ function getComparator(order, orderBy) {
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
 function stableSort(array, comparator) {
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
@@ -96,7 +93,7 @@ const headCells = [
   },
   {
     id: 'FirstName',
-    numeric: false,
+    numeric: true,
     disablePadding: true,
     label: 'FirstName',
   },
@@ -106,14 +103,12 @@ const headCells = [
     disablePadding: false,
     label: 'LastName',
   },
-
   {
     id: 'Category',
     numeric: true,
     disablePadding: false,
     label: 'Category',
   },
-
 ];
 
 function EnhancedTableHead(props) {
@@ -124,8 +119,8 @@ function EnhancedTableHead(props) {
   };
 
   return (
-    <TableHead>
-      <TableRow>
+    <TableHead >
+      <TableRow >
         <TableCell padding="checkbox">
           <Checkbox
             color="primary"
@@ -139,6 +134,7 @@ function EnhancedTableHead(props) {
         </TableCell>
         {headCells.map((headCell) => (
           <TableCell
+
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
@@ -148,7 +144,7 @@ function EnhancedTableHead(props) {
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
-            >
+              className='font-bold text-xl'>
               {headCell.label}
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
@@ -202,7 +198,7 @@ function EnhancedTableToolbar(props) {
           id="tableTitle"
           component="div"
         >
-          Profile
+          All User's Records
         </Typography>
       )}
 
@@ -228,35 +224,41 @@ EnhancedTableToolbar.propTypes = {
 };
 
 export default function EnhancedTable() {
-  let [filt,setFilt]=useState([]);
+  const { mode } = useContext(AppContext)
+  let [filt, setFilt] = useState([]);
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  
 
+  useEffect(() => {
+    setFilt(rowsData);
+  }, []);
+
+  
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
-  
+
   const handleFilter = (event) => {
-    const value = event.target.value; 
-    if(value==="" || value=== undefined){
-      setFilt(visibleRows);
-    }
-    else{
-      const filtered = visibleRows.filter((user) => user.Category.includes(value));
+    const value = event.target.value;
+    if (value === "" || value === undefined) {
+      setFilt(rowsData);
+    } else {
+      const filtered = rowsData.filter((user) => user.Category.includes(value));
       setFilt(filtered);
+      setPage(0); // Reset to first page when filter is applied
     }
-   
   };
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.id);
+      const newSelected = filt.map((n) => n.id);
       setSelected(newSelected);
       return;
     }
@@ -282,6 +284,12 @@ export default function EnhancedTable() {
     setSelected(newSelected);
   };
 
+  const handleDelete = (id) => {
+    const updatedRows = filt.filter((row) => row.id !== id);
+    setFilt(updatedRows);
+    setSelected([]);
+  };
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -299,29 +307,32 @@ export default function EnhancedTable() {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filt.length) : 0;
 
   const visibleRows = React.useMemo(
     () =>
-      stableSort(rows, getComparator(order, orderBy)).slice(
+      stableSort(filt, getComparator(order, orderBy)).slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,
       ),
-    [order, orderBy, page, rowsPerPage],
+    [order, orderBy, page, rowsPerPage, filt],
   );
 
   return (
-    <Box sx={{ width: '83.3333%', marginLeft: "24rem", marginTop: "10rem" }}>
-       <div className='flex flex-row space-x-4 justify-center items-center'>
-                        <GoSearch />
-                        <select className=' space-y-4 px-8 py-4' onChange={handleFilter} >
-                            <option value="">Find By Categoty</option>
-                            <option value="CarnaryArt">CarnaryArt</option>
-                            <option value="Brainding">Brainding</option>
-                            <option value="Prainters">Painters</option>
-                            <option value="MakeUp">MakeUp</option>
-                        </select>
-                    </div>
+    <Box sx={{ width: '90.3333%', marginLeft: "", marginTop: "10rem" }} >
+      <div  className='flex flex-col justify-center items-end'>
+        <div className='flex flex-row space-x-4 mb-4 justify-center items-center'>
+          <GoSearch className={!mode? "text-white": "text-black"} />
+          <select className='space-y-4 px-8 py-4' onChange={handleFilter}>
+            <option value="">Find By Category</option>
+            <option value="CarnaryArt">CarnaryArt</option>
+            <option value="Brainding">Brainding</option>
+            <option value="Plainters">Plainters</option>
+            <option value="MakeUp">MakeUp</option>
+          </select>
+        </div>
+
+      </div>
       <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
@@ -336,10 +347,10 @@ export default function EnhancedTable() {
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rowCount={filt.length}
             />
             <TableBody>
-              {filt.map((row, index) => {
+              {visibleRows.map((row, index) => {
                 const isItemSelected = isSelected(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -363,29 +374,23 @@ export default function EnhancedTable() {
                         }}
                       />
                     </TableCell>
-                    <TableCell align="right">{<img src={Profile} alt="" className='h-8 w-8 rounded-full'></img>}</TableCell>
-                    <TableCell align="right" >{row.FirstName} </TableCell>
+                    <TableCell align="right"><img src={Profile} alt="" className='h-8 w-8 rounded-full' /></TableCell>
+                    <TableCell align="right">{row.FirstName}</TableCell>
                     <TableCell align="right">{row.LastName}</TableCell>
-                    
                     <TableCell align="right">{row.Category}</TableCell>
-
-                    <TableCell align="right" className=' flex flex-roe justify-center items-center space-y-6' >
+                    <TableCell align="right" className='flex flex-row justify-center items-center space-y-6'>
                       <div className="relative flex justify-center items-center">
                         <NavLink to="/more"><button><MdViewCompact /></button></NavLink>
-                        
-                        <span className="absolute mt-6 left-1/2 transform -translate-x-1/2  px-2 py-1  text-green-700 text-sm rounded opacity-0 hover:opacity-100 transition-opacity duration-300">
+                        <span className="absolute mt-6 left-1/2 transform -translate-x-1/2 px-2 py-1 text-green-700 text-sm rounded opacity-0 hover:opacity-100 transition-opacity duration-300">
                           View
                         </span>
                       </div>
-
                       <div className="relative flex items-center">
-                        <button ><RiDeleteBinLine />
-                        </button>
-                        <span className="absolute mt-6 left-1/2 transform -translate-x-1/2  px-2 py-1  text-red-800 text-sm rounded opacity-0 hover:opacity-100 transition-opacity duration-300">
+                        <button onClick={() => handleDelete(row.id)}><RiDeleteBinLine /></button>
+                        <span className="absolute mt-6 left-1/2 transform -translate-x-1/2 px-2 py-1 text-red-800 text-sm rounded opacity-0 hover:opacity-100 transition-opacity duration-300">
                           Delete
                         </span>
                       </div>
-
                     </TableCell>
                   </TableRow>
                 );
@@ -405,7 +410,7 @@ export default function EnhancedTable() {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={rows.length}
+          count={filt.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
@@ -415,6 +420,7 @@ export default function EnhancedTable() {
       <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
+        className={!mode ? "text-white": "text-black"}
       />
     </Box>
   );
