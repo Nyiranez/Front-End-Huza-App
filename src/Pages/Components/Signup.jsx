@@ -21,6 +21,9 @@ const Signup = () => {
   const [passwordError, setPasswordError] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   // const isValidEmail = (email) => {
@@ -28,56 +31,89 @@ const Signup = () => {
   //   return emailRegex.test(email);
   // };
 
-  const isValid = () => {
-    let valid = true;
-    if (!firstName.trim()) {
-      setFirstNameError("FirstName is required");
-      valid = false;
-    } else {
-      setFirstNameError("");
-    }
+  // const isValid = () => {
+  //   let valid = true;
+  //   if (!firstName.trim()) {
+  //     setFirstNameError("FirstName is required");
+  //     valid = false;
+  //   } else {
+  //     setFirstNameError("");
+  //   }
 
-    if (!lastName.trim()) {
-      setLastNameError("LastName is required");
-      valid = false;
-    } else {
-      setLastNameError("");
-    }
+  //   if (!lastName.trim()) {
+  //     setLastNameError("LastName is required");
+  //     valid = false;
+  //   } else {
+  //     setLastNameError("");
+  //   }
 
-    if (!email.trim()) {
-      setEmailError("LastName is required");
-      valid = false;
-    } else {
-      setEmailError("");
-    }
+  //   if (!email.trim()) {
+  //     setEmailError("LastName is required");
+  //     valid = false;
+  //   } else {
+  //     setEmailError("");
+  //   }
 
-    if (!phoneNumber.trim()) {
-      setPhoneNumberError("LastName is required");
-      valid = false;
-    } else {
-      setPhoneNumberError("");
-    }
+  //   if (!phoneNumber.trim()) {
+  //     setPhoneNumberError("LastName is required");
+  //     valid = false;
+  //   } else {
+  //     setPhoneNumberError("");
+  //   }
 
-    if (!password.trim()) {
-      setPasswordError("LastName is required");
-      valid = false;
-    } else {
-      setPasswordError("");
-    }
+  //   if (!password.trim()) {
+  //     setPasswordError("LastName is required");
+  //     valid = false;
+  //   } else {
+  //     setPasswordError("");
+  //   }
 
-    if (!confirmpassword.trim()) {
-      setConfirmPasswordError("LastName is required");
-      valid = false;
-    } else {
-      setConfirmPasswordError("");
-    }
-    return valid;
-  };
+  //   if (!confirmpassword.trim()) {
+  //     setConfirmPasswordError("LastName is required");
+  //     valid = false;
+  //   } else {
+  //     setConfirmPasswordError("");
+  //   }
+  //   return valid;
+  // };
+      // if(!isValid()){
+    //   return;
+    // }
+
+    // const data = {
+    //   firstName: firstName,
+    //   lastName: lastName,
+    //   email: email,
+    //   phoneNumber: phoneNumber,
+    //   password: password,
+    //   confirmpassword: confirmpassword,
+    // };
+
+    // const config = {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // };
+
+    // if (isValid() === true) {
+    // await axios.post("https://huza-backend-app-api.onrender.com/api/allUsers/create", data, config)
+    //   .then((response) => {
+    //     console.log("response.data", response.data);
+    //    navigate ("/verify");
+    //   })
+    //   .catch((Error) => {
+    //     console.log(Error);
+      //   });
+    // }
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+    if(!validateForm()){
+      return;
+    }
+    setLoading(true);
 
- 
+
     await axios({
       url: "https://huza-backend-app-api.onrender.com/api/allUsers/create",
       method: "POST",
@@ -95,14 +131,26 @@ const Signup = () => {
       },
     })
       .then((response) => {
+        setSuccessMessage("CREATED ACCOUNT SUCCESSFULLY");
+        setErrorMessage("");
         console.log(response.data);
         navigate ("/verify");
       })
       .catch((err) => {
         console.log(err);
+        setErrorMessage("CREATED ACCOUNT FAIL");
       });
-    //   });
-    // }
+  
+  }
+  const validateForm = () => {
+    return (
+      firstName.trim() !== '' &&
+      lastName.trim() !== '' &&
+      email.trim() !== '' &&
+      phoneNumber.trim() !== ''&&
+      password.trim() !== ''&&
+      confirmpassword.trim() !== ''
+    );
   };
 
   return (
@@ -253,11 +301,13 @@ const Signup = () => {
               className={`block w-full rounded-lg ${
                 !mode ? "bg-blue-900" : "bg-indigo-600"
               }  px-5 py-3 text-sm font-medium text-white hover:bg-slate-900 mt-5`}
+              disabled={loading || !validateForm()}
             >
-              Create an account
+              {loading ? "create account is loading..." :"Create an account"}
             </button>
+            
             {/* </Link> */}
-            <div className=" flex justify-center mt-5">
+            {/* <div className=" flex justify-center mt-5">
               <button
                 className={` flex justify-center rounded-lg gap-5 px-5 w-full border-gray-200 ${
                   !mode ? "bg-gray-700" : "bg-gray-100"
@@ -266,7 +316,7 @@ const Signup = () => {
                 <img src="/gogle.png" className=" w-10" />
                 <p className="mt-2 text-gray-400">Sign up with Google</p>
               </button>
-            </div>
+            </div> */}
             <div className="col-span-6">
               <label className="flex gap-4">
                 <input
@@ -293,6 +343,8 @@ const Signup = () => {
                 Login
               </Link>
             </p>
+        {successMessage && <p className="text-red-500">{successMessage}</p>}
+        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
           </form>
         </div>
       </div>

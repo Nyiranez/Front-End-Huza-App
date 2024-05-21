@@ -1,53 +1,78 @@
+
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { AppContext } from '../../assets/pages/context'
-
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 const ResetPassword = () => {
     const { mode } = useContext(AppContext)
-    const [formData, setFormData] = useState({
-      password: '',
-      cpassword: '',
-    });
-    const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newErrors = {};
-
-    if (formData.password === '') {
-      newErrors.password = 'Please enter your Password';
+    const [password, setPassword] = useState("");
+    const [confirmpassword, setConfirmPassword] = useState("");
+    const navigate = useNavigate();
+    const handleReset = async (e) => {
+      e.preventDefault();
+    await axios({
+      url: "https://huza-backend-app-api.onrender.com/api/allUsers/resetPassword",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: {
+        password: password,
+        confirmpassword: confirmpassword,
+        
+      },
+    })
+      .then((response) => {
+        console.log(response.data);
+        navigate ("/CurnaryArt");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     }
-    if (formData.cpassword === '') {
-      newErrors.cpassword= 'Please confirm your Password';
-    }
-    setErrors(newErrors);
-  }
+
+  //   const [formData, setFormData] = useState({
+  //     password: '',
+  //     cpassword: '',
+  //   });
+  //   const [errors, setErrors] = useState({});
+
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({ ...formData, [name]: value });
+  // };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const newErrors = {};
+
+  //   if (formData.password === '') {
+  //     newErrors.password = 'Please enter your Password';
+  //   }
+  //   if (formData.cpassword === '') {
+  //     newErrors.cpassword= 'Please confirm your Password';
+  //   }
+  //   setErrors(newErrors);
+  // }
   return (
     <div className={!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-gray-50'}>
     <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 h-[50rem] ">
   <div class={`mx-auto mt-32 pt-16 max-w-lg ${!mode ? "bg-gray-800" : "bg-white"} `}>
     <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl font-serif">RESET PASSWORD</h1>
     
-    <form onSubmit={handleSubmit} class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 font-serif">
+    <form onSubmit={handleReset} class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 font-serif">
     
         
         <div >
           <input
             type="password"
             name="password"
-            value={formData.password}
-            onChange={handleChange}
+            value={password}
+            onChange={(v) => setPassword(v.target.value)}
             className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-slate-100"} p-4  text-sm shadow-sm`}
             placeholder="New Password"  
           />
-          {errors.password && (
-           <p className="text-red-300">{errors.password}</p>
-          )}
         </div>
      
 
@@ -56,16 +81,13 @@ const ResetPassword = () => {
         <div class="relative">
           <input
             type="password"
-            name="cpassword"
-            value={formData.cpassword}
-            onChange={handleChange}
+            name="confirmpassword"
+            value={confirmpassword}
+            onChange={(v) => setConfirmPassword(v.target.value)}
             className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-slate-100"} p-4  text-sm shadow-sm`}
             placeholder="Confirm Your Password"
           />
-          {errors.cpassword && (
-                  <p className="text-red-300">{errors.cpassword}</p>
-                )}
-
+          
           <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -108,3 +130,4 @@ const ResetPassword = () => {
 }
 
 export default ResetPassword
+
