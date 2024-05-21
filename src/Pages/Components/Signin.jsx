@@ -102,7 +102,7 @@ const Signin = () => {
         navigate("/Profile");
       }
       else if(response.data.user.role === "admin"){
-        navigate("/CurnaryArt");
+        navigate("/dashboard");
       }
     }, 3000)
    
