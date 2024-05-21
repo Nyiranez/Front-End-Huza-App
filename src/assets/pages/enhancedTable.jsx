@@ -1,6 +1,7 @@
 import * as React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
-import Profile from '../images/IMG_8112.png';
+import { CgProfile } from "react-icons/cg";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { MdViewCompact } from "react-icons/md";
 import { alpha } from '@mui/material/styles';
@@ -11,6 +12,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
+
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Toolbar from '@mui/material/Toolbar';
@@ -22,39 +24,10 @@ import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { GoSearch } from "react-icons/go";
-// import DeleteIcon from '@mui/icons-material/Delete';
-// import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import { NavLink } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { useContext } from 'react'
+import { useState, useEffect, useContext } from 'react';
 import { AppContext } from './context'
-
-function createData(id, FirstName, LastName, Category) {
-  return {
-    id,
-    FirstName,
-    LastName,
-    Category,
-  };
-}
-
-const rowsData = [
-  createData(1, 'ISHAMI', "Gaelle", "CarnaryArt"),
-  createData(2, 'ISHIMWE', "Paradis", "Brainding"),
-  createData(3, 'IZERE', "Paradis", "CarnaryArt"),
-  createData(4, 'GWIZA', "Paradis", "MakeUp"),
-  createData(5, 'IZERE', "Paradis", "Plainters"),
-  createData(6, 'MBABAZI', "Paradis", "Brainding"),
-  createData(7, 'IZERE', "Paradis", "CarnaryArt"),
-  createData(8, 'IZERE', "Paradis", "Plainters"),
-  createData(9, 'MWIZA', "Paradis", "CarnaryArt"),
-  createData(10, 'IZERE', "Paradis", "Brainding"),
-  createData(11, 'BEZA', "Paradis", "CarnaryArt"),
-  createData(13, 'IZERE', "Paradis", "Plainters"),
-  createData(13, 'SINGIZWA', "Moses", "CarnaryArt"),
-  createData(14, 'SINGIZWA', "Moses", "CarnaryArt"),
-];
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -86,25 +59,25 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'Profile',
+    id: 'profile',
     numeric: false,
     disablePadding: true,
     label: 'Profile',
   },
   {
-    id: 'FirstName',
+    id: 'firstName',
     numeric: true,
     disablePadding: true,
-    label: 'FirstName',
+    label: 'First Name',
   },
   {
-    id: 'LastName',
+    id: 'lastName',
     numeric: true,
     disablePadding: false,
-    label: 'LastName',
+    label: 'Last Name',
   },
   {
-    id: 'Category',
+    id: 'category',
     numeric: true,
     disablePadding: false,
     label: 'Category',
@@ -112,15 +85,14 @@ const headCells = [
 ];
 
 function EnhancedTableHead(props) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
-    props;
+  const { numSelected, order, orderBy, onRequestSort, onSelectAllClick, rowCount } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
 
   return (
-    <TableHead >
-      <TableRow >
+    <TableHead>
+      <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
             color="primary"
@@ -128,13 +100,12 @@ function EnhancedTableHead(props) {
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
             inputProps={{
-              'aria-label': 'select all desserts',
+              'aria-label': 'select all users',
             }}
           />
         </TableCell>
         {headCells.map((headCell) => (
           <TableCell
-
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
@@ -144,7 +115,8 @@ function EnhancedTableHead(props) {
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
-              className='font-bold text-xl'>
+              className='font-bold text-xl'
+            >
               {headCell.label}
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
@@ -224,21 +196,33 @@ EnhancedTableToolbar.propTypes = {
 };
 
 export default function EnhancedTable() {
-  const { mode } = useContext(AppContext)
+  const [rowsData, setRowsData] = useState([]);
+  const { mode } = useContext(AppContext);
   let [filt, setFilt] = useState([]);
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
-  const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(true);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  
+  const [order, setOrder] = useState('asc');
+  const [orderBy, setOrderBy] = useState('firstName');
+  const [selected, setSelected] = useState([]);
+  const [page, setPage] = useState(0);
+  const [dense, setDense] = useState(true);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const handleProfile = () => {
+    axios.get("https://huza-backend-app-api.onrender.com/api/profile/allProfile")
+      .then((res) => {
+        setRowsData(res.data.profile);
+        setFilt(res.data.profile);
+        console.log(res.data.profile);
+      }).catch((err) => {
+        setRowsData([]);
+        setFilt([]);
+        console.log(err);
+      });
+  }
 
   useEffect(() => {
-    setFilt(rowsData);
+    handleProfile();
   }, []);
 
-  
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -250,7 +234,7 @@ export default function EnhancedTable() {
     if (value === "" || value === undefined) {
       setFilt(rowsData);
     } else {
-      const filtered = rowsData.filter((user) => user.Category.includes(value));
+      const filtered = rowsData.filter((user) => user.category.includes(value));
       setFilt(filtered);
       setPage(0); // Reset to first page when filter is applied
     }
@@ -284,12 +268,6 @@ export default function EnhancedTable() {
     setSelected(newSelected);
   };
 
-  const handleDelete = (id) => {
-    const updatedRows = filt.filter((row) => row.id !== id);
-    setFilt(updatedRows);
-    setSelected([]);
-  };
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -305,7 +283,6 @@ export default function EnhancedTable() {
 
   const isSelected = (id) => selected.indexOf(id) !== -1;
 
-  // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filt.length) : 0;
 
@@ -319,19 +296,18 @@ export default function EnhancedTable() {
   );
 
   return (
-    <Box sx={{ width: '90.3333%', marginLeft: "", marginTop: "10rem" }} >
-      <div  className='flex flex-col justify-center items-end'>
-        <div className='flex flex-row space-x-4 mb-4 justify-center items-center'>
-          <GoSearch className={!mode? "text-white": "text-black"} />
-          <select className='space-y-4 px-8 py-4' onChange={handleFilter}>
+    <Box sx={{ width: '83.3333%', height: "100%", marginTop: "10rem" }} >
+      <div className='flex flex-col justify-center items-end'>
+        <div className='flex flex-row pr-2 mb-4 bg-white pl-2 justify-center items-center'>
+          <GoSearch className="text-black" />
+          <select className='space-y-4 px-6 py-4' onChange={handleFilter}>
             <option value="">Find By Category</option>
-            <option value="CarnaryArt">CarnaryArt</option>
+            <option value="Culnary Art">CarnaryArt</option>
             <option value="Brainding">Brainding</option>
-            <option value="Plainters">Plainters</option>
-            <option value="MakeUp">MakeUp</option>
+            <option value="Plaint">Plainters</option>
+            <option value="Makeup Design">MakeUp</option>
           </select>
         </div>
-
       </div>
       <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} />
@@ -374,10 +350,11 @@ export default function EnhancedTable() {
                         }}
                       />
                     </TableCell>
-                    <TableCell align="right"><img src={Profile} alt="" className='h-8 w-8 rounded-full' /></TableCell>
-                    <TableCell align="right">{row.FirstName}</TableCell>
-                    <TableCell align="right">{row.LastName}</TableCell>
-                    <TableCell align="right">{row.Category}</TableCell>
+                    <TableCell align="right"><CgProfile className='h-8 w-8 rounded-full' /></TableCell>
+                    <TableCell align="right">{row.firstName}</TableCell>
+                    <TableCell align="right">{row.firstName}</TableCell>
+                    <TableCell align="right">{row.lastName}</TableCell>
+                    <TableCell align="right">{row.category}</TableCell>
                     <TableCell align="right" className='flex flex-row justify-center items-center space-y-6'>
                       <div className="relative flex justify-center items-center">
                         <NavLink to="/more"><button><MdViewCompact /></button></NavLink>
@@ -386,7 +363,7 @@ export default function EnhancedTable() {
                         </span>
                       </div>
                       <div className="relative flex items-center">
-                        <button onClick={() => handleDelete(row.id)}><RiDeleteBinLine /></button>
+                        <button ><RiDeleteBinLine /></button>
                         <span className="absolute mt-6 left-1/2 transform -translate-x-1/2 px-2 py-1 text-red-800 text-sm rounded opacity-0 hover:opacity-100 transition-opacity duration-300">
                           Delete
                         </span>
@@ -420,7 +397,7 @@ export default function EnhancedTable() {
       <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
-        className={!mode ? "text-white": "text-black"}
+        className={!mode ? "text-white" : "text-black"}
       />
     </Box>
   );
