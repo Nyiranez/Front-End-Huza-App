@@ -16,7 +16,6 @@ import ResetPassword from './Pages/Components/ResetPassword'
 import Brainding from './Pages/Brainding'
 import CurnaryArt from './Pages/CurnaryArt'
 import Contact from './Pages/Contact'
-import Register from './Pages/Components/Register'
 import Services from './Pages/Services'
 import Signin from './Pages/Components/Signin'
 import Signup from './Pages/Components/Signup'
@@ -24,6 +23,7 @@ import MakeupDesign from './Pages/MakeupDesign'
 import Plainters from './Pages/Plainters'
 import ForgetPassword from './Pages/Components/ForgetPassword'
 import Profile from "./Pages/Components/Profile";
+import AllProfileofSkilled from './Pages/AllProfileofSkilled'
 
 
 function App() {
@@ -50,14 +50,13 @@ function App() {
                 <Route path="/Plainters" element={<Plainters />} />
                 <Route path="/ForgetPassword" element={<ForgetPassword />} />
                 <Route path="/verify" element={<Verify />} />
-
                 <Route path="/resetPassword" element={<ResetPassword />} />
                 <Route path="/Branding" element={<Brainding />} />
                 <Route path="/CurnaryArt" element={<CurnaryArt />} />
                 <Route path="/Contact" element={<Contact />} />
-                <Route path="/Register" element={<Register />} />
                 <Route path="/Services" element={<Services />} />
                 <Route path="/Profile" element={<Profile/>}/>
+                <Route path='/Allprofile' element={<AllProfileofSkilled/>}/>
               </Route>
               <Route path='/dashboard' element={<Dashboard/>}>
               <Route path='/dashboard/' element={<Team />} />
