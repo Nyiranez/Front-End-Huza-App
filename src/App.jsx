@@ -24,6 +24,8 @@ import Plainters from './Pages/Plainters'
 import ForgetPassword from './Pages/Components/ForgetPassword'
 import Profile from "./Pages/Components/Profile";
 import AllProfileofSkilled from './Pages/AllProfileofSkilled'
+import { AdminMore } from '../src/adminMore'
+import { Servicecreate } from './assets/pages/servicecreate'
 
 
 function App() {
@@ -55,16 +57,20 @@ function App() {
                 <Route path="/CurnaryArt" element={<CurnaryArt />} />
                 <Route path="/Contact" element={<Contact />} />
                 <Route path="/Services" element={<Services />} />
-                <Route path="/Profile" element={<Profile/>}/>
-                <Route path='/Allprofile' element={<AllProfileofSkilled/>}/>
+                <Route path="/Profile" element={<Profile />} />
+                <Route path='/Allprofile' element={<AllProfileofSkilled />} />
               </Route>
-              <Route path='/dashboard' element={<Dashboard/>}>
-              <Route path='/dashboard/' element={<Team />} />
-                <Route path='dashboard/team' element={<Team />} />
-                <Route path='dashboard/users' element={<Users />} />
-                <Route path='dashboard/enhancedTable' element={<EnhancedTable />} />
-                <Route path='dashboard/more' element={<More />} />
+              <Route path='/dashboard' element={<Dashboard />}>
+                <Route path='' element={<Team />} />
+                <Route path='team' element={<Team />} />
+                <Route path='users' element={<Users />} />
 
+                <Route path='services' element={<More />} />
+                <Route path='enhancedTable' element={<EnhancedTable />} />
+
+                  <Route path='enhancedTable/adminMore/:Id' element={<AdminMore />} />
+                  <Route path='services/addservice' element={<Servicecreate />} />
+                
               </Route>
 
 

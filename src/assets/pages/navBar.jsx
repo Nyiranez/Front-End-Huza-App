@@ -40,14 +40,14 @@ export const NavBar = () => {
                             <div className='flex flex-row justify-center items-center space-x-4'>
                                 <div className='px-2 py-1 bg-gray-800'> <FcBarChart  className=' text-white '/></div>
                                
-                                <NavLink to="dashboard/team" className='text-white'>Analytics</NavLink>
+                                <NavLink to="team" className='text-white'>Analytics</NavLink>
                             </div>
                         </div>
                         <div className='flex flex-row justify-center items-center  hover:bg-gray-800 py-4  '>
                             <div className='flex flex-row justify-center items-center space-x-4'>
                                 <div className='px-2 py-1 bg-gray-800'><CgProfile  className=' text-white'/></div>
                                 
-                                <NavLink to="dashboard/enhancedTable" className='text-white'>Users</NavLink>
+                                <NavLink to="enhancedTable" className='text-white'>Users</NavLink>
                             </div>
 
                         </div>
@@ -57,7 +57,7 @@ export const NavBar = () => {
                                 <div className='px-2 py-1 bg-gray-800'>  <GrServices  className=' text-white' /></div>
                               
                                
-                                <NavLink to="dashboard/more" className='text-white'>Services</NavLink>
+                                <NavLink to="services" className='text-white'>Services</NavLink>
                             </div>
 
                         </div>
