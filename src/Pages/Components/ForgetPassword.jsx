@@ -34,7 +34,7 @@ const ForgetPassword = () => {
         },
       }).then ((Response)=>{
         console.log("Response.data",Response.data);
-        navigate("/resetPassword");
+        navigate("/Resetpassword");
       }).catch ((error)=>{
         console.log(error)
       });
