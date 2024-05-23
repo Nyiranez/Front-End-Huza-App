@@ -96,10 +96,10 @@ const Signin = () => {
     console.log(response.data);
     setTimeout(()=>{
       if(response.data.user.role === "skilled"){
-        navigate ('/MakeupDesign');
+        navigate ('/Profile');
       }
       else if(response.data.user.role === "user"){
-        navigate("/Profile");
+        navigate("/AllProfile");
       }
       else if(response.data.user.role === "admin"){
         navigate("/dashboard");

@@ -1,86 +1,69 @@
-
-import './App.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Layout } from '../src/layout'
-import { Home } from './assets/pages/home'
-import { Dashboard } from './assets/pages/dashbord'
-import { Users } from './assets/pages/users'
-import Team from './assets/pages/team'
-import EnhancedTable from './assets/pages/enhancedTable'
+import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Layout } from '../src/layout';
+import { Home } from './assets/pages/home';
+import { Dashboard } from './assets/pages/dashbord';
+import { Users } from './assets/pages/users';
+import Team from './assets/pages/team';
+import EnhancedTable from './assets/pages/enhancedTable';
 import More from './assets/pages/more';
-import AboutUs from './assets/pages/aboutUs'
+import AboutUs from './assets/pages/aboutUs';
 import ContextUser from './assets/pages/context';
-import Verify from './Pages/Components/Verify'
-import Homepage from './assets/pages/Homepage'
-import ResetPassword from './Pages/Components/ResetPassword'
-import Brainding from './Pages/Brainding'
-import CurnaryArt from './Pages/CurnaryArt'
-import Contact from './Pages/Contact'
-import Services from './Pages/Services'
-import Signin from './Pages/Components/Signin'
-import Signup from './Pages/Components/Signup'
-import MakeupDesign from './Pages/MakeupDesign'
-import Plainters from './Pages/Plainters'
-import ForgetPassword from './Pages/Components/ForgetPassword'
+import Verify from './Pages/Components/Verify';
+import Homepage from './assets/pages/Homepage';
+import ResetPassword from './Pages/Components/ResetPassword';
+import Brainding from './Pages/Brainding';
+import CurnaryArt from './Pages/CurnaryArt';
+import Contact from './Pages/Contact';
+import Services from './Pages/Services';
+import Signin from './Pages/Components/Signin';
+import Signup from './Pages/Components/Signup';
+import MakeupDesign from './Pages/MakeupDesign';
+import Plainters from './Pages/Plainters';
+import ForgetPassword from './Pages/Components/ForgetPassword';
 import Profile from "./Pages/Components/Profile";
-import AllProfileofSkilled from './Pages/AllProfileofSkilled'
-
+import AllProfileofSkilled from './Pages/AllProfileofSkilled';
+import DetailsForSkilled from './Pages/DetailsForSkilled';
+import ProfileForSkilled from './Pages/ProfileForSkilled';
 
 function App() {
-
-
   return (
-
-    <>
-
-      <ContextUser>
-        <div className='boddy'>
-          <BrowserRouter>
-            <Routes>
-
-
-
-              <Route path="/" element={<Layout />} >
-                <Route path="/" element={<Homepage />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="layout/aboutUs" element={<AboutUs />} />
-                <Route path='/Signin' element={<Signin />} />
-                <Route path="/Signup" element={<Signup />} />
-                <Route path="/MakeupDesign" element={<MakeupDesign />} />
-                <Route path="/Plainters" element={<Plainters />} />
-                <Route path="/ForgetPassword" element={<ForgetPassword />} />
-                <Route path="/verify" element={<Verify />} />
-                <Route path="/resetPassword" element={<ResetPassword />} />
-                <Route path="/Branding" element={<Brainding />} />
-                <Route path="/CurnaryArt" element={<CurnaryArt />} />
-                <Route path="/Contact" element={<Contact />} />
-                <Route path="/Services" element={<Services />} />
-                <Route path="/Profile" element={<Profile/>}/>
-                <Route path='/Allprofile' element={<AllProfileofSkilled/>}/>
-              </Route>
-              <Route path='/dashboard' element={<Dashboard/>}>
-              <Route path='/dashboard/' element={<Team />} />
-                <Route path='dashboard/team' element={<Team />} />
-                <Route path='dashboard/users' element={<Users />} />
-                <Route path='dashboard/enhancedTable' element={<EnhancedTable />} />
-                <Route path='dashboard/more' element={<More />} />
-
-              </Route>
-
-
-            </Routes>
-
-          </BrowserRouter>
-
-        </div>
-
-      </ContextUser>
-
-
-
-    </>
-
-  )
+    <ContextUser>
+      <div className='boddy'>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/layout/aboutUs" element={<AboutUs />} />
+              <Route path="/Signin" element={<Signin />} />
+              <Route path="/Signup" element={<Signup />} />
+              <Route path="/MakeupDesign" element={<MakeupDesign />} />
+              <Route path="/Plainters" element={<Plainters />} />
+              <Route path="/ForgetPassword" element={<ForgetPassword />} />
+              <Route path="/verify" element={<Verify />} />
+              <Route path="/Resetpassword" element={<ResetPassword />} />
+              <Route path="/Branding" element={<Brainding />} />
+              <Route path="/CurnaryArt" element={<CurnaryArt />} />
+              <Route path="/Contact" element={<Contact />} />
+              <Route path="/Services" element={<Services />} />
+              <Route path="/Profile" element={<Profile />} />
+              <Route path="/Allprofile" element={<AllProfileofSkilled />} />
+              <Route path="/DetailsForSkilled/:Id" element={<DetailsForSkilled />} />
+              <Route path='/ProfileForSkilled' element={<ProfileForSkilled/>}/>
+            </Route>
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route path="/dashboard/" element={<Team />} />
+              <Route path="/dashboard/team" element={<Team />} />
+              <Route path="/dashboard/users" element={<Users />} />
+              <Route path="/dashboard/enhancedTable" element={<EnhancedTable />} />
+              <Route path="/dashboard/more" element={<More />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </ContextUser>
+  );
 }
 
-export default App
+export default App;

@@ -1,15 +1,21 @@
 
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { useContext } from 'react'
 import { AppContext } from '../../assets/pages/context'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+
 const ResetPassword = () => {
+    const [searchParams, setSearchParams] = useSearchParams({});
     const { mode } = useContext(AppContext)
     const [password, setPassword] = useState("");
     const [confirmpassword, setConfirmPassword] = useState("");
     const navigate = useNavigate();
+    useEffect(() => {
+      const userToken = searchParams.get("token");
+      console.log(userToken);
+    },[])
     const handleReset = async (e) => {
       e.preventDefault();
     await axios({
@@ -26,7 +32,7 @@ const ResetPassword = () => {
     })
       .then((response) => {
         console.log(response.data);
-        navigate ("/CurnaryArt");
+        navigate ("/Signin");
       })
       .catch((err) => {
         console.log(err);
