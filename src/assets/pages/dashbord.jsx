@@ -51,7 +51,7 @@ export const Dashboard = () => {
                 <div className=''>
                     <NavBar />
                 </div>
-                <div className={`${!mode ? "bg-blue-950":"bg-white"} w-10/12 ml-64  flex flex-col justify-center items-center z-10`}>
+                <div className={`${!mode ? "bg-blue-950":"bg-white"} w-10/12 h-fit ml-64  flex flex-col justify-center items-center z-10`}>
                     <Outlet />
 
                 </div>

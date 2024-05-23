@@ -16,15 +16,17 @@ export const Footer = () => {
 
             <div className={`relative shadow-lg ${!mode ?  'bg-gradient-to-r from-slate-950 to-gray-900' : 'bg-white'} bg-slate-900 pt-8 pb-8`}>
                 <div className=' grid lg:grid-cols-4 grid-cols-2 justify-between   gap-12  px-32'>                <div className='space-y-5'>
-                    <div className='flex flex-row space-x-5'>
+                    {/* <div className='flex flex-row space-x-5'>
 
                         {mode ? <img src={Logo} alt="" className='h-24 w-24'></img> : <img src={Huza} alt="" className='h-24 w-24'></img>}
                         
 
-                    </div>
+                    </div> */}
                     <div className=' flex flex-col gap-3'>
-                        <p className='text-slate-500'>HUZA APP </p>
-                        <p className='text-slate-500'> Based on Unemployement.</p>
+                        <p className={` font-bold ${!mode ? "text-white" : "text-black"}`}>HUZA APP </p>
+                        <p className='text-slate-500'> to connect Unemployement</p>
+                        <p className='text-slate-500'> Who are Skilled</p>
+                        <p className='text-slate-500'> And the clients</p>
                     </div>
                 </div>
                 <div className='space-y-6'>
