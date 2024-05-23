@@ -12,7 +12,6 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
-
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Toolbar from '@mui/material/Toolbar';
@@ -27,7 +26,7 @@ import { GoSearch } from "react-icons/go";
 import { visuallyHidden } from '@mui/utils';
 import { NavLink } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
-import { AppContext } from './context'
+import { AppContext } from './context';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -60,7 +59,7 @@ function stableSort(array, comparator) {
 const headCells = [
   {
     id: 'profile',
-    numeric: false,
+    numeric: true,
     disablePadding: true,
     label: 'Profile',
   },
@@ -107,7 +106,7 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            align={headCell.numeric ? 'left' : 'right'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -170,7 +169,7 @@ function EnhancedTableToolbar(props) {
           id="tableTitle"
           component="div"
         >
-          All User's Records
+          {"All User's Records"}
         </Typography>
       )}
 
@@ -205,9 +204,11 @@ export default function EnhancedTable() {
   const [page, setPage] = useState(0);
   const [dense, setDense] = useState(true);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [deleteMessage, setDeleteMessage] = useState('');
+  const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
 
   const handleProfile = () => {
-    axios.get("https://huza-backend-app-api.onrender.com/api/profile/allProfile")
+    axios.get("https://huza-backend-app-api-1.onrender.com/api/profile/allProfile")
       .then((res) => {
         setRowsData(res.data.profile);
         setFilt(res.data.profile);
@@ -222,6 +223,21 @@ export default function EnhancedTable() {
   useEffect(() => {
     handleProfile();
   }, []);
+
+  const deleteProfile = (id) => {
+    axios.delete("https://huza-backend-app-api-1.onrender.com/api/profile/delete/" + id)
+      .then((resp) => {
+        console.log(resp.data.profile);
+        handleProfile(); // To refresh the contacts list
+        setDeleteMessage('Successfully deleted');
+        setIsDeleteSuccess(true);
+      })
+      .catch((error) => {
+        console.log(error);
+        setDeleteMessage('Failed to delete');
+        setIsDeleteSuccess(false);
+      });
+  };
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -298,19 +314,29 @@ export default function EnhancedTable() {
   return (
     <Box sx={{ width: '83.3333%', height: "100%", marginTop: "10rem" }} >
       <div className='flex flex-col justify-center items-end'>
-        <div className='flex flex-row pr-2 mb-4 bg-white pl-2 justify-center items-center'>
+        <div className='flex flex-row pr-2 mb-4 bg-white rounded-full pl-2 justify-center items-center'>
           <GoSearch className="text-black" />
-          <select className='space-y-4 px-6 py-4' onChange={handleFilter}>
+          <select className='space-y-4 px-6 py-4 rounded-full' onChange={handleFilter}>
             <option value="">Find By Category</option>
-            <option value="Culnary Art">CarnaryArt</option>
-            <option value="Brainding">Brainding</option>
-            <option value="Plaint">Plainters</option>
-            <option value="Makeup Design">MakeUp</option>
+            <option value="Culinary Art">Culinary Art</option>
+            <option value="Braiding">Braiding</option>
+            <option value="Paint">Paint</option>
+            <option value="Makeup Design">MakeUp Design</option>
           </select>
         </div>
       </div>
       <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} />
+        {deleteMessage && (
+          <Typography
+            variant="subtitle1"
+            color={isDeleteSuccess ? 'green' : 'red'}
+            align="center"
+            gutterBottom
+          >
+            {deleteMessage}
+          </Typography>
+        )}
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -350,23 +376,24 @@ export default function EnhancedTable() {
                         }}
                       />
                     </TableCell>
-                    <TableCell align="right"><CgProfile className='h-8 w-8 rounded-full' /></TableCell>
-                    <TableCell align="right">{row.firstName}</TableCell>
-                    <TableCell align="right">{row.firstName}</TableCell>
-                    <TableCell align="right">{row.lastName}</TableCell>
-                    <TableCell align="right">{row.category}</TableCell>
-                    <TableCell align="right" className='flex flex-row justify-center items-center space-y-6'>
-                      <div className="relative flex justify-center items-center">
-                        <NavLink to="/more"><button><MdViewCompact /></button></NavLink>
-                        <span className="absolute mt-6 left-1/2 transform -translate-x-1/2 px-2 py-1 text-green-700 text-sm rounded opacity-0 hover:opacity-100 transition-opacity duration-300">
-                          View
-                        </span>
-                      </div>
-                      <div className="relative flex items-center">
-                        <button ><RiDeleteBinLine /></button>
-                        <span className="absolute mt-6 left-1/2 transform -translate-x-1/2 px-2 py-1 text-red-800 text-sm rounded opacity-0 hover:opacity-100 transition-opacity duration-300">
-                          Delete
-                        </span>
+                    <TableCell align="right"><img src={row.photo} className='h-8 w-8 rounded-full'></img></TableCell>
+                    <TableCell align="left">{row.firstName}</TableCell>
+                    <TableCell align="left">{row.lastName}</TableCell>
+                    <TableCell align="left">{row.category}</TableCell>
+                    <TableCell align="right" >
+                      <div className=' w-full h-10 flex flex-row justify-around items-center'>
+                        <div className="relative">
+                          <NavLink to={`/dashboard/enhancedTable/adminMore/${row._id}`}><button><MdViewCompact className='bg-blue-900 text-2xl text-slate-300' /></button></NavLink>
+                          <span className="absolute mt-6 left-1/2 transform -translate-x-1/2 px-2 py-1 text-green-700 text-sm rounded opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            View
+                          </span>
+                        </div>
+                        <div className="relative">
+                          <button onClick={() => deleteProfile(row._id)}><RiDeleteBinLine className='text-2xl' /></button>
+                          <span className="absolute mt-6 left-1/2 transform -translate-x-1/2 px-2 py-1 text-red-800 text-sm rounded opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            Delete
+                          </span>
+                        </div>
                       </div>
                     </TableCell>
                   </TableRow>
