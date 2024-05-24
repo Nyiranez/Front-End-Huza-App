@@ -22,6 +22,7 @@ import MakeupDesign from './Pages/MakeupDesign';
 import Plainters from './Pages/Plainters';
 import ForgetPassword from './Pages/Components/ForgetPassword';
 import Profile from "./Pages/Components/Profile";
+<<<<<<< HEAD
 
 import DetailsForSkilled from './Pages/DetailsForSkilled';
 import ProfileForSkilled from './Pages/ProfileForSkilled';
@@ -32,15 +33,22 @@ import { Servicecreate } from './assets/pages/servicecreate'
 function App() {
   return (
 
-    <>
+=======
+import AllProfileofSkilled from './Pages/AllProfileofSkilled';
+import DetailsForSkilled from './Pages/DetailsForSkilled';
+import ProfileForSkilled from './Pages/ProfileForSkilled';
+import { AdminMore } from '../src/adminMore'
+import { Servicecreate } from './assets/pages/servicecreate'
+import { Update } from './assets/pages/serviceupdate';
 
+function App() {
+  return (
+>>>>>>> 204610a43a47718d427c348842f93bc279162b24
+    <>
       <ContextUser>
         <div className='boddy'>
           <BrowserRouter>
             <Routes>
-
-
-
               <Route path="/" element={<Layout />} >
                 <Route path="/" element={<Homepage />} />
                 <Route path="/home" element={<Home />} />
@@ -59,36 +67,32 @@ function App() {
                 <Route path="/Profile" element={<Profile />} />
                 <Route path='/Allprofile' element={<AllProfileofSkilled />} />
                 <Route path="/DetailsForSkilled/:Id" element={<DetailsForSkilled />} />
+<<<<<<< HEAD
               <Route path='/ProfileForSkilled' element={<ProfileForSkilled/>}/>
+=======
+                <Route path='/ProfileForSkilled' element={<ProfileForSkilled />} />
+>>>>>>> 204610a43a47718d427c348842f93bc279162b24
               </Route>
               <Route path='/dashboard' element={<Dashboard />}>
                 <Route path='' element={<Team />} />
                 <Route path='team' element={<Team />} />
                 <Route path='users' element={<Users />} />
-
                 <Route path='services' element={<More />} />
                 <Route path='enhancedTable' element={<EnhancedTable />} />
-
-                  <Route path='enhancedTable/adminMore/:Id' element={<AdminMore />} />
-                  <Route path='services/addservice' element={<Servicecreate />} />
-                
+                <Route path='enhancedTable/adminMore/:Id' element={<AdminMore />} />
+                <Route path='services/addservice' element={<Servicecreate />} />
+                <Route path='services/updateservice/:proId' element={<Update />} />
               </Route>
-
-
             </Routes>
-
           </BrowserRouter>
-
         </div>
-
       </ContextUser>
-
-
-
     </>
-
   )
+<<<<<<< HEAD
 
+=======
+>>>>>>> 204610a43a47718d427c348842f93bc279162b24
 }
 
 export default App;

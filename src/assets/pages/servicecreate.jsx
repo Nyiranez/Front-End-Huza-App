@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+<<<<<<< HEAD
 // import { useNavigate } from 'react-router-dom';
 
+=======
+import { useNavigate } from 'react-router-dom';
+>>>>>>> 204610a43a47718d427c348842f93bc279162b24
 export const Servicecreate = () => {
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
+<<<<<<< HEAD
   // let navigate = useNavigate();
+=======
+  let navigate = useNavigate();
+>>>>>>> 204610a43a47718d427c348842f93bc279162b24
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -28,7 +36,12 @@ export const Servicecreate = () => {
     .then(response => {
       console.log('Response data:', response.data);
       setMessage('Service successfully created');
+<<<<<<< HEAD
       // navigate('/services');
+=======
+      setTimeout(() => navigate('/dashboard/services'), 2000);
+    //   navigate('/services');
+>>>>>>> 204610a43a47718d427c348842f93bc279162b24
       setIsSuccess(true);
     })
     .catch(err => {

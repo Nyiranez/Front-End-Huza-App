@@ -9,6 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { NavLink } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -93,7 +94,9 @@ export default function CustomizedTables() {
                 </StyledTableCell>
                 <div className='flex flex-col pr-4 items-end justify-center'>
                   <div className='mt-4 space-x-2'>
-                    <button className='text-white bg-blue-900 px-2 py-1 mt-6 ml-6 rounded-lg'>Update</button>
+                    <button className='text-white bg-blue-900 px-2 py-1 mt-6 ml-6 rounded-lg'>
+                      <NavLink to={`/dashboard/services/updateservice/${row._id}`}>Update</NavLink>
+                    </button>
                     <button className='text-white bg-slate-950 px-2 py-1 rounded-lg' onClick={() => handleDelete(row._id)}>Delete</button>
                   </div>
                 </div>
