@@ -22,18 +22,6 @@ import MakeupDesign from './Pages/MakeupDesign';
 import Plainters from './Pages/Plainters';
 import ForgetPassword from './Pages/Components/ForgetPassword';
 import Profile from "./Pages/Components/Profile";
-<<<<<<< HEAD
-
-import DetailsForSkilled from './Pages/DetailsForSkilled';
-import ProfileForSkilled from './Pages/ProfileForSkilled';
-import AllProfileofSkilled from './Pages/AllProfileofSkilled'
-import { AdminMore } from '../src/adminMore'
-import { Servicecreate } from './assets/pages/servicecreate'
-
-function App() {
-  return (
-
-=======
 import AllProfileofSkilled from './Pages/AllProfileofSkilled';
 import DetailsForSkilled from './Pages/DetailsForSkilled';
 import ProfileForSkilled from './Pages/ProfileForSkilled';
@@ -43,7 +31,7 @@ import { Update } from './assets/pages/serviceupdate';
 
 function App() {
   return (
->>>>>>> 204610a43a47718d427c348842f93bc279162b24
+
     <>
       <ContextUser>
         <div className='boddy'>
@@ -67,11 +55,7 @@ function App() {
                 <Route path="/Profile" element={<Profile />} />
                 <Route path='/Allprofile' element={<AllProfileofSkilled />} />
                 <Route path="/DetailsForSkilled/:Id" element={<DetailsForSkilled />} />
-<<<<<<< HEAD
-              <Route path='/ProfileForSkilled' element={<ProfileForSkilled/>}/>
-=======
                 <Route path='/ProfileForSkilled' element={<ProfileForSkilled />} />
->>>>>>> 204610a43a47718d427c348842f93bc279162b24
               </Route>
               <Route path='/dashboard' element={<Dashboard />}>
                 <Route path='' element={<Team />} />
@@ -89,10 +73,6 @@ function App() {
       </ContextUser>
     </>
   )
-<<<<<<< HEAD
-
-=======
->>>>>>> 204610a43a47718d427c348842f93bc279162b24
 }
 
 export default App;
