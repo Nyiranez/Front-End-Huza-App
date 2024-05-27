@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AppContext } from './context';
 
-const AboutUs = () => {
+const AboutUs= () => {
   const { mode } = useContext(AppContext);
   return (
     <div className={`${!mode ? "bg-gradient-to-r from-slate-950 to-gray-900" : "bg-white"} px-6 md:px-32 pb-20`}>
