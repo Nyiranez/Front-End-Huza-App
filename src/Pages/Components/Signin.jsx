@@ -96,6 +96,8 @@ const Signin = () => {
     console.log(response.data);
     setTimeout(()=>{
       if(response.data.user.role === "skilled"){
+        localStorage.setItem('userId', response.data.user.id)
+        localStorage.setItem("token", response.data.token);
         navigate ('/Profile');
       }
       else if(response.data.user.role === "user"){

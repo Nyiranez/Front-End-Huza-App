@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { NavLink, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 // import { CgProfile } from "react-icons/cg";
 
@@ -19,6 +19,21 @@ export const AdminMore = () => {
       });
   };
 
+  const handleApprove=(email)=>{
+    axios.get("https://huza-backend-app-api-1.onrender.com/api/profile/approveProfile?email=" + email).then((res)=>{
+      console.log(res.data);
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
+  const handleReject=(email)=>{
+    axios.get("https://huza-backend-app-api-1.onrender.com/api/profile/reject?email=" + email).then((res)=>{
+      console.log(res.data);
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
+
 
 
   useEffect(() => {
@@ -27,7 +42,7 @@ export const AdminMore = () => {
 
   return (
     <div className='mt-32  px-4 py-2 border-2 bg-slate-50  border-gray-200'>
-{/* <button><NavLink to="enhancedTable">Back</NavLink></button> */}
+      {/* <button><NavLink to="enhancedTable">Back</NavLink></button> */}
       <div className='font-bold text-2xl bg-white w-1/3 shadow-inner '>Full Profile</div>
 
       <div><img src={profile ? profile.photo : "not found"} className='h-16 w-16 mt-10 rounded-full'></img></div>
@@ -40,15 +55,19 @@ export const AdminMore = () => {
           <div className='mt-4 bg-blue-950  p-4'><p className='text-white font-bold'>Address :<span className='text-gray-400 ml-4'>{profile ? profile.district : "Not available"}</span></p> </div>
           <div className='mt-4 bg-blue-950  p-4 flex flex-row'><p className='text-white font-bold '>National ID :</p> <img className=' ml-4 h-16 w-16' src={profile ? profile.nationalID : "Not available"} alt=''></img></div>
           <div className='mt-4 bg-blue-950  p-4 flex flex-row'><p className='text-white font-bold'>RESUME :</p> <img className=' ml-4 h-16 w-16' src={profile ? profile.resume : "Not available"} alt=''></img> </div>
-          
+
         </div>
         <div>
-        <div className='mt-4 bg-blue-950  p-4 flex flex-row'><p className='text-white font-bold'>Certificate :</p><img className=' ml-4 h-16 w-16 ' src={profile ? profile.certificate : "Not available"} alt=''></img> </div>
+          <div className='mt-4 bg-blue-950  p-4 flex flex-row'><p className='text-white font-bold'>Certificate :</p><img className=' ml-4 h-16 w-16 ' src={profile ? profile.certificate : "Not available"} alt=''></img> </div>
           <div className='mt-4 bg-blue-950  p-4'><p className='text-white font-bold'>Did you finished ? :<span className='text-gray-400 ml-4'>{profile ? (profile.didyoufinished) ? "Yes" : "No" : "Not available"}</span></p> </div>
           <div className='mt-4 bg-blue-950  p-4'><p className='text-white font-bold'>TimeofStudy :<span className='text-gray-400 ml-4'>{profile ? profile.timeofstudy : "Not available"}</span></p> </div>
           <div className='mt-4 bg-blue-950  p-4'><p className='text-white font-bold'>Status :<span className='text-gray-400 ml-4'>{profile ? profile.status : "Not available"}</span></p> </div>
           <div className='mt-4 bg-blue-950  p-4'><p className='text-white font-bold'>Created on :<span className='text-gray-400 ml-4'>{profile ? profile.createdAt : "Not available"}</span></p> </div>
           <div className='mt-4 bg-blue-950  p-4 '><p className='text-white font-bold'>updated on :<span className='text-gray-400 ml-4'>{profile ? profile.updatedAt : "Not available"}</span></p> </div>
+          <div className='mt-16 space-x-4 ml-8'>
+            <button className='bg-green-900 text-white px-4 py-2 hover:bg-blue-600 rounded-full' onClick={()=>handleApprove(profile._id)}>Approve</button>
+            <button className='hover:bg-red-950 hover:text-white px-4 py-2 bg-white text-black rounded-full' onClick={()=>handleReject(profile.email)}>Reject</button>
+          </div>
         </div>
 
       </div>

@@ -1,7 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../../src/assets/pages/context";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const { mode } = useContext(AppContext);
@@ -24,8 +25,70 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [verifyProfil, setVerifyProfil] = useState(null);
+  const navigate = useNavigate()
+  // Initialize as null
+
+  const getId = localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
 
   const handleProfile = async (e) => {
+    e.preventDefault();
+
+    // let userId = localStorage.getItem("userId");
+
+    if (!validateForm()) {
+      setErrorMessage("Please fill out all required fields.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("email", email);
+    formData.append("country", country);
+    formData.append("province", province);
+    formData.append("district", district);
+    formData.append("sector", sector);
+    formData.append("school", school);
+    formData.append("major", major);
+    formData.append("didYouFinish", didYouFinish);
+    formData.append("timeOfStudy", timeOfStudy);
+    formData.append("resume", resume);
+    formData.append("nationalID", nationalID);
+    formData.append("certificate", certificate);
+    formData.append("photo", photo);
+    formData.append("category", category);
+    formData.append("user", getId);
+    formData.append("user", token);
+
+    setLoading(true);
+    setErrorMessage("");
+    setSuccessMessage("");
+
+    try {
+      const response = await axios.post(
+        "https://huza-backend-app-api-1.onrender.com/api/profile/createProfile",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      setSuccessMessage("Profile submitted successfully!");
+      // Fetch profile again to update the view
+      verifyProfile(getId);
+    } catch (error) {
+      setErrorMessage("An error occurred while submitting your profile.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+
+  const handleEditProfile = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -50,14 +113,15 @@ const Profile = () => {
     formData.append("certificate", certificate);
     formData.append("photo", photo);
     formData.append("category", category);
+    formData.append("user", getId);
 
     setLoading(true);
     setErrorMessage("");
     setSuccessMessage("");
 
     try {
-      const response = await axios.post(
-        "https://huza-backend-app-api-1.onrender.com/api/profile/createProfile",
+      const response = await axios.put(
+        `https://huza-backend-app-api-1.onrender.com/api/profile/updateProfile/${getId}`,
         formData,
         {
           headers: {
@@ -65,9 +129,11 @@ const Profile = () => {
           },
         }
       );
-      setSuccessMessage("Profile submitted successfully!");
+      setSuccessMessage("Profile updated successfully!");
+      // Fetch profile again to update the view
+      verifyProfile(getId);
     } catch (error) {
-      setErrorMessage("An error occurred while submitting your profile.");
+      setErrorMessage("An error occurred while updating your profile.");
     } finally {
       setLoading(false);
     }
@@ -87,273 +153,494 @@ const Profile = () => {
       didYouFinish.trim() !== "" &&
       timeOfStudy.trim() !== "" &&
       resume !== null &&
+      resume !== undefined &&
       nationalID !== null &&
+      nationalID !== undefined &&
       certificate !== null &&
+      certificate !== undefined &&
       photo !== null &&
+      photo !== undefined &&
       category.trim() !== ""
     );
   };
 
+  const verifyProfile = async (userId) => {
+    // let userId = localStorage.getItem("userId");
+    try {
+      const response = await axios.get(`https://huza-backend-app-api-1.onrender.com/api/profile/viewProfileById/${userId}`);
+      setVerifyProfil(response.data.profile); // Access the profile data
+      if (response.data.profile) {
+        // Pre-fill the form with the existing profile data
+        setFirstName(response.data.profile.firstName);
+        setLastName(response.data.profile.lastName);
+        setEmail(response.data.profile.email);
+        setCountry(response.data.profile.country);
+        setProvince(response.data.profile.province);
+        setDistrict(response.data.profile.district);
+        setSector(response.data.profile.sector);
+        setSchool(response.data.profile.school);
+        setMajor(response.data.profile.major);
+        setDidYouFinish(response.data.profile.didYouFinish);
+        setTimeOfStudy(response.data.profile.timeOfStudy);
+        setCategory(response.data.profile.category);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleLogout = () => {
+    axios.get("https://huza-backend-app-api-1.onrender.com/api/allUsers/logout")
+      .then((resp) => {
+        localStorage.removeItem("userId")
+        console.log(resp.data);
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      }).catch((error) => {
+        console.log(error);
+        alert("Failed to log out");
+      });
+  }
+
+  useEffect(() => {
+    if (getId) {
+      verifyProfile(getId);
+    }
+  }, [getId]);
+
   return (
     <div
-      className={`${
-        !mode ? "bg-gradient-to-r from-slate-950 to-slate-900" : "bg-gray-50"
-      } py-28 px-32 flex flex-col gap-6`}
+      className={`${!mode ? "bg-gradient-to-r from-slate-950 to-slate-900" : "bg-gray-50"
+        } py-28 px-32 flex flex-col gap-6`}
     >
-      <div>
-        <h2
-          className={`${
-            !mode ? " text-gray-300" : " text-black"
-          } flex justify-center items-center text-4xl font-bold`}
-        >
-          Your Profile
-        </h2>
-        <div
-          className={`${
-            !mode ? " text-gray-300" : " text-black"
-          } font-serif text-xl py-6`}
-        >
-          <p>Please enter updated information about yourself</p>
-          <p>Please be sure to fill out all required fields</p>
-          <p>Indicates as required field</p>
-        </div>
-      </div>
-
-      <div>
-        <h2
-          className={`${
-            !mode ? " text-gray-300" : " text-black"
-          } text-2xl font-serif font-bold  mb-3 flex justify-center`}
-        >
-          ENTER YOUR INFORMATION (please enter full legal name or names)
-        </h2>
-        <form
-          onSubmit={handleProfile}
-          className="mb-0 mt-6 space-y-4 rounded-xl p-4 shadow-lg sm:p-6 lg:p-8 font-serif"
-        >
-          <p className={`${!mode ? " text-gray-300" : " text-black"} text-2xl`}>
-            Personal Information
-          </p>
-          <div className=" grid lg:grid-cols-3 grid-cols-1 bg-white py-5 px-5 rounded-lg">
-            <div className=" flex flex-col  w-[20rem]">
-              <label>First/Given Name(S)</label>
-              <input
-                type="text"
-                name="firstName"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                placeholder="Enter Your FirstName"
-              />
+      {!verifyProfil ? (
+        <div>
+          <h2
+            className={`${!mode ? " text-gray-300" : " text-black"
+              } text-2xl font-serif font-bold  mb-3 flex justify-center`}
+          >
+            ENTER YOUR INFORMATION (please enter full legal name or names)
+          </h2>
+          <form
+            onSubmit={handleProfile}
+            className="mb-0 mt-6 space-y-4 rounded-xl p-4 shadow-lg sm:p-6 lg:p-8 font-serif"
+          >
+            <p className={`${!mode ? " text-gray-300" : " text-black"} text-2xl`}>
+              Personal Information
+            </p>
+            <div className=" grid lg:grid-cols-3 grid-cols-1 bg-white py-5 px-5 rounded-lg">
+              <div className=" flex flex-col  w-[20rem]">
+                <label>First/Given Name(S)</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your FirstName"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Last/Family/Surname(S)</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your LastName"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your Email"
+                />
+              </div>
             </div>
-            <div className=" flex flex-col  w-[20rem]">
-              <label>Last/Family/Surname(S)</label>
-              <input
-                type="text"
-                name="lastName"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                placeholder="Enter Your LastName"
-              />
-            </div>
-            <div className=" flex flex-col  w-[20rem]">
-              <label>Email</label>
-              <input
-                type="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                placeholder="Enter Your Email"
-              />
-            </div>
-          </div>
-          <p className={`${!mode ? " text-gray-300" : " text-black"} text-2xl`}>
-            Address
-          </p>
-          <div className=" bg-white h-[25rem] rounded-lg">
-            <div className=" grid  lg:grid-cols-2  grid-cols-1 px-5 py-5 ">
-              <div className=" flex flex-col w-[20rem]">
-                <label>Country:</label>
+            <p className={`${!mode ? " text-gray-300" : " text-black"} text-2xl`}>
+              Address
+            </p>
+            <div className="grid lg:grid-cols-2 grid-cols-1 bg-white py-5 px-5 rounded-lg">
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Country</label>
                 <input
                   type="text"
                   name="country"
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
-                  className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Enter Your Address[Country]"
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your Country"
                 />
               </div>
-              <div className=" flex flex-col w-[20rem]">
-                <label>Province:</label>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Province/State</label>
                 <input
                   type="text"
                   name="province"
                   value={province}
                   onChange={(e) => setProvince(e.target.value)}
-                  className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Enter Your Address[Province]"
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your Province"
                 />
               </div>
-              <div className=" flex flex-col w-[20rem]">
-                <label>District:</label>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>District</label>
                 <input
                   type="text"
                   name="district"
                   value={district}
                   onChange={(e) => setDistrict(e.target.value)}
-                  className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Enter Your Address[District]"
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your District"
                 />
               </div>
-              <div className=" flex flex-col w-[20rem]">
-                <label>Sector:</label>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Sector</label>
                 <input
                   type="text"
                   name="sector"
                   value={sector}
                   onChange={(e) => setSector(e.target.value)}
-                  className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Enter Your Address[Sector]"
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your Sector"
                 />
               </div>
             </div>
-          </div>
-          <p className={`${!mode ? " text-gray-300" : " text-black"} text-2xl`}>
-            Education
-          </p>
-          <div className="bg-white h-[25rem] rounded-lg">
-            <div className="grid lg:grid-cols-2 grid-cols-1 px-5 py-5">
-              <div className=" flex flex-col w-[20rem]">
-                <label>School:</label>
+            <p className={`${!mode ? " text-gray-300" : " text-black"} text-2xl`}>
+              Education Information
+            </p>
+            <div className=" grid lg:grid-cols-3 grid-cols-1 bg-white py-5 px-5 rounded-lg">
+              <div className=" flex flex-col  w-[20rem]">
+                <label>School/University/College</label>
                 <input
                   type="text"
                   name="school"
                   value={school}
                   onChange={(e) => setSchool(e.target.value)}
-                  className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Enter Your Education[School]"
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your School"
                 />
               </div>
-              <div className=" flex flex-col w-[20rem]">
-                <label>Major:</label>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Major</label>
                 <input
                   type="text"
                   name="major"
                   value={major}
                   onChange={(e) => setMajor(e.target.value)}
-                  className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Enter Your Education[Major]"
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your Major"
                 />
               </div>
-              <div className="flex flex-col w-[20rem]">
-                <p>Did you finish study</p>
-                <select
-                  className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Did you finish your studies?</label>
+                <input
+                  type="text"
+                  name="didYouFinish"
                   value={didYouFinish}
                   onChange={(e) => setDidYouFinish(e.target.value)}
-                >
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </select>
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Yes/No"
+                />
               </div>
-              <div className=" flex flex-col w-[20rem]">
-                <label>Time of finished study:</label>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Time of Study (e.g., 2015-2019)</label>
                 <input
                   type="text"
                   name="timeOfStudy"
                   value={timeOfStudy}
                   onChange={(e) => setTimeOfStudy(e.target.value)}
-                  className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Enter time you finished study"
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Time of Study"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Category</label>
+                <input
+                  type="text"
+                  name="category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your Category"
                 />
               </div>
             </div>
-          </div>
-          <p className={`${!mode ? " text-gray-300" : " text-black"} text-2xl`}>
-            Document
-          </p>
-          <div className=" bg-white grid lg:grid-cols-2 grid-cols-1 h-[25rem] px-5 py-5 rounded-lg">
-            <div className="flex flex-col w-[20rem]">
-              <label>Resume file:</label>
-              <input
-                type="file"
-                id="resume"
-                name="resume"
-                onChange={(e) => setResume(e.target.files[0])}
-                className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-              />
+            <p className={`${!mode ? " text-gray-300" : " text-black"} text-2xl`}>
+              Documents Upload
+            </p>
+            <div className="grid lg:grid-cols-2 grid-cols-1 bg-white py-5 px-5 rounded-lg">
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Resume</label>
+                <input
+                  type="file"
+                  name="resume"
+                  onChange={(e) => setResume(e.target.files[0])}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>National ID</label>
+                <input
+                  type="file"
+                  name="nationalID"
+                  onChange={(e) => setNationalID(e.target.files[0])}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Certificate</label>
+                <input
+                  type="file"
+                  name="certificate"
+                  onChange={(e) => setCertificate(e.target.files[0])}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Photo</label>
+                <input
+                  type="file"
+                  name="photo"
+                  onChange={(e) => setPhoto(e.target.files[0])}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                />
+              </div>
             </div>
-            <div className="flex flex-col w-[20rem]">
-              <label>National ID file:</label>
-              <input
-                type="file"
-                id="nationalID"
-                name="nationalID"
-                onChange={(e) => setNationalID(e.target.files[0])}
-                className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-              />
-            </div>
-            <div className="flex flex-col w-[20rem]">
-              <label>Certificate file:</label>
-              <input
-                type="file"
-                id="certificate"
-                name="certificate"
-                onChange={(e) => setCertificate(e.target.files[0])}
-                className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-              />
-            </div>
-            <div className="flex flex-col w-[20rem]">
-              <label>Photo file:</label>
-              <input
-                type="file"
-                id="photo"
-                name="photo"
-                onChange={(e) => setPhoto(e.target.files[0])}
-                className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-              />
-            </div>
-          </div>
-          <div className=" grid lg:grid-cols-2 grid-cols-1 gap-10 ">
-            <select
-              className=" border border-gray-500 rounded-lg py-3 px-5 mt-4 w-[20rem]"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="Culinary Art">Culinary Art</option>
-              <option value="Braiding">Braiding</option>
-              <option value="Makeup Design">Makeup Design</option>
-              <option value="Paint">Paint</option>
-            </select>
-          </div>
-          <div>
-            <input
+            <button
               type="submit"
-              value={
-                loading
-                  ? "SEND YOUR INFORMATION is loading..."
-                  : "SEND YOUR INFORMATION"
-              }
-              disabled={loading || !validateForm()}
-              className={`block w-full rounded-lg ${
-                !mode ? "bg-blue-900" : "bg-indigo-600"
-              } px-5 py-3 text-sm font-medium text-white hover:bg-slate-900`}
-            />
-          </div>
-          <div className=" flex gap-5">
-          <p className={`${!mode ? " text-gray-300" : " text-black"} `}> If You Have  Profile</p><Link to={"/ProfileForSkilled"} className=" text-blue-700 hover:text-blue-950">View Your Profile</Link>
-          </div>
-          
-          {successMessage && <p className="text-green-500">{successMessage}</p>}
-          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-        </form>
-      
-          
-      </div>
+              className="inline-block w-full rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
+              disabled={loading}
+            >
+              {loading ? "Submitting..." : "Submit"}
+            </button>
+          </form>
+        </div>
+      ) : (
+        <div>
+          <h2
+            className={`${!mode ? " text-gray-300" : " text-black"
+              } text-2xl font-serif font-bold  mb-3 flex justify-center`}
+          >
+            UPDATE YOUR PROFILE INFORMATION
+          </h2>
+          <form
+
+            className="mb-0 mt-6 space-y-4 rounded-xl p-4 shadow-lg sm:p-6 lg:p-8 font-serif"
+          >
+            <p className={`${!mode ? " text-gray-300" : " text-black"} text-2xl`}>
+              Personal Information
+            </p>
+            <div className=" grid lg:grid-cols-3 grid-cols-1 bg-white py-5 px-5 rounded-lg">
+              <div className=" flex flex-col  w-[20rem]">
+                <label>First/Given Name(S)</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your FirstName"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Last/Family/Surname(S)</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your LastName"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your Email"
+                />
+              </div>
+            </div>
+            <p className={`${!mode ? " text-gray-300" : " text-black"} text-2xl`}>
+              Address
+            </p>
+            <div className="grid lg:grid-cols-2 grid-cols-1 bg-white py-5 px-5 rounded-lg">
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Country</label>
+                <input
+                  type="text"
+                  name="country"
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your Country"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Province/State</label>
+                <input
+                  type="text"
+                  name="province"
+                  value={province}
+                  onChange={(e) => setProvince(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your Province"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>District</label>
+                <input
+                  type="text"
+                  name="district"
+                  value={district}
+                  onChange={(e) => setDistrict(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your District"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Sector</label>
+                <input
+                  type="text"
+                  name="sector"
+                  value={sector}
+                  onChange={(e) => setSector(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your Sector"
+                />
+              </div>
+            </div>
+            <p className={`${!mode ? " text-gray-300" : " text-black"} text-2xl`}>
+              Education Information
+            </p>
+            <div className=" grid lg:grid-cols-3 grid-cols-1 bg-white py-5 px-5 rounded-lg">
+              <div className=" flex flex-col  w-[20rem]">
+                <label>School/University/College</label>
+                <input
+                  type="text"
+                  name="school"
+                  value={school}
+                  onChange={(e) => setSchool(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your School"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Major</label>
+                <input
+                  type="text"
+                  name="major"
+                  value={major}
+                  onChange={(e) => setMajor(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your Major"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Did you finish your studies?</label>
+                <input
+                  type="text"
+                  name="didYouFinish"
+                  value={didYouFinish}
+                  onChange={(e) => setDidYouFinish(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Yes/No"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Time of Study (e.g., 2015-2019)</label>
+                <input
+                  type="text"
+                  name="timeOfStudy"
+                  value={timeOfStudy}
+                  onChange={(e) => setTimeOfStudy(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Time of Study"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Category</label>
+                <input
+                  type="text"
+                  name="category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  placeholder="Enter Your Category"
+                />
+              </div>
+            </div>
+            <p className={`${!mode ? " text-gray-300" : " text-black"} text-2xl`}>
+              Documents Upload
+            </p>
+            <div className="grid lg:grid-cols-2 grid-cols-1 bg-white py-5 px-5 rounded-lg">
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Resume</label>
+                <input
+                  type="file"
+                  name="resume"
+                  onChange={(e) => setResume(e.target.files[0])}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>National ID</label>
+                <input
+                  type="file"
+                  name="nationalID"
+                  onChange={(e) => setNationalID(e.target.files[0])}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Certificate</label>
+                <input
+                  type="file"
+                  name="certificate"
+                  onChange={(e) => setCertificate(e.target.files[0])}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                />
+              </div>
+              <div className=" flex flex-col  w-[20rem]">
+                <label>Photo</label>
+                <input
+                  type="file"
+                  name="photo"
+                  onChange={(e) => setPhoto(e.target.files[0])}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                />
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={handleEditProfile}
+              className="inline-block w-full rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
+              disabled={loading}
+            >
+              {loading ? "Updating..." : "Update"}
+            </button>
+            <div>
+              <button className="bg-blue-400 rounded-full text-red-600 px-2 py-1" type="button" onClick={handleLogout}>LogOut</button>
+
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
 
 export default Profile;
+

@@ -1,5 +1,5 @@
 
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { NavBar } from './navBar';
 import { MdModeNight } from "react-icons/md";
 import { MdOutlineLightMode } from "react-icons/md";
@@ -30,12 +30,12 @@ export const Dashboard = () => {
                           Notifications
                         </span>
                         </div>
-                        <div className='bg-gray-200 rounded-full p-2'><BiMessageRoundedDots />
+                        <NavLink to="message" className='bg-gray-200 rounded-full p-2'><BiMessageRoundedDots />
                             <div className='w-2 h-2 bg-red-600 rounded-full -mt-7 ml-3 animate-ping opacity-75'></div>
                             <span className={`${!mode? "text-white": "text-black"} absolute   transform -translate-x-1/2 px-2 py-1  text-sm rounded mt-6 opacity-0 hover:opacity-100 transition-opacity duration-300`}>
                           Message
                         </span>
-                        </div>
+                        </NavLink>
                         <div><img src={Profile} alt="" className='h-8 w-8 rounded-full'></img>
                         <span className={`${!mode? "text-white": "text-black"} absolute   transform -translate-x-1/2 px-2 py-1 text-sm rounded ml-6  opacity-0 hover:opacity-100 transition-opacity duration-300`}>
                           Profile
