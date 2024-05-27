@@ -45,8 +45,8 @@ export const Servicecreate = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="bg-white shadow-md rounded-lg p-8 w-[90rem] max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Create Service</h2>
         <input
           type="text"
@@ -68,12 +68,12 @@ export const Servicecreate = () => {
         />
         <button
           onClick={handleAdd}
-          className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition duration-300"
+          className="w-full bg-blue-900 text-white py-2 rounded hover:bg-blue-700 transition duration-300"
         >
           Add Service
         </button>
         {message && (
-          <p className={`mt-4 text-center ${isSuccess ? 'text-green-600' : 'text-red-600'}`}>
+          <p className={`mt-4 text-center ${isSuccess ? 'text-blue-600' : 'text-red-600'}`}>
             {message}
           </p>
         )}

@@ -35,7 +35,7 @@ export const Update = () => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center'>
+    <div className='flex flex-col items-center justify-center py-32'>
       <form>
         <label>Photo</label><br />
         <input type="file" placeholder='Upload photo'
@@ -52,7 +52,7 @@ export const Update = () => {
           className='w-96 h-12 border-2 pl-2'
           onChange={e => setDescription(e.target.value)}></input><br />
 
-        <button type="button" className='w-96 h-12 border-2 mt-4 bg-black text-white'
+        <button type="button" className='w-96 h-12 border-2 mt-4 bg-blue-900 text-white'
           onClick={() => updateService(proId)}>Save Changes</button>
       </form>
       {successMessage && (
