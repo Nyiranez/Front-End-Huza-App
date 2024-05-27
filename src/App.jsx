@@ -29,14 +29,14 @@ import ProfileForSkilled from './Pages/ProfileForSkilled';
 import { AdminMore } from '../src/adminMore'
 import { Servicecreate } from './assets/pages/servicecreate'
 import { Update } from './assets/pages/serviceupdate';
-<<<<<<< HEAD
+
 import EditProfile from './Pages/Components/editProfile';
 import PrivateRoute from './Pages/Components/PrivateRoute';
 import Client from './assets/pages/client';
-=======
+
 import Booking from './Pages/Components/Booking';
 import GroupTeam from './assets/pages/GroupTeam';
->>>>>>> 97af3cf7d3fc06dc698cec99d4a000b0ab1361e1
+
 
 function App() {
   return (
@@ -73,12 +73,11 @@ function App() {
                 <Route path='/Allprofile' element={<AllProfileofSkilled />} />
                 <Route path="/DetailsForSkilled/:Id" element={<DetailsForSkilled />} />
                 <Route path='/ProfileForSkilled' element={<ProfileForSkilled />} />
-<<<<<<< HEAD
+
                 <Route path='/editProfile' element={<EditProfile />} />
-=======
                 <Route path='/Booking' element={<Booking/>}/>
                 <Route path='/GroupTeam' element={<GroupTeam/>}/>
->>>>>>> 97af3cf7d3fc06dc698cec99d4a000b0ab1361e1
+
               </Route>
               <Route path='/dashboard' element={<Dashboard />}>
                 <Route path='' element={<Team />} />
@@ -89,12 +88,12 @@ function App() {
                 <Route path='enhancedTable/adminMore/:Id' element={<AdminMore />} />
                 <Route path='services/addservice' element={<Servicecreate />} />
                 <Route path='services/updateservice/:proId' element={<Update />} />
-<<<<<<< HEAD
+
                 <Route path='message' element={<Message />} />
                 <Route path='client' element={<Client />} />
-=======
+
                 
->>>>>>> 97af3cf7d3fc06dc698cec99d4a000b0ab1361e1
+
               </Route>
             </Routes>
           </BrowserRouter>
