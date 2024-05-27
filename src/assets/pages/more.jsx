@@ -105,7 +105,7 @@ export default function CustomizedTables() {
           </TableBody>
         </Table>
         {message && (
-          <p className={`mt-4 ${isSuccess ? 'text-green-600' : 'text-red-600'}`}>
+          <p className={`mt-4 ${isSuccess ? 'text-blue-600' : 'text-red-600'}`}>
             {message}
           </p>
         )}

@@ -122,7 +122,7 @@ class Team extends PureComponent {
                             </div>
                         </div>
                     </div>
-                    <div className='flex flex-row justify-between mt-8 pt-4 bg-blue-950'>
+                    <div className={`flex flex-row justify-between mt-8 pt-4 $ {!mode ? "bg-blue-950" : "bg-white "}`}>
 
                         <div className='w-96 ' style={{ height: 500, width: 800 }}>
                             <ResponsiveContainer>
@@ -148,7 +148,7 @@ class Team extends PureComponent {
                                 </ComposedChart>
                             </ResponsiveContainer>
                         </div>
-                        <div className=' w-86 mr-16 mt-4 bg-slate-100 px-4 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px flex flex-col items-center justify-center ' style={{ height: 450 }}>
+                        <div className=' rounded-lg w-86 mr-16 mt-4 bg-slate-100 px-4 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px flex flex-col items-center justify-center ' style={{ height: 450 }}>
                             <div className='flex flex-col items-center justify-center mt-8'>
                                 <p className='text-gray-400 text-2xl'>Admin analyisis</p>
                             </div>

@@ -28,6 +28,8 @@ import ProfileForSkilled from './Pages/ProfileForSkilled';
 import { AdminMore } from '../src/adminMore'
 import { Servicecreate } from './assets/pages/servicecreate'
 import { Update } from './assets/pages/serviceupdate';
+import Booking from './Pages/Components/Booking';
+import GroupTeam from './assets/pages/GroupTeam';
 
 function App() {
   return (
@@ -56,6 +58,8 @@ function App() {
                 <Route path='/Allprofile' element={<AllProfileofSkilled />} />
                 <Route path="/DetailsForSkilled/:Id" element={<DetailsForSkilled />} />
                 <Route path='/ProfileForSkilled' element={<ProfileForSkilled />} />
+                <Route path='/Booking' element={<Booking/>}/>
+                <Route path='/GroupTeam' element={<GroupTeam/>}/>
               </Route>
               <Route path='/dashboard' element={<Dashboard />}>
                 <Route path='' element={<Team />} />
@@ -66,6 +70,7 @@ function App() {
                 <Route path='enhancedTable/adminMore/:Id' element={<AdminMore />} />
                 <Route path='services/addservice' element={<Servicecreate />} />
                 <Route path='services/updateservice/:proId' element={<Update />} />
+                
               </Route>
             </Routes>
           </BrowserRouter>
