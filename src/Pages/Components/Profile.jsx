@@ -6,21 +6,37 @@ import { Link } from "react-router-dom";
 const Profile = () => {
   const { mode } = useContext(AppContext);
   const [firstName, setFirstName] = useState("");
+  const [firstNameError, setFirstNameError] = useState("");
   const [lastName, setLastName] = useState("");
+  const [lastNameError, setLastNameError] = useState("");
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [country, setCountry] = useState("");
+  const [countryError, setCountryError] = useState("");
   const [province, setProvince] = useState("");
+  const [provinceError, setProvinceError] = useState("");
   const [district, setDistrict] = useState("");
+  const [districtError, setDistrictError] = useState("");
   const [sector, setSector] = useState("");
+  const [sectorError, setSectorError] = useState("");
   const [school, setSchool] = useState("");
+  const [schoolError, setSchoolError] = useState("");
   const [major, setMajor] = useState("");
+  const [majorError, setMajorError] = useState("");
   const [didYouFinish, setDidYouFinish] = useState("");
+  const [didYouFinishError, setDidYouFinishError] = useState("");
   const [timeOfStudy, setTimeOfStudy] = useState("");
+  const [timeOfStudyError, setTimeOfStudyError] = useState("");
   const [resume, setResume] = useState(null);
+  const [resumeError, setResumeError] = useState("");
   const [nationalID, setNationalID] = useState(null);
+  const [nationalIDError, setNationalIDError] = useState("");
   const [certificate, setCertificate] = useState(null);
+  const [certificateError, setCertificateError] = useState("");
   const [photo, setPhoto] = useState(null);
+  const [photoError, setPhotoError] = useState("");
   const [category, setCategory] = useState("");
+  const [categoryError, setCategoryError] = useState("");
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -29,7 +45,6 @@ const Profile = () => {
     e.preventDefault();
 
     if (!validateForm()) {
-      setErrorMessage("Please fill out all required fields.");
       return;
     }
 
@@ -74,45 +89,130 @@ const Profile = () => {
   };
 
   const validateForm = () => {
-    return (
-      firstName.trim() !== "" &&
-      lastName.trim() !== "" &&
-      email.trim() !== "" &&
-      country.trim() !== "" &&
-      province.trim() !== "" &&
-      district.trim() !== "" &&
-      sector.trim() !== "" &&
-      school.trim() !== "" &&
-      major.trim() !== "" &&
-      didYouFinish.trim() !== "" &&
-      timeOfStudy.trim() !== "" &&
-      resume !== null &&
-      nationalID !== null &&
-      certificate !== null &&
-      photo !== null &&
-      category.trim() !== ""
-    );
+    let isValid = true;
+
+    if (firstName.trim() === "") {
+      setFirstNameError("First name is required.");
+      isValid = false;
+    } else {
+      setFirstNameError("");
+    }
+
+    if (lastName.trim() === "") {
+      setLastNameError("Last name is required.");
+      isValid = false;
+    } else {
+      setLastNameError("");
+    }
+
+    if (email.trim() === "") {
+      setEmailError("Email is required.");
+      isValid = false;
+    } else {
+      setEmailError("");
+    }
+
+    if (country.trim() === "") {
+      setCountryError("Country is required.");
+      isValid = false;
+    } else {
+      setCountryError("");
+    }
+
+    if (province.trim() === "") {
+      setProvinceError("Province is required.");
+      isValid = false;
+    } else {
+      setProvinceError("");
+    }
+
+    if (district.trim() === "") {
+      setDistrictError("District is required.");
+      isValid = false;
+    } else {
+      setDistrictError("");
+    }
+
+    if (sector.trim() === "") {
+      setSectorError("Sector is required.");
+      isValid = false;
+    } else {
+      setSectorError("");
+    }
+
+    if (school.trim() === "") {
+      setSchoolError("School is required.");
+      isValid = false;
+    } else {
+      setSchoolError("");
+    }
+
+    if (major.trim() === "") {
+      setMajorError("Major is required.");
+      isValid = false;
+    } else {
+      setMajorError("");
+    }
+
+    if (didYouFinish.trim() === "") {
+      setDidYouFinishError("Completion status is required.");
+      isValid = false;
+    } else {
+      setDidYouFinishError("");
+    }
+
+    if (timeOfStudy.trim() === "") {
+      setTimeOfStudyError("Time of study is required.");
+      isValid = false;
+    } else {
+      setTimeOfStudyError("");
+    }
+
+    if (!resume) {
+      setResumeError("Resume is required.");
+      isValid = false;
+    } else {
+      setResumeError("");
+    }
+
+    if (!nationalID) {
+      setNationalIDError("National ID is required.");
+      isValid = false;
+    } else {
+      setNationalIDError("");
+    }
+
+    if (!certificate) {
+      setCertificateError("Certificate is required.");
+      isValid = false;
+    } else {
+      setCertificateError("");
+    }
+
+    if (!photo) {
+      setPhotoError("Photo is required.");
+      isValid = false;
+    } else {
+      setPhotoError("");
+    }
+
+    if (category.trim() === "") {
+      setCategoryError("Category is required.");
+      isValid = false;
+    } else {
+      setCategoryError("");
+    }
+
+    return isValid;
   };
 
   return (
-    <div
-      className={`${
-        !mode ? "bg-gradient-to-r from-slate-950 to-slate-900" : "bg-gray-50"
-      } py-28 px-32 flex flex-col gap-6`}
-    >
+    <div className={`${!mode ? "bg-gradient-to-r from-slate-950 to-slate-900" : "bg-gray-50"} py-12 px-4 sm:px-6 lg:px-8 flex flex-col gap-6`}>
       <div>
-        <h2
-          className={`${
-            !mode ? " text-gray-300" : " text-black"
-          } flex justify-center items-center text-4xl font-bold`}
-        >
+        <h2 className={`${!mode ? " text-gray-300" : " text-black"} flex justify-center items-center text-3xl sm:text-4xl font-bold`}>
           Your Profile
         </h2>
-        <div
-          className={`${
-            !mode ? " text-gray-300" : " text-black"
-          } font-serif text-xl py-6`}
-        >
+        <div className={`${!mode ? " text-gray-300" : " text-black"} font-serif text-lg sm:text-xl py-6`}>
           <p>Please enter updated information about yourself</p>
           <p>Please be sure to fill out all required fields</p>
           <p>Indicates as required field</p>
@@ -120,237 +220,225 @@ const Profile = () => {
       </div>
 
       <div>
-        <h2
-          className={`${
-            !mode ? " text-gray-300" : " text-black"
-          } text-2xl font-serif font-bold  mb-3 flex justify-center`}
-        >
+        <h2 className={`${!mode ? " text-gray-300" : " text-black"} text-xl sm:text-2xl font-serif font-bold mb-3 flex justify-center`}>
           ENTER YOUR INFORMATION (please enter full legal name or names)
         </h2>
-        <form
-          onSubmit={handleProfile}
-          className="mb-0 mt-6 space-y-4 rounded-xl p-4 shadow-lg sm:p-6 lg:p-8 font-serif"
-        >
-          <p className={`${!mode ? " text-gray-300" : " text-black"} text-2xl`}>
-            Personal Information
-          </p>
-          <div className=" grid lg:grid-cols-3 grid-cols-1 bg-white py-5 px-5 rounded-lg">
-            <div className=" flex flex-col  w-[20rem]">
+        <form onSubmit={handleProfile} className="mb-0 mt-6 space-y-4 rounded-xl p-4 shadow-lg sm:p-6 lg:p-8 font-serif">
+          <p className={`${!mode ? " text-gray-300" : " text-black"} text-xl`}>Personal Information</p>
+          <div className="grid lg:grid-cols-3 grid-cols-1 gap-4 bg-white py-5 px-5 rounded-lg">
+            <div className="flex flex-col">
               <label>First/Given Name(S)</label>
               <input
                 type="text"
                 name="firstName"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                placeholder="Enter Your FirstName"
+                className="border border-gray-500 rounded-lg py-3 px-5 mt-2"
+                placeholder="Enter Your First Name"
               />
+              {firstNameError && <p className="text-red-500">{firstNameError}</p>}
             </div>
-            <div className=" flex flex-col  w-[20rem]">
+            <div className="flex flex-col">
               <label>Last/Family/Surname(S)</label>
               <input
                 type="text"
                 name="lastName"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                placeholder="Enter Your LastName"
+                className="border border-gray-500 rounded-lg py-3 px-5 mt-2"
+                placeholder="Enter Your Last Name"
               />
+              {lastNameError && <p className="text-red-500">{lastNameError}</p>}
             </div>
-            <div className=" flex flex-col  w-[20rem]">
+            <div className="flex flex-col">
               <label>Email</label>
               <input
                 type="email"
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                className="border border-gray-500 rounded-lg py-3 px-5 mt-2"
                 placeholder="Enter Your Email"
               />
+              {emailError && <p className="text-red-500">{emailError}</p>}
+            </div>
+            <div className="flex flex-col">
+              <label>Country</label>
+              <input
+                type="text"
+                name="country"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                className="border border-gray-500 rounded-lg py-3 px-5 mt-2"
+                placeholder="Enter Your Country"
+              />
+              {countryError && <p className="text-red-500">{countryError}</p>}
+            </div>
+            <div className="flex flex-col">
+              <label>Province</label>
+              <input
+                type="text"
+                name="province"
+                value={province}
+                onChange={(e) => setProvince(e.target.value)}
+                className="border border-gray-500 rounded-lg py-3 px-5 mt-2"
+                placeholder="Enter Your Province"
+              />
+              {provinceError && <p className="text-red-500">{provinceError}</p>}
+            </div>
+            <div className="flex flex-col">
+              <label>District</label>
+              <input
+                type="text"
+                name="district"
+                value={district}
+                onChange={(e) => setDistrict(e.target.value)}
+                className="border border-gray-500 rounded-lg py-3 px-5 mt-2"
+                placeholder="Enter Your District"
+              />
+              {districtError && <p className="text-red-500">{districtError}</p>}
+            </div>
+            <div className="flex flex-col">
+              <label>Sector</label>
+              <input
+                type="text"
+                name="sector"
+                value={sector}
+                onChange={(e) => setSector(e.target.value)}
+                className="border border-gray-500 rounded-lg py-3 px-5 mt-2"
+                placeholder="Enter Your Sector"
+              />
+              {sectorError && <p className="text-red-500">{sectorError}</p>}
             </div>
           </div>
-          <p className={`${!mode ? " text-gray-300" : " text-black"} text-2xl`}>
-            Address
-          </p>
-          <div className=" bg-white h-[25rem] rounded-lg">
-            <div className=" grid  lg:grid-cols-2  grid-cols-1 px-5 py-5 ">
-              <div className=" flex flex-col w-[20rem]">
-                <label>Country:</label>
-                <input
-                  type="text"
-                  name="country"
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                  className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Enter Your Address[Country]"
-                />
-              </div>
-              <div className=" flex flex-col w-[20rem]">
-                <label>Province:</label>
-                <input
-                  type="text"
-                  name="province"
-                  value={province}
-                  onChange={(e) => setProvince(e.target.value)}
-                  className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Enter Your Address[Province]"
-                />
-              </div>
-              <div className=" flex flex-col w-[20rem]">
-                <label>District:</label>
-                <input
-                  type="text"
-                  name="district"
-                  value={district}
-                  onChange={(e) => setDistrict(e.target.value)}
-                  className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Enter Your Address[District]"
-                />
-              </div>
-              <div className=" flex flex-col w-[20rem]">
-                <label>Sector:</label>
-                <input
-                  type="text"
-                  name="sector"
-                  value={sector}
-                  onChange={(e) => setSector(e.target.value)}
-                  className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Enter Your Address[Sector]"
-                />
-              </div>
-            </div>
-          </div>
-          <p className={`${!mode ? " text-gray-300" : " text-black"} text-2xl`}>
-            Education
-          </p>
-          <div className="bg-white h-[25rem] rounded-lg">
-            <div className="grid lg:grid-cols-2 grid-cols-1 px-5 py-5">
-              <div className=" flex flex-col w-[20rem]">
-                <label>School:</label>
+          <div>
+            <h2 className={`${!mode ? " text-gray-300" : " text-black"} text-xl sm:text-2xl font-serif font-bold mb-3 flex justify-center`}>
+              EDUCATIONAL INFORMATION
+            </h2>
+            <div className="grid lg:grid-cols-3 grid-cols-1 gap-4 bg-white py-5 px-5 rounded-lg">
+              <div className="flex flex-col">
+                <label>Name of the school you attend or graduated from</label>
                 <input
                   type="text"
                   name="school"
                   value={school}
                   onChange={(e) => setSchool(e.target.value)}
-                  className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Enter Your Education[School]"
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-2"
+                  placeholder="Enter Your School"
                 />
+                {schoolError && <p className="text-red-500">{schoolError}</p>}
               </div>
-              <div className=" flex flex-col w-[20rem]">
-                <label>Major:</label>
+              <div className="flex flex-col">
+                <label>What is/was your major area of study</label>
                 <input
                   type="text"
                   name="major"
                   value={major}
                   onChange={(e) => setMajor(e.target.value)}
-                  className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Enter Your Education[Major]"
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-2"
+                  placeholder="Enter Your Major"
                 />
+                {majorError && <p className="text-red-500">{majorError}</p>}
               </div>
-              <div className="flex flex-col w-[20rem]">
-                <p>Did you finish study</p>
+              <div className="flex flex-col">
+                <label>Did you finish the above Program?</label>
                 <select
-                  className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
+                  name="didYouFinish"
                   value={didYouFinish}
                   onChange={(e) => setDidYouFinish(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-2"
                 >
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
+                  <option value="">Select an option</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
                 </select>
+                {didYouFinishError && <p className="text-red-500">{didYouFinishError}</p>}
               </div>
-              <div className=" flex flex-col w-[20rem]">
-                <label>Time of finished study:</label>
+              <div className="flex flex-col">
+                <label>Time period of study</label>
                 <input
                   type="text"
                   name="timeOfStudy"
                   value={timeOfStudy}
                   onChange={(e) => setTimeOfStudy(e.target.value)}
-                  className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Enter time you finished study"
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-2"
+                  placeholder="Enter Time Period of Study"
                 />
+                {timeOfStudyError && <p className="text-red-500">{timeOfStudyError}</p>}
               </div>
             </div>
           </div>
-          <p className={`${!mode ? " text-gray-300" : " text-black"} text-2xl`}>
-            Document
-          </p>
-          <div className=" bg-white grid lg:grid-cols-2 grid-cols-1 h-[25rem] px-5 py-5 rounded-lg">
-            <div className="flex flex-col w-[20rem]">
-              <label>Resume file:</label>
-              <input
-                type="file"
-                id="resume"
-                name="resume"
-                onChange={(e) => setResume(e.target.files[0])}
-                className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-              />
-            </div>
-            <div className="flex flex-col w-[20rem]">
-              <label>National ID file:</label>
-              <input
-                type="file"
-                id="nationalID"
-                name="nationalID"
-                onChange={(e) => setNationalID(e.target.files[0])}
-                className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-              />
-            </div>
-            <div className="flex flex-col w-[20rem]">
-              <label>Certificate file:</label>
-              <input
-                type="file"
-                id="certificate"
-                name="certificate"
-                onChange={(e) => setCertificate(e.target.files[0])}
-                className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-              />
-            </div>
-            <div className="flex flex-col w-[20rem]">
-              <label>Photo file:</label>
-              <input
-                type="file"
-                id="photo"
-                name="photo"
-                onChange={(e) => setPhoto(e.target.files[0])}
-                className=" border border-gray-500 rounded-lg py-3 px-5 mt-4"
-              />
-            </div>
-          </div>
-          <div className=" grid lg:grid-cols-2 grid-cols-1 gap-10 ">
-            <select
-              className=" border border-gray-500 rounded-lg py-3 px-5 mt-4 w-[20rem]"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="Culinary Art">Culinary Art</option>
-              <option value="Braiding">Braiding</option>
-              <option value="Makeup Design">Makeup Design</option>
-              <option value="Paint">Paint</option>
-            </select>
-          </div>
           <div>
-            <input
+            <h2 className={`${!mode ? " text-gray-300" : " text-black"} text-xl sm:text-2xl font-serif font-bold mb-3 flex justify-center`}>
+              ADDITIONAL INFORMATION
+            </h2>
+            <div className="grid lg:grid-cols-3 grid-cols-1 gap-4 bg-white py-5 px-5 rounded-lg">
+              <div className="flex flex-col">
+                <label>Resume</label>
+                <input
+                  type="file"
+                  name="resume"
+                  onChange={(e) => setResume(e.target.files[0])}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-2"
+                />
+                {resumeError && <p className="text-red-500">{resumeError}</p>}
+              </div>
+              <div className="flex flex-col">
+                <label>National ID</label>
+                <input
+                  type="file"
+                  name="nationalID"
+                  onChange={(e) => setNationalID(e.target.files[0])}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-2"
+                />
+                {nationalIDError && <p className="text-red-500">{nationalIDError}</p>}
+              </div>
+              <div className="flex flex-col">
+                <label>Certificate</label>
+                <input
+                  type="file"
+                  name="certificate"
+                  onChange={(e) => setCertificate(e.target.files[0])}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-2"
+                />
+                {certificateError && <p className="text-red-500">{certificateError}</p>}
+              </div>
+              <div className="flex flex-col">
+                <label>Photo</label>
+                <input
+                  type="file"
+                  name="photo"
+                  onChange={(e) => setPhoto(e.target.files[0])}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-2"
+                />
+                {photoError && <p className="text-red-500">{photoError}</p>}
+              </div>
+              <div className="flex flex-col">
+                <label>Category</label>
+                <input
+                  type="text"
+                  name="category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="border border-gray-500 rounded-lg py-3 px-5 mt-2"
+                  placeholder="Enter Category"
+                />
+                {categoryError && <p className="text-red-500">{categoryError}</p>}
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <button
               type="submit"
-              value={
-                loading
-                  ? "SEND YOUR INFORMATION is loading..."
-                  : "SEND YOUR INFORMATION"
-              }
-              disabled={loading || !validateForm()}
-              className={`block w-full rounded-lg ${
-                !mode ? "bg-blue-900" : "bg-indigo-600"
-              } px-5 py-3 text-sm font-medium text-white hover:bg-slate-900`}
-            />
+              className="bg-blue-500 text-white rounded-lg py-3 px-6 mt-4 hover:bg-blue-600 transition duration-300"
+              disabled={loading}
+            >
+              {loading ? "Submitting..." : "Submit"}
+            </button>
           </div>
-          <div className=" flex gap-5">
-          <p className={`${!mode ? " text-gray-300" : " text-black"} `}> If You Have  Profile</p><Link to={"/ProfileForSkilled"} className=" text-blue-700 hover:text-blue-950">View Your Profile</Link>
-          </div>
-          
-          {successMessage && <p className="text-green-500">{successMessage}</p>}
-          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         </form>
-      
-          
+        {successMessage && <p className="text-green-500 text-center mt-4">{successMessage}</p>}
+        {errorMessage && <p className="text-red-500 text-center mt-4">{errorMessage}</p>}
       </div>
     </div>
   );

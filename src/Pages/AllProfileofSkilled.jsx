@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { AppContext } from '../../src/assets/pages/context';
 
 const AllProfileofSkilled = () => {
+  const { mode } = useContext(AppContext);
   const [content, setContent] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleFetch = async () => {
     try {
@@ -13,8 +16,10 @@ const AllProfileofSkilled = () => {
       });
       console.log(response.data.profile);
       setContent(response.data.profile);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -23,47 +28,45 @@ const AllProfileofSkilled = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-5 gap-7 justify-center mt-32 px-32">
-      {content.map((item) => (
-        <Link to={`/DetailsForSkilled/${item._id}`}>
-          <div
-            key={item._id}
-            style={{
-              backgroundColor: "white",
-              margin: "10px",
-              padding: "10px",
-              boxShadow: "0 0 5px rgba(0, 0, 0, 0.1)",
-              borderRadius: "5px",
-              color: "black",
-            }}
-          >
-            <img
-              src={item.photo}
-              alt="muhumuza pic "
+    <div className={`${!mode ? 'bg-gradient-to-r from-slate-900 to-slate-950' : 'bg-gray-100'} grid grid-cols-1 lg:grid-cols-5 gap-7 justify-center px-32 py-28`}>
+      {loading ? (
+        <div className="col-span-5 flex justify-center items-center">
+          <p className=" text-gray-200">Loading...</p>
+        </div>
+      ) : (
+        content.map((item) => (
+          <Link key={item._id} to={`/DetailsForSkilled/${item._id}`}>
+            <div
               style={{
-                width: "200px",
-                height: "300px",
-                objectFit: "cover",
+                backgroundColor: "white",
+                margin: "10px",
+                padding: "10px",
+                boxShadow: "0 0 5px rgba(0, 0, 0, 0.1)",
                 borderRadius: "5px",
+                color: "black",
               }}
-            />
-            <p>{item.firstName}</p>
-            <p>{item.lastName}</p>
-            {/* <p>{item.email}</p>
-                        <p>{item.country}</p>
-                        <p>{item.province}</p>
-                        <p>{item.district}</p>
-                        <p>{item.sector}</p>
-                        <p>{item.school}</p>
-                        <p>{item.major}</p>
-                        <p>{item.timeofstudy}</p>
-                        <p>{item.didyoufinished}</p>
-                        <p>{item.certificate}</p>
-                        <p>{item.nationalID}</p>
-                        <p>{item.resume}</p> */}
-          </div>
-        </Link>
-      ))}
+            >
+              <img
+                src={item.photo}
+                alt="muhumuza pic "
+                style={{
+                  width: "200px",
+                  height: "300px",
+                  objectFit: "cover",
+                  borderRadius: "100%",
+                }}
+              />
+              <p className=" flex justify-center py-2">{item.firstName}</p>
+              <p className=" flex justify-center py-2">{item.lastName}</p>
+              <p className=" flex justify-center py-2 font-bold">{item.category}</p>
+              <div className=" flex justify-center">
+              <button className=" text-blue-500 "><Link to={"/DetailsForSkilled/:Id"}>More Information</Link></button>
+              </div>
+              
+            </div>
+          </Link>
+        ))
+      )}
     </div>
   );
 };

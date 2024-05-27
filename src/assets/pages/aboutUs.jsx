@@ -20,7 +20,7 @@ const AboutUs = () => {
       <hr className='mt-6' />
       <div className='grid lg:grid-cols-2 grid-cols-1 justify-between mt-10' id='about'>
         <div className='relative'>
-          <img src='https://go-tailwind.preview.uideck.com/src/images/about/image-2.jpg' className='absolute top-10 left-1/2 transform -translate-x-1/2 md:left-36 shadow-[-25px_-25px_0px_rgba(255,255,255,0.5)]' />
+          <img src='https://go-tailwind.preview.uideck.com/src/images/about/image-2.jpg' className='absolute top-10 left-1/2 transform -translate-x-1/2 md:left-36 shadow-[-20px_-25px_0px_rgba(255,255,255,0.5)]' />
           <img src='https://go-tailwind.preview.uideck.com/src/images/about/image-1.jpg' className='relative' />
         </div>
         <div className='mt-14 flex flex-col gap-10'>
@@ -35,7 +35,7 @@ const AboutUs = () => {
         </div>
       </div>
       <div className='grid lg:grid-cols-2 grid-cols-1 justify-between py-20 gap-20' id='mission'>
-        <div className='flex flex-col gap-10'>
+        <div className='flex flex-col gap-10 mt-20'>
           <h2 className={`${!mode ? "text-white" : "text-slate-500"} text-4xl font-bold animate-pulse`}>OUR MISSION</h2>
           <p className={`${!mode ? "text-slate-500" : "text-slate-500"} text-xl`}>
             Connecting employ young skilled people who completed short courses with employers
