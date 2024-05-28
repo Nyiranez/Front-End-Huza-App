@@ -24,7 +24,7 @@ export default function Client() {
             });
     };
     const handleDelete = (id) => {
-        axios.delete("https://huza-backend-app-api-1.onrender.com/api/booking/delete?id=/" +id)
+        axios.delete("https://huza-backend-app-api-1.onrender.com/api/booking/delete/" +id)
             .then((res) => {
                 console.log(res.data);
                 handleBooking();
