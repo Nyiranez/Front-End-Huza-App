@@ -185,8 +185,8 @@ const Signup = () => {
               } p-4  text-sm shadow-sm text-gray-500`}
             >
               <option value=""> Category</option>
-              <option value="user">USER</option>
-              <option value="skilled">SKILLED</option>
+              <option value="user">Employer</option>
+              <option value="skilled">Skilled</option>
             </select>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

@@ -59,7 +59,7 @@ const Signin = () => {
         }
       }, 3000);
     } catch (err) {
-      setErrorMessage("Something went wrong, please try again");
+      setErrorMessage(" invalid username and password");
       console.log(err);
     } finally {
       setLoading(false);

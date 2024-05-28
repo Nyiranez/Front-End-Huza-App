@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { AppContext } from "../../../src/assets/pages/context";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const Booking = () => {
   const { mode } = useContext(AppContext);
@@ -13,6 +14,7 @@ const Booking = () => {
   const [details, setDetails] = useState('');
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
+  const Navigate= useNavigate();
   // const [errorMessage, setErrorMessage] = useState('');
 
   const ContactApp = async (e) => {
@@ -45,7 +47,6 @@ const Booking = () => {
       setLoading(false);
     }
   };
-
   const validateForm = () => {
     return (
       name.trim() !== '' &&
@@ -56,6 +57,19 @@ const Booking = () => {
       details.trim() !== ''
     );
   };
+  const BookingLogout =()=>{
+     axios.get("https://huza-backend-app-api-1.onrender.com/api/allUsers/logout")
+     .then((resp)=>{
+      console.log(resp.data);
+      setTimeout(()=>{
+        Navigate("/")
+      },2000);
+     }).catch((error)=>{
+      console.log(error);
+      alert("failed to logout");
+     })
+  };
+  
 
   return (
     <section className={`${!mode ? 'bg-gradient-to-r from-slate-900 to-slate-950' : 'bg-gray-100'} py-28`}>
@@ -127,7 +141,7 @@ const Booking = () => {
                   onChange={(e) => setDetails(e.target.value)}
                 ></textarea>
               </div>
-              <div className="mt-4">
+              <div className="mt-4 flex justify-between items-center">
                 <button
                   type="submit"
                   className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
@@ -135,6 +149,8 @@ const Booking = () => {
                 >
                   {loading ? 'Booking...' : 'Book Now'}
                 </button>
+                <button onClick={BookingLogout} className=" inline-block w-full rounded-lg bg-blue-900 px-5 py-3 font-medium text-white sm:w-auto">Logout</button>
+               
               </div>
               {successMessage && <p className="text-green-700 mt-4">{successMessage}</p>}
               {/* {errorMessage && <p className="text-red-700 mt-4">{errorMessage}</p>} */}

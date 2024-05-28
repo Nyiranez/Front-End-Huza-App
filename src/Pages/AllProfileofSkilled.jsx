@@ -35,7 +35,7 @@ const AllProfileofSkilled = () => {
         </div>
       ) : (
         content.map((item) => (
-          <Link key={item._id} to={`/DetailsForSkilled/${item._id}`}>
+          <Link key={item._id} to={`/DetailsForSkilled/${item.user}`}>
             <div
               style={{
                 backgroundColor: "white",
