@@ -55,13 +55,13 @@ export const NavBar = () => {
                         <div className='flex flex-row justify-center items-center hover:bg-gray-800 py-4'>
                             <div className='flex flex-row justify-center items-center space-x-4'>
                                 <div className='px-2 py-1'><CgProfile className='text-white' /></div>
-                                <NavLink to="enhancedTable" className='text-white'>Profile</NavLink>
+                                <NavLink to="enhancedTable" className='text-white'>Profiles</NavLink>
                             </div>
                         </div>
                         <div className='flex flex-row justify-center items-center hover:bg-gray-800 py-4'>
                             <div className='flex flex-row justify-center items-center space-x-4'>
                                 <div className='px-2 py-1'><CgProfile className='text-white' /></div>
-                                <NavLink to="client" className='text-white'>Client</NavLink>
+                                <NavLink to="client" className='text-white'>Bookings</NavLink>
                             </div>
                         </div>
                         <div className='flex flex-row justify-center items-center hover:bg-gray-800 py-4'>

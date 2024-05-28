@@ -8,50 +8,62 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { TbHttpDelete } from "react-icons/tb";
 
 export default function Client() {
-    const [contacts, setContacts] = useState([]);
+    const [booking, setBooking] = useState([]);
 
-    const handleContact = () => {
-        axios.get("https://huza-backend-app-api-1.onrender.com/api/contact/listContact")
+    const handleBooking = () => {
+        axios.get("https://huza-backend-app-api-1.onrender.com/api/booking/allbooking")
             .then((res) => {
-                console.log(res.data);
-                setContacts(res.data);
+                console.log(res.data.booking);
+                setBooking(res.data.booking);
             })
             .catch((err) => {
                 console.error("Error fetching contacts:", err);
             });
     };
+    const handleDelete = (id) => {
+        axios.delete("https://huza-backend-app-api-1.onrender.com/api/booking/delete?id=/" +id)
+            .then((res) => {
+                console.log(res.data);
+                handleBooking();
+               
+                
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     useEffect(() => {
-        handleContact();
+        handleBooking();
     }, []);
 
     return (
-        <TableContainer component={Paper} className='mt-44 h-screen pt-24'>
-            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+        <TableContainer component={Paper} className='mt-44  pt-24 pl-16 pr-16'>
+            <div className='bg-slate-100 text-4xl font-bold  flex flex-col items-center justify-center mb-8'><p>All Booking</p></div>
+            <Table sx={{ minWidth: 400 }} size="small" aria-label="a dense table" className=''>
                 <TableHead>
                     <TableRow>
-                        <TableCell align="left">FirstName</TableCell>
-                        <TableCell align="left">LastName</TableCell>
-                        <TableCell align="left">Email</TableCell>
-                        <TableCell align="left">PhoneNumber</TableCell>
-                        <TableCell align="left">Message</TableCell>
+                        <TableCell align="left"><p className='font-bold'>FullName</p></TableCell>
+                        <TableCell align="left"><p className='font-bold'>Email</p></TableCell>
+                        <TableCell align="left"><p className='font-bold'>PhoneNumber</p></TableCell>
+                        <TableCell align="left"><p className='font-bold'>Message</p></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {contacts.map((row) => (
+                    {booking.map((row) => (
                         <TableRow
                             key={row.id} // Ensure each row has a unique key
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                            <TableCell component="th" scope="row">
-                                {row.firstName}
-                            </TableCell>
-                            <TableCell align="left">{row.lastName}</TableCell>
+                         
+                            <TableCell align="left">{row.name}</TableCell>
                             <TableCell align="left">{row.email}</TableCell>
                             <TableCell align="left">{row.phoneNumber}</TableCell>
-                            <TableCell align="left">{row.message}</TableCell>
+                            <TableCell align="left">{row.details}</TableCell>
+                            <TableCell align="center" className='bg-gray-500'><TbHttpDelete className=' text-red-900 text-4xl' onClick={()=> handleDelete(row._id)}/></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

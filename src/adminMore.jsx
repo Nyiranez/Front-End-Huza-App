@@ -10,12 +10,13 @@ export const AdminMore = () => {
   let { Id } = useParams();
 
   const handleMore = (id) => {
-    axios.get("https://huza-backend-app-api-1.onrender.com/api/profile/viewProfileById?id=" + id)
+    axios.get("https://huza-backend-app-api-1.onrender.com/api/profile/viewProfileById/" + id)
       .then((resp) => {
         setProfile(resp.data.profile);
+        console.log(resp.data.profile);
       }).catch((error) => {
         console.log(error);
-        alert("Failed to fetch contact");
+        // alert("Failed to fetch contact");
       });
   };
 

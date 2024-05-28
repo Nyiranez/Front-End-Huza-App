@@ -37,7 +37,7 @@ const Signin = () => {
       return;
     }
     setLoading(true);
-<<<<<<< HEAD
+
   // await axios({
   //   url: "https://huza-backend-app-api.onrender.com/api/allUsers/login",
   //   method: "POST",
@@ -93,42 +93,14 @@ const Signin = () => {
     setLoading(false);
   }
 };
-  const validateForm = () => {
-    return (
+  // const validateForm = () => {
+  //   return (
       
-      email.trim() !== '' &&
-      password.trim() !== ''
-    );
-=======
-    try {
-      const response = await axios.post("https://huza-backend-app-api.onrender.com/api/allUsers/login", {
-        email,
-        password,
-      }, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      setSuccessMessage("You have successfully logged into your account");
-      setErrorMessage("");
-      console.log(response.data);
-      setTimeout(() => {
-        if (response.data.user.role === "skilled") {
-          navigate('/Profile');
-        } else if (response.data.user.role === "user") {
-          navigate("/AllProfile");
-        } else if (response.data.user.role === "admin") {
-          navigate("/dashboard");
-        }
-      }, 3000);
-    } catch (err) {
-      setErrorMessage("Something went wrong, please try again");
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
->>>>>>> 97af3cf7d3fc06dc698cec99d4a000b0ab1361e1
-  };
+  //     email.trim() !== '' &&
+  //     password.trim() !== ''
+  //   );
+
+  // };
 
   return (
     <div className={!mode ? 'bg-gradient-to-r from-slate-950 to-gray-950' : 'bg-gray-50'}>

@@ -13,7 +13,7 @@ const DetailsForSkilled = () => {
 
   const handleMore = async (id) => {
     try {
-      const resp = await axios.get(`https://huza-backend-app-api-1.onrender.com/api/profile/viewProfileById?id=${id}`);
+      const resp = await axios.get(`https://huza-backend-app-api-1.onrender.com/api/profile/viewProfileById/${id}`);
       setProfile(resp.data.profile);
     } catch (error) {
       console.log(error);
