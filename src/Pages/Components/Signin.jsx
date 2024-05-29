@@ -31,11 +31,12 @@ const Signin = () => {
     return valid;
   };
 
-  const handleSignUp = async (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
     if (!validateForm()) {
       return;
     }
+
     setLoading(true);
     try {
       const response = await axios.post("https://huza-backend-app-api.onrender.com/api/allUsers/login", {
@@ -51,6 +52,8 @@ const Signin = () => {
       console.log(response.data);
       setTimeout(() => {
         if (response.data.user.role === "skilled") {
+          localStorage.setItem('userId', response.data.user.id);
+          localStorage.setItem("token", response.data.token);
           navigate('/Profile');
         } else if (response.data.user.role === "user") {
           navigate("/AllProfile");
@@ -59,7 +62,7 @@ const Signin = () => {
         }
       }, 3000);
     } catch (err) {
-      setErrorMessage(" invalid username and password");
+      setErrorMessage("Invalid username and password");
       console.log(err);
     } finally {
       setLoading(false);
@@ -70,8 +73,8 @@ const Signin = () => {
     <div className={!mode ? 'bg-gradient-to-r from-slate-950 to-gray-950' : 'bg-gray-50'}>
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 h-[65rem]">
         <div className={`mx-auto mt-32 pt-16 max-w-lg ${!mode ? "bg-gradient-to-r from-gray-800 to-gray-800" : "bg-white"}`}>
-          <h1 className={`text-center text-2xl font-bold sm:text-3xl font-serif ${!mode ? "text-white" : "text-indigo-600"}`}>SIGN IN </h1>
-          <form onSubmit={handleSignUp} className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 font-serif">
+          <h1 className={`text-center text-2xl font-bold sm:text-3xl font-serif ${!mode ? "text-white" : "text-indigo-600"}`}>SIGN IN</h1>
+          <form onSubmit={handleSignIn} className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 font-serif">
             <div>
               <input
                 type="email"
@@ -121,7 +124,7 @@ const Signin = () => {
               className={`block w-full rounded-lg ${!mode ? "bg-blue-900" : "bg-indigo-600"} px-5 py-3 text-sm font-medium text-white hover:bg-slate-900`}
               disabled={loading}
             >
-              {loading ? "Sign in loading..." : "Sign in"}
+              {loading ? "Signing in..." : "Sign in"}
             </button>
             <div className='flex justify-between'>
               <p className="text-center text-sm text-gray-500">

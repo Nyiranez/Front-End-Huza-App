@@ -43,12 +43,34 @@ const Services = () => {
               <p className="mt-2 line-clamp-4 text-sm/relaxed ">
                 {service.description}
               </p>
-              <Link to="/curnaryArt" className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
+              {service.category === "CalinaryArt" && <Link to="/curnaryArt" className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
                 Find out more
                 <span aria-hidden="true" className="block transition-all group-hover:ms-0.5 rtl:rotate-180">
                   &rarr;
                 </span>
-              </Link>
+              </Link>}
+
+              {service.category === "Painting" && <Link to="/Plainters" className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
+                Find out more
+                <span aria-hidden="true" className="block transition-all group-hover:ms-0.5 rtl:rotate-180">
+                  &rarr;
+                </span>
+              </Link>}
+              {service.category === "Braiding" && <Link to="/Branding" className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
+                Find out more
+                <span aria-hidden="true" className="block transition-all group-hover:ms-0.5 rtl:rotate-180">
+                  &rarr;
+                </span>
+              </Link>}
+              {service.category === "MakeUp Design" && <Link to="/MakeupDesign" className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
+                Find out more
+                <span aria-hidden="true" className="block transition-all group-hover:ms-0.5 rtl:rotate-180">
+                  &rarr;
+                </span>
+              </Link>}
+
+
+
             </div>
           </article>
         ))}

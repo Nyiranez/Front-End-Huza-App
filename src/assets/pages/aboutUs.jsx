@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AppContext } from './context';
+import iren from '../../../public/iren.jpeg'
+import louise from '../../../public/louise.jpeg'
 
 const AboutUs= () => {
   const { mode } = useContext(AppContext);
@@ -44,12 +46,12 @@ const AboutUs= () => {
           </p>
         </div>
         <div>
-          <img src='./louise.jpeg' className='h-[35rem] w-full md:w-[30rem] top-10 shadow-[20px_-25px_0px_rgba(255,255,255,0.5)]' />
+          <img src={louise} className='h-[35rem] w-full md:w-[30rem] top-10 shadow-[20px_-25px_0px_rgba(255,255,255,0.5)]' />
         </div>
       </div>
       <div className='grid lg:grid-cols-2 grid-cols-1 justify-between mt-10' id='vision'>
         <div>
-          <img src='./iren.jpeg' className='h-[30rem] w-full md:w-[25rem] top-10 shadow-[-25px_-25px_0px_rgba(255,255,255,0.5)]' />
+          <img src={iren} className='h-[30rem] w-full md:w-[25rem] top-10 shadow-[-25px_-25px_0px_rgba(255,255,255,0.5)]' />
         </div>
         <div className='mt-14 flex flex-col gap-10'>
           <h2 className={`${!mode ? "text-white" : "text-slate-500"} text-4xl font-bold animate-pulse`}>OUR VISION</h2>

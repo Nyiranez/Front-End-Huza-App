@@ -45,7 +45,7 @@ export default function CustomizedTables() {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`https://huza-backend-app-api-1.onrender.com/api/service/deleteService?id=${id}`).then((res) => {
+    axios.delete(`https://huza-backend-app-api-1.onrender.com/api/contact/deleteContactById?id=${id}`).then((res) => {
       console.log(res);
       setMessage("Service successfully deleted");
       setIsSuccess(true);

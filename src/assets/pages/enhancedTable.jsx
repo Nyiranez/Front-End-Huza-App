@@ -318,9 +318,9 @@ export default function EnhancedTable() {
           <GoSearch className="text-black" />
           <select className='space-y-4 px-6 py-4 rounded-full' onChange={handleFilter}>
             <option value="">Find By Category</option>
-            <option value="Culinary Art">Culinary Art</option>
+            <option value="CulnaryArt">Culinary Art</option>
             <option value="Braiding">Braiding</option>
-            <option value="Paint">Paint</option>
+            <option value="Plaint">Paint</option>
             <option value="Makeup Design">MakeUp Design</option>
           </select>
         </div>
@@ -383,7 +383,7 @@ export default function EnhancedTable() {
                     <TableCell align="right" >
                       <div className=' w-full h-10 flex flex-row justify-around items-center'>
                         <div className="relative">
-                          <NavLink to={`/dashboard/enhancedTable/adminMore/${row._id}`}><button><MdViewCompact className='bg-blue-900 text-2xl text-slate-300' /></button></NavLink>
+                          <NavLink to={`/dashboard/enhancedTable/adminMore/${row.user}`}><button><MdViewCompact className='bg-blue-900 text-2xl text-slate-300' /></button></NavLink>
                           <span className="absolute mt-6 left-1/2 transform -translate-x-1/2 px-2 py-1 text-green-700 text-sm rounded opacity-0 hover:opacity-100 transition-opacity duration-300">
                             View
                           </span>
