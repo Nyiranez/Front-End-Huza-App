@@ -31,83 +31,50 @@ const Signin = () => {
     return valid;
   };
 
-  const handleSignUp = async (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
     if (!validateForm()) {
       return;
     }
+
     setLoading(true);
-
-  // await axios({
-  //   url: "https://huza-backend-app-api.onrender.com/api/allUsers/login",
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   data: {
-      
-  //     email: email,
-      
-  //     password: password,
-      
-  //   },
-  // })
-  //   .then((response) => {
-  //     console.log(response.data);
-  //     navigate ("/CurnaryArt");
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-  // }
-  try {
-    const response = await axios.post("https://huza-backend-app-api.onrender.com/api/allUsers/login", {
-      email,
-      password,
-    }, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    setSuccessMessage("You have login into your account is successfully");
-    setErrorMessage("");
-    console.log(response.data);
-    setTimeout(()=>{
-      if(response.data.user.role === "skilled"){
-        localStorage.setItem('userId', response.data.user.id)
-        localStorage.setItem("token", response.data.token);
-        navigate ('/Profile');
-      }
-      else if(response.data.user.role === "user"){
-        navigate("/AllProfile");
-      }
-      else if(response.data.user.role === "admin"){
-        navigate("/dashboard");
-      }
-    }, 3000)
-   
-  } catch (err) {
-    setErrorMessage("Something went wrong, please try again");
-    console.log(err);
-  } finally {
-    setLoading(false);
-  }
-};
-  // const validateForm = () => {
-  //   return (
-      
-  //     email.trim() !== '' &&
-  //     password.trim() !== ''
-  //   );
-
-  // };
+    try {
+      const response = await axios.post("https://huza-backend-app-api.onrender.com/api/allUsers/login", {
+        email,
+        password,
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      setSuccessMessage("You have successfully logged into your account");
+      setErrorMessage("");
+      console.log(response.data);
+      setTimeout(() => {
+        if (response.data.user.role === "skilled") {
+          localStorage.setItem('userId', response.data.user.id);
+          localStorage.setItem("token", response.data.token);
+          navigate('/Profile');
+        } else if (response.data.user.role === "user") {
+          navigate("/AllProfile");
+        } else if (response.data.user.role === "admin") {
+          navigate("/dashboard");
+        }
+      }, 3000);
+    } catch (err) {
+      setErrorMessage("Invalid username and password");
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className={!mode ? 'bg-gradient-to-r from-slate-950 to-gray-950' : 'bg-gray-50'}>
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 h-[65rem]">
         <div className={`mx-auto mt-32 pt-16 max-w-lg ${!mode ? "bg-gradient-to-r from-gray-800 to-gray-800" : "bg-white"}`}>
-          <h1 className={`text-center text-2xl font-bold sm:text-3xl font-serif ${!mode ? "text-white" : "text-indigo-600"}`}>SIGN IN </h1>
-          <form onSubmit={handleSignUp} className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 font-serif">
+          <h1 className={`text-center text-2xl font-bold sm:text-3xl font-serif ${!mode ? "text-white" : "text-indigo-600"}`}>SIGN IN</h1>
+          <form onSubmit={handleSignIn} className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 font-serif">
             <div>
               <input
                 type="email"
@@ -157,7 +124,7 @@ const Signin = () => {
               className={`block w-full rounded-lg ${!mode ? "bg-blue-900" : "bg-indigo-600"} px-5 py-3 text-sm font-medium text-white hover:bg-slate-900`}
               disabled={loading}
             >
-              {loading ? "Sign in loading..." : "Sign in"}
+              {loading ? "Signing in..." : "Sign in"}
             </button>
             <div className='flex justify-between'>
               <p className="text-center text-sm text-gray-500">

@@ -16,7 +16,6 @@ const AllProfileofSkilled = () => {
         method: "GET",
         url: "https://huza-backend-app-api-1.onrender.com/api/profile/viewProfileByStatus",
       });
-      console.log(response.data.profile);
       setContent(response.data.profile);
       setFilterContent(response.data.profile);
       setLoading(false);
@@ -41,38 +40,40 @@ const AllProfileofSkilled = () => {
   }, []);
 
   return (
-    <div className="mt-32">
-      <div className='flex flex-col justify-center items-end'>
-        <div className='flex flex-row pr-2 mb-4 rounded-full pl-2 justify-center items-center bg-blue-950 mr-32'>
-          <GoSearch className="text-white" />
-          <select className='space-y-4 px-6 py-4 rounded-full bg-blue-950 text-white' onChange={handleFilter}>
-            <option value="">Find By Category</option>
-            <option value="Culinary Art">Culinary Art</option>
-            <option value="Braiding">Braiding</option>
-            <option value="Paint">Paint</option>
-            <option value="Makeup Design">MakeUp Design</option>
-          </select>
-        </div>
-      </div>
-      <div className={`${!mode ? 'bg-gradient-to-r from-slate-900 to-slate-950' : 'bg-gray-100'} grid grid-cols-1 lg:grid-cols-5 gap-7 justify-center px-32 py-28`}>
-        {loading ? (
-          <div className="col-span-5 flex justify-center items-center">
-            <p className="text-gray-200">Loading...</p>
+    <div className={`${!mode ? 'bg-gradient-to-r from-slate-900 to-slate-950' : 'bg-gray-100'} min-h-screen py-10 `}>
+      <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
+        <div className='flex justify-center lg:justify-end mb-8 mt-28'>
+          <div className='flex items-center bg-blue-950 rounded-full p-2'>
+            <GoSearch className="text-white mr-2" />
+            <select className='px-4 py-2 rounded-full bg-blue-950 text-white' onChange={handleFilter}>
+              <option value="">Find By Category</option>
+              <option value="Culinary Art">Culinary Art</option>
+              <option value="Braiding">Braiding</option>
+              <option value="Paint">Paint</option>
+              <option value="Makeup Design">MakeUp Design</option>
+            </select>
           </div>
-        ) : (
-          filterContent.map((item) => (
-            <div key={item._id} className="bg-white p-4 rounded-lg shadow-md">
-              <p className="flex justify-center py-2">{item.firstName}</p>
-              <p className="flex justify-center py-2">{item.lastName}</p>
-              <p className="flex justify-center py-2 font-bold">{item.category}</p>
-              <div className="flex justify-center">
-                <button className="text-blue-500">
-                  <Link to={`/DetailsForSkilled/${item._id}`}>More Information</Link>
-                </button>
-              </div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-5 gap-6">
+          {loading ? (
+            <div className="col-span-full flex justify-center items-center">
+              <p className="text-gray-200">Loading...</p>
             </div>
-          ))
-        )}
+          ) : (
+            filterContent.map((item) => (
+              <div key={item._id} className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
+                <img src={item.photo} className="w-32 h-32 object-cover rounded-full mb-4" alt={`${item.firstName} ${item.lastName}`} />
+                <p className="text-lg font-semibold">{item.firstName} {item.lastName}</p>
+                <p className="text-gray-500">{item.category}</p>
+                <div className="mt-4">
+                  <Link to={`/DetailsForSkilled/${item.user}`} className="text-blue-500 hover:underline">
+                    More Information
+                  </Link>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

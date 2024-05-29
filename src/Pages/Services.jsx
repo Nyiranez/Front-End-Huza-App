@@ -23,9 +23,9 @@ const Services = () => {
 
   return (
     <div className={`pt-32 ${!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-gray-50'}`}>
-      <div className='ml-32 bg-slate-800 w-fit flex flex-col justify-center items-center p-4 rounded-full'>
+      <div className=' flex flex-col  items-center p-4 '>
         <h1 className='text-blue-500 text-4xl '>Welcome</h1>
-        <h1 className='text-white text-2xl '>All  offered  Services are bellow</h1>
+        <h1 className='text-gray-500 text-2xl '>All  offered  Services are bellow</h1>
       </div>
 
       <div className='flex flex-wrap justify-between px-32 py-32 gap-2'>

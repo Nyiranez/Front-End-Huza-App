@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { AppContext } from '../../src/assets/pages/context';
+import { FaArrowDown } from "react-icons/fa6";
 
 const DetailsForSkilled = () => {
   const { mode } = useContext(AppContext);
@@ -15,7 +16,7 @@ const DetailsForSkilled = () => {
     try {
       const resp = await axios.get(`https://huza-backend-app-api-1.onrender.com/api/profile/viewProfileById/${id}`);
       setProfile(resp.data.profile);
-    } catch (error) {
+    } catch (error) {  
       console.log(error);
       setError("Failed to fetch profile");
     } finally {
@@ -41,7 +42,16 @@ const DetailsForSkilled = () => {
 
   return (
     <div className={`${!mode ? 'bg-gradient-to-r from-slate-900 to-slate-950' : 'bg-gray-100'} py-28 px-2 sm:px-6 lg:px-8`}>
-      <h2 className="text-2xl font-bold mb-4 text-center text-gray-200">Full Profile</h2>
+      <div className=' flex justify-center gap-20'>
+      <h2 className="text-2xl font-bold mb-4  text-gray-400">Full Profile</h2>
+        <button className=' bg-blue-900 border rounded-lg text-white py-1 px-5 mb-4'>
+          <Link to={"/Booking"} className='flex items-center gap-3'>
+            <p>HIRING</p>
+        <FaArrowDown />
+        </Link></button>
+      </div>
+     
+        
       <div className="overflow-x-auto">
         <table className="w-full bg-slate-50 border border-gray-200">
           <tbody>
@@ -98,10 +108,6 @@ const DetailsForSkilled = () => {
             </tr>
           </tbody>
         </table>
-        <div className='flex justify-center text-4xl py-5'>
-        <button className=' bg-blue-900 border rounded-lg text-white py-2 px-5 '><Link to={"/Booking"}>Hiring</Link></button>
-        </div>
-       
       </div>
       
     </div>

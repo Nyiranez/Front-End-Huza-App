@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../../src/assets/pages/context";
 import axios from "axios";
-import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
