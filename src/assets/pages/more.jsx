@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { NavLink } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,6 +36,8 @@ export default function CustomizedTables() {
   const [message, setMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleServices = () => {
     axios.get("https://huza-backend-app-api-1.onrender.com/api/service/viewService").then((res) => {
       setServices(res.data.allServices);
@@ -45,8 +48,9 @@ export default function CustomizedTables() {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`https://huza-backend-app-api-1.onrender.com/api/contact/deleteContactById?id=${id}`).then((res) => {
+    axios.delete(`https://huza-backend-app-api-1.onrender.com/api/service/deleteService?id=${id}`).then((res) => {
       console.log(res);
+      handleServices();
       setMessage("Service successfully deleted");
       setIsSuccess(true);
       handleServices(); // Refresh the list of services after deletion
@@ -57,6 +61,10 @@ export default function CustomizedTables() {
     });
   };
 
+  const moveToUpdate = (details) => {
+    navigate(`/dashboard/services/updateservice/${details._id}`, { state: details });
+  };
+
   useEffect(() => {
     handleServices();
   }, []);
@@ -65,7 +73,7 @@ export default function CustomizedTables() {
     <div className='h-full'>
       <TableContainer component={Paper} className='mt-[10rem] px-16 py-6'>
         <div className='flex flex-col justify-center items-end mb-4'>
-          <div> 
+          <div>
             <button className='bg-slate-100 border border-gray-400 rounded-full px-4 py-2'>
               <NavLink to="/dashboard/services/addservice">Add new services</NavLink>
             </button>
@@ -94,8 +102,9 @@ export default function CustomizedTables() {
                 </StyledTableCell>
                 <div className='flex flex-col pr-4 items-end justify-center'>
                   <div className='mt-4 space-x-2'>
-                    <button className='text-white bg-blue-900 px-2 py-1 mt-6 ml-6 rounded-lg'>
-                      <NavLink to={`/dashboard/services/updateservice/${row._id}`}>Update</NavLink>
+                    <button className='text-white bg-blue-900 px-2 py-1 mt-6 ml-6 rounded-lg'
+                      onClick={() => moveToUpdate(row)}>Update
+                      {/* <NavLink to={`/dashboard/services/updateservice/${row._id}`}>Update</NavLink> */}
                     </button>
                     <button className='text-white bg-slate-950 px-2 py-1 rounded-lg' onClick={() => handleDelete(row._id)}>Delete</button>
                   </div>

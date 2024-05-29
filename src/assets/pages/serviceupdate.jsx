@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
 export const Update = () => {
   const [photo, setPhoto] = useState(null);
@@ -10,17 +10,24 @@ export const Update = () => {
 
   let { proId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    setPhoto(location.state.photo);
+    setCategory(location.state.category);
+    setDescription(location.state.description);
+  }, [location]);
 
   const updateService = (id) => {
-    let updatedService = new FormData();
-    if (photo) updatedService.append('photo', photo);
-    updatedService.append('category', category);
-    updatedService.append('description', description);
+    let updatedService = { photo, category, description }
+    // if (photo) updatedService.append('photo', photo);
+    // updatedService.append('category', category);
+    // updatedService.append('description', description);
 
-    // Log FormData values
-    for (let pair of updatedService.entries()) {
-      console.log(pair[0] + ': ' + pair[1]);
-    }
+    // // Log FormData values
+    // for (let pair of updatedService.entries()) {
+    //   console.log(pair[0] + ': ' + pair[1]);
+    // }
 
     axios.put(`https://huza-backend-app-api-1.onrender.com/api/service/updateService/${id}`, updatedService)
       .then((resp) => {
