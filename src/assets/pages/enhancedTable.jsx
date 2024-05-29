@@ -318,10 +318,10 @@ export default function EnhancedTable() {
           <GoSearch className="text-black" />
           <select className='space-y-4 px-6 py-4 rounded-full' onChange={handleFilter}>
             <option value="">Find By Category</option>
-            <option value="CulnaryArt">Culinary Art</option>
+            <option value="CalinaryArt">Culinary Art</option>
             <option value="Braiding">Braiding</option>
             <option value="Plaint">Paint</option>
-            <option value="Makeup Design">MakeUp Design</option>
+            <option value="MakeupDesign">MakeUp Design</option>
           </select>
         </div>
       </div>
