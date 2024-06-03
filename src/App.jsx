@@ -36,6 +36,7 @@ import Client from './assets/pages/client';
 
 import Booking from './Pages/Components/Booking';
 import GroupTeam from './assets/pages/GroupTeam';
+import { Pages } from './Pages';
 
 
 function App() {
@@ -51,14 +52,7 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="layout/aboutUs" element={<AboutUs />} />
                 <Route path='/Signin' element={<Signin />} />
-                <Route
-                  path="/profile"
-                  element={
-                    <PrivateRoute>
-                      <Profile />
-                    </PrivateRoute>
-                  }
-                />
+                
                 <Route path="/Signup" element={<Signup />} />
                 <Route path="/MakeupDesign" element={<MakeupDesign />} />
                 <Route path="/Plainters" element={<Plainters />} />
@@ -70,13 +64,23 @@ function App() {
                 <Route path="/Contact" element={<Contact />} />
                 <Route path="/Services" element={<Services />} />
                 {/* <Route path="/Profile" element={<Profile />} /> */}
-                <Route path='/Allprofile' element={<AllProfileofSkilled />} />
+                <Route path='/GroupTeam' element={<GroupTeam/>}/>
+              </Route>
+              {/* <Route> */}
+                <Route path='/' element={<Pages/>}>
+                <Route
+                  path="/profile"
+                  element={
+                    <PrivateRoute>
+                      <Profile />
+                    </PrivateRoute>
+                  }
+                />
+                 <Route path='/Allprofile' element={<AllProfileofSkilled />} />
                 <Route path="/DetailsForSkilled/:Id" element={<DetailsForSkilled />} />
                 <Route path='/ProfileForSkilled' element={<ProfileForSkilled />} />
-
                 <Route path='/editProfile' element={<EditProfile />} />
                 <Route path='/Booking' element={<Booking/>}/>
-                <Route path='/GroupTeam' element={<GroupTeam/>}/>
 
               </Route>
               <Route path='/dashboard' element={<Dashboard />}>
@@ -88,12 +92,8 @@ function App() {
                 <Route path='enhancedTable/adminMore/:Id' element={<AdminMore />} />
                 <Route path='services/addservice' element={<Servicecreate />} />
                 <Route path='services/updateservice/:proId' element={<Update />} />
-
                 <Route path='message' element={<Message />} />
                 <Route path='client' element={<Client />} />
-
-                
-
               </Route>
             </Routes>
           </BrowserRouter>

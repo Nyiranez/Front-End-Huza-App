@@ -182,18 +182,18 @@ const Profile = () => {
     }
   };
 
-  const handleLogout = () => {
-    axios.get("https://huza-backend-app-api-1.onrender.com/api/allUsers/logout")
-      .then((resp) => {
-        console.log(resp.data);
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
-      }).catch((error) => {
-        console.log(error);
-        alert("Failed to log out");
-      });
-  }
+  // const handleLogout = () => {
+  //   axios.get("https://huza-backend-app-api-1.onrender.com/api/allUsers/logout")
+  //     .then((resp) => {
+  //       console.log(resp.data);
+  //       setTimeout(() => {
+  //         navigate("/");
+  //       }, 2000);
+  //     }).catch((error) => {
+  //       console.log(error);
+  //       alert("Failed to log out");
+  //     });
+  // }
 
   useEffect(() => {
     if (getId) {
@@ -632,10 +632,10 @@ const Profile = () => {
             >
               {loading ? "Updating..." : "Update"}
             </button>
-            <div>
+            {/* <div>
               <button className="bg-black text-red-600 px-2 py-1" type="button" onClick={handleLogout}>LogOut</button>
 
-            </div>
+            </div> */}
           </form>
         </div>
       )}

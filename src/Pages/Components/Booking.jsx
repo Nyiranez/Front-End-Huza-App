@@ -57,18 +57,18 @@ const Booking = () => {
       details.trim() !== ''
     );
   };
-  const BookingLogout =()=>{
-     axios.get("https://huza-backend-app-api-1.onrender.com/api/allUsers/logout")
-     .then((resp)=>{
-      console.log(resp.data);
-      setTimeout(()=>{
-        Navigate("/")
-      },2000);
-     }).catch((error)=>{
-      console.log(error);
-      alert("failed to logout");
-     })
-  };
+  // const BookingLogout =()=>{
+  //    axios.get("https://huza-backend-app-api-1.onrender.com/api/allUsers/logout")
+  //    .then((resp)=>{
+  //     console.log(resp.data);
+  //     setTimeout(()=>{
+  //       Navigate("/")
+  //     },2000);
+  //    }).catch((error)=>{
+  //     console.log(error);
+  //     alert("failed to logout");
+  //    })
+  // };
   
 
   return (
@@ -144,12 +144,12 @@ const Booking = () => {
               <div className="mt-4 flex justify-between items-center">
                 <button
                   type="submit"
-                  className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
+                  className="inline-block w-full rounded-lg bg-blue-900 px-5 py-3 font-medium text-white sm:w-auto"
                   disabled={loading || !validateForm()}
                 >
                   {loading ? 'Booking...' : 'Book Now'}
                 </button>
-                <button onClick={BookingLogout} className=" inline-block w-full rounded-lg bg-blue-900 px-5 py-3 font-medium text-white sm:w-auto">Logout</button>
+                {/* <button onClick={BookingLogout} className=" inline-block w-full rounded-lg bg-blue-900 px-5 py-3 font-medium text-white sm:w-auto">Logout</button> */}
                
               </div>
               {successMessage && <p className="text-green-700 mt-4">{successMessage}</p>}
