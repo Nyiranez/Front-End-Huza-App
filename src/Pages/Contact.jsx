@@ -56,7 +56,7 @@ const Contact = () => {
     <section className={`${!mode ? 'bg-gradient-to-r from-slate-900 to-slate-950' : 'bg-gray-100'} py-28`}>
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
-          <h2 className=' text-gray-200 flex items-center justify-center text-5xl py-3'>CONTACT US</h2>
+          <h2 className=' text-gray-500 flex items-center justify-center text-5xl py-3'>CONTACT US</h2>
           <div className={`rounded-lg p-8 shadow-lg ${!mode ? 'bg-gray-800' : 'bg-white'}`}>
             <form onSubmit={ContactApp} className="space-y-4">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
