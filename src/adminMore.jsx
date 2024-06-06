@@ -21,14 +21,14 @@ export const AdminMore = () => {
   };
 
   const handleApprove = (email) => {
-    axios.get("https://huza-backend-app-api-1.onrender.com/api/profile/approveProfile?email=" + email).then((res) => {
+    axios.get(`https://huza-backend-app-api-1.onrender.com/api/profile/approveProfile?email=${email}`).then((res) => {
       console.log(res.data);
     }).catch((err) => {
       console.log(err);
     })
   }
   const handleReject = (email) => {
-    axios.get("https://huza-backend-app-api-1.onrender.com/api/profile/reject?email=" + email).then((res) => {
+    axios.get(`https://huza-backend-app-api-1.onrender.com/api/profile/reject?email=${email}`).then((res) => {
       console.log(res.data);
     }).catch((err) => {
       console.log(err);
@@ -71,7 +71,7 @@ export const AdminMore = () => {
             <div className='mt-4   p-4 flex justify-center'><p className='text-black font-bold'>Created on :<span className='text-gray-400 ml-4'>{profile ? profile.createdAt : "Not available"}</span></p> </div>
             <div className='mt-4   p-4 flex justify-center '><p className='text-black font-bold'>updated on :<span className='text-gray-400 ml-4'>{profile ? profile.updatedAt : "Not available"}</span></p> </div>
             <div className='mt-16 space-x-4 ml-8 flex justify-center'>
-              <button className='bg-green-900 text-white px-4 py-2 hover:bg-blue-600 rounded-full' onClick={() => handleApprove(profile._id)}>Approve</button>
+              <button className='bg-green-900 text-white px-4 py-2 hover:bg-blue-600 rounded-full' onClick={() => handleApprove(profile.email)}>Approve</button>
               <button className='hover:bg-red-950 hover:text-white px-4 py-2 bg-black text-white rounded-full' onClick={() => handleReject(profile.email)}>Reject</button>
             </div>
         </div>

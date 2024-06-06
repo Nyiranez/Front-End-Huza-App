@@ -17,6 +17,7 @@ export const NavBar = () => {
     const handleLogOut = () => {
         axios.get("https://huza-backend-app-api-1.onrender.com/api/allUsers/logout")
         .then((resp) => {
+            localStorage.clear()
             console.log(resp.data);
             setLogoutMessage('Successfully logged out.');
             setTimeout(() => {

@@ -21,12 +21,12 @@ const Profile = () => {
   const [certificate, setCertificate] = useState(null);
   const [photo, setPhoto] = useState(null);
   const [category, setCategory] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [verifyProfil, setVerifyProfil] = useState(null);
-  const navigate = useNavigate()
-  // Initialize as null
+
   const validateForm = () => {
     return (
       firstName?.trim() !== "" &&
@@ -176,15 +176,21 @@ const Profile = () => {
         setDidYouFinish(response.data.profile.didYouFinish);
         setTimeOfStudy(response.data.profile.timeOfStudy);
         setCategory(response.data.profile.category);
+        setResume(response.data.profile.resume);
+        setNationalID(response.data.profile.nationalID);
+        setPhoto(response.data.profile.photo);
+        setCertificate(response.data.profile.certificate);
+        
       }
     } catch (error) {
       console.log(error);
     }
   };
-
+const navigate=useNavigate()
   const handleLogout = () => {
     axios.get("https://huza-backend-app-api-1.onrender.com/api/allUsers/logout")
       .then((resp) => {
+        localStorage.clear()
         console.log(resp.data);
         setTimeout(() => {
           navigate("/");
@@ -331,28 +337,7 @@ const Profile = () => {
                   placeholder="Enter Your Major"
                 />
               </div>
-              <div className=" flex flex-col  w-[20rem]">
-                <label>Did you finish your studies?</label>
-                <input
-                  type="text"
-                  name="didYouFinish"
-                  value={didYouFinish}
-                  onChange={(e) => setDidYouFinish(e.target.value)}
-                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Yes/No"
-                />
-              </div>
-              <div className=" flex flex-col  w-[20rem]">
-                <label>Time of Study (e.g., 2015-2019)</label>
-                <input
-                  type="text"
-                  name="timeOfStudy"
-                  value={timeOfStudy}
-                  onChange={(e) => setTimeOfStudy(e.target.value)}
-                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Enter Time of Study"
-                />
-              </div>
+              
               <div className=" flex flex-col  w-[20rem]">
                 <label>Category</label>
                 <select
@@ -545,28 +530,8 @@ const Profile = () => {
                   placeholder="Enter Your Major"
                 />
               </div>
-              <div className=" flex flex-col  w-[20rem]">
-                <label>Did you finish your studies?</label>
-                <input
-                  type="text"
-                  name="didYouFinish"
-                  value={didYouFinish}
-                  onChange={(e) => setDidYouFinish(e.target.value)}
-                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Yes/No"
-                />
-              </div>
-              <div className=" flex flex-col  w-[20rem]">
-                <label>Time of Study (e.g., 2015-2019)</label>
-                <input
-                  type="text"
-                  name="timeOfStudy"
-                  value={timeOfStudy}
-                  onChange={(e) => setTimeOfStudy(e.target.value)}
-                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                  placeholder="Enter Time of Study"
-                />
-              </div>
+             
+             
               <div className=" flex flex-col  w-[20rem]">
                 <label>Category</label>
                 <select
@@ -589,40 +554,23 @@ const Profile = () => {
             </p>
             <div className="grid lg:grid-cols-2 grid-cols-1 bg-white py-5 px-5 rounded-lg">
               <div className=" flex flex-col  w-[20rem]">
-                <label>Resume</label>
-                <input
-                  type="file"
-                  name="resume"
-                  onChange={(e) => setResume(e.target.files[0])}
-                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                />
+                
+                 <a href={resume} className="underline text-blue-600" target="_blank">resume</a>
               </div>
               <div className=" flex flex-col  w-[20rem]">
-                <label>National ID</label>
-                <input
-                  type="file"
-                  name="nationalID"
-                  onChange={(e) => setNationalID(e.target.files[0])}
-                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                />
+                
+              
+                 <a href={nationalID} className="underline text-blue-600" target="_blank">National Id</a>
               </div>
               <div className=" flex flex-col  w-[20rem]">
-                <label>Certificate</label>
-                <input
-                  type="file"
-                  name="certificate"
-                  onChange={(e) => setCertificate(e.target.files[0])}
-                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                />
+                
+                
+                 <a href={certificate} className="underline text-blue-600" target="_blank">certificate</a>
               </div>
               <div className=" flex flex-col  w-[20rem]">
-                <label>Photo</label>
-                <input
-                  type="file"
-                  name="photo"
-                  onChange={(e) => setPhoto(e.target.files[0])}
-                  className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
-                />
+                
+                
+                 <a href={photo} className="underline text-blue-600" target="_blank">Photo</a>
               </div>
             </div>
             <button

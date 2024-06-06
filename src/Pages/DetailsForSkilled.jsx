@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, NavLink } from 'react-router-dom';
 import { AppContext } from '../../src/assets/pages/context';
 import { FaArrowDown } from "react-icons/fa6";
 
@@ -16,7 +16,7 @@ const DetailsForSkilled = () => {
     try {
       const resp = await axios.get(`https://huza-backend-app-api-1.onrender.com/api/profile/viewProfileById/${id}`);
       setProfile(resp.data.profile);
-    } catch (error) {  
+    } catch (error) {
       console.log(error);
       setError("Failed to fetch profile");
     } finally {
@@ -43,22 +43,27 @@ const DetailsForSkilled = () => {
   return (
     <div className={`${!mode ? 'bg-gradient-to-r from-slate-900 to-slate-950' : 'bg-gray-100'} py-28 px-2 sm:px-6 lg:px-8`}>
       <div className=' flex justify-center gap-20'>
-      <h2 className="text-2xl font-bold mb-4  text-gray-400">Full Profile</h2>
+        <h2 className="text-2xl font-bold mb-4  text-gray-400">Full Profile</h2>
         <button className=' bg-blue-900 border rounded-lg text-white py-1 px-5 mb-4'>
           <Link to={"/Booking"} className='flex items-center gap-3'>
+
             <p>HIRING</p>
-        <FaArrowDown />
-        </Link></button>
+           
+
+
+            <FaArrowDown />
+          </Link></button>
+          <button className="bg-blue-900 text-white font-bold px-2 py-1 mb-4 rounded-xl"><NavLink to="/Allprofile">Back</NavLink></button>
       </div>
-     
-        
+
+
       <div className="overflow-x-auto">
         <table className="w-full bg-slate-50 border border-gray-200">
           <tbody>
             <tr>
               <th className="py-3 px-4 sm:px-6 lg:px-8 bg-white font-bold text-left">Field</th>
               <th className="py-3 px-4 sm:px-6 lg:px-11 bg-white font-bold text-left">Value</th>
-              
+
             </tr>
             <tr>
               <td className="py-3 px-4 sm:px-6 lg:px-8 font-bold">Profile Photo :</td>
@@ -109,7 +114,7 @@ const DetailsForSkilled = () => {
           </tbody>
         </table>
       </div>
-      
+
     </div>
   );
 };

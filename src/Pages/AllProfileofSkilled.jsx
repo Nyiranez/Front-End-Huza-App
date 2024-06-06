@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { GoSearch } from "react-icons/go";
 import { AppContext } from '../../src/assets/pages/context';
 
@@ -47,10 +47,10 @@ const AllProfileofSkilled = () => {
             <GoSearch className="text-white mr-2" />
             <select className='px-4 py-2 rounded-full bg-blue-950 text-white' onChange={handleFilter}>
               <option value="">Find By Category</option>
-              <option value="Culinary Art">Culinary Art</option>
+              <option value="CalinaryArt">Calinary Art</option>
               <option value="Braiding">Braiding</option>
-              <option value="Paint">Paint</option>
-              <option value="Makeup Design">MakeUp Design</option>
+              <option value="Plaint">Paint</option>
+              <option value="MakeupDesign">MakeUp Design</option>
             </select>
           </div>
         </div>
@@ -75,6 +75,7 @@ const AllProfileofSkilled = () => {
           )}
         </div>
       </div>
+     
     </div>
   );
 };
