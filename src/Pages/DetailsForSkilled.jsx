@@ -45,10 +45,10 @@ const DetailsForSkilled = () => {
       <div className=' flex justify-center gap-20'>
       <h2 className="text-2xl font-bold mb-4  text-gray-400">Full Profile</h2>
         <button className=' bg-blue-900 border rounded-lg text-white py-1 px-5 mb-4'>
-          <Link to={"/Booking"} className='flex items-center gap-3'>
+          <a href='https://buy.stripe.com/test_5kA5ni8oc2cD7cY4gg' className='flex items-center gap-3'>
             <p>HIRING</p>
         <FaArrowDown />
-        </Link></button>
+        </a></button>
       </div>
      
         
