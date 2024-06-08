@@ -26,86 +26,6 @@ const Signup = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
-  // const isValidEmail = (email) => {
-  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  //   return emailRegex.test(email);
-  // };
-
-  // const isValid = () => {
-  //   let valid = true;
-  //   if (!firstName.trim()) {
-  //     setFirstNameError("FirstName is required");
-  //     valid = false;
-  //   } else {
-  //     setFirstNameError("");
-  //   }
-
-  //   if (!lastName.trim()) {
-  //     setLastNameError("LastName is required");
-  //     valid = false;
-  //   } else {
-  //     setLastNameError("");
-  //   }
-
-  //   if (!email.trim()) {
-  //     setEmailError("LastName is required");
-  //     valid = false;
-  //   } else {
-  //     setEmailError("");
-  //   }
-
-  //   if (!phoneNumber.trim()) {
-  //     setPhoneNumberError("LastName is required");
-  //     valid = false;
-  //   } else {
-  //     setPhoneNumberError("");
-  //   }
-
-  //   if (!password.trim()) {
-  //     setPasswordError("LastName is required");
-  //     valid = false;
-  //   } else {
-  //     setPasswordError("");
-  //   }
-
-  //   if (!confirmpassword.trim()) {
-  //     setConfirmPasswordError("LastName is required");
-  //     valid = false;
-  //   } else {
-  //     setConfirmPasswordError("");
-  //   }
-  //   return valid;
-  // };
-      // if(!isValid()){
-    //   return;
-    // }
-
-    // const data = {
-    //   firstName: firstName,
-    //   lastName: lastName,
-    //   email: email,
-    //   phoneNumber: phoneNumber,
-    //   password: password,
-    //   confirmpassword: confirmpassword,
-    // };
-
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // };
-
-    // if (isValid() === true) {
-    // await axios.post("https://huza-backend-app-api.onrender.com/api/allUsers/create", data, config)
-    //   .then((response) => {
-    //     console.log("response.data", response.data);
-    //    navigate ("/verify");
-    //   })
-    //   .catch((Error) => {
-    //     console.log(Error);
-      //   });
-    // }
-
   const handleSignUp = async (e) => {
     e.preventDefault();
     if(!validateForm()){
@@ -182,7 +102,7 @@ const Signup = () => {
               onChange={(e) => setRole(e.target.value)}
               className={`w-full rounded-lg border-gray-200 ${
                 !mode ? "bg-gray-700" : "bg-gray-100"
-              } p-4  text-sm shadow-sm text-gray-500`}
+              } p-4  text-lg shadow-sm text-gray-500`}
             >
               <option value=""> Category</option>
               <option value="user">Employer</option>
@@ -198,7 +118,7 @@ const Signup = () => {
                   onChange={(e) => setFirstName(e.target.value)}
                   className={`w-full rounded-lg border-gray-200 ${
                     !mode ? "bg-gray-700" : "bg-gray-100"
-                  } p-4  text-sm shadow-sm`}
+                  } p-4  text-lg shadow-sm`}
                   placeholder="Enter First Name"
                 />
                 {firstNameError ? (
@@ -213,7 +133,7 @@ const Signup = () => {
                   onChange={(e) => setLastName(e.target.value)}
                   className={`w-full rounded-lg border-gray-200 ${
                     !mode ? "bg-gray-700" : "bg-gray-100"
-                  } p-4  text-sm shadow-sm`}
+                  } p-4  text-lg shadow-sm`}
                   placeholder="Enter Last Name"
                 />
 
@@ -230,7 +150,7 @@ const Signup = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   className={`w-full rounded-lg border-gray-200 ${
                     !mode ? "bg-gray-700" : "bg-gray-100"
-                  } p-4  text-sm shadow-sm`}
+                  } p-4  text-lg shadow-sm`}
                   placeholder="Enter Your Email"
                 />
 
@@ -247,7 +167,7 @@ const Signup = () => {
                   onChange={(e) => setPhoneNumber(e.target.value)}
                   className={`w-full rounded-lg border-gray-200 ${
                     !mode ? "bg-gray-700" : "bg-gray-100"
-                  } p-4  text-sm shadow-sm`}
+                  } p-4  text-lg shadow-sm`}
                   placeholder="Phone Number"
                 />
 
@@ -266,7 +186,7 @@ const Signup = () => {
                   onChange={(v) => setPassword(v.target.value)}
                   className={`w-full rounded-lg border-gray-200 ${
                     !mode ? "bg-gray-700" : "bg-gray-100"
-                  } p-4  text-sm shadow-sm`}
+                  } p-4  text-lg shadow-sm`}
                   placeholder="Enter Password"
                 />
 
@@ -284,7 +204,7 @@ const Signup = () => {
                     onChange={(n) => setConfirmPassword(n.target.value)}
                     className={`w-full rounded-lg ${
                       !mode ? "bg-gray-700" : "bg-gray-100"
-                    } border-gray-200   p-4  text-sm shadow-sm`}
+                    } border-gray-200   p-4  text-lg shadow-sm`}
                     placeholder="Confirm Password"
                   />
 
@@ -300,24 +220,13 @@ const Signup = () => {
               onClick={handleSignUp}
               className={`block w-full rounded-lg ${
                 !mode ? "bg-blue-900" : "bg-indigo-600"
-              }  px-5 py-3 text-sm font-medium text-white hover:bg-slate-900 mt-5`}
+              }  px-5 py-3 text-lg font-medium text-white hover:bg-slate-900 mt-5`}
               disabled={loading || !validateForm()}
             >
               {loading ? "create account is loading..." :"Create an account"}
             </button>
-            
-            {/* </Link> */}
-            {/* <div className=" flex justify-center mt-5">
-              <button
-                className={` flex justify-center rounded-lg gap-5 px-5 w-full border-gray-200 ${
-                  !mode ? "bg-gray-700" : "bg-gray-100"
-                }`}
-              >
-                <img src="/gogle.png" className=" w-10" />
-                <p className="mt-2 text-gray-400">Sign up with Google</p>
-              </button>
-            </div> */}
-            <div className="col-span-6">
+          
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <label className="flex gap-4">
                 <input
                   type="checkbox"
@@ -327,12 +236,10 @@ const Signup = () => {
                 />
 
                 <span className="text-sm text-gray-500">
-                  I want to receive emails about events, product updates and
-                  company announcements.
+                  Remember me
                 </span>
               </label>
-            </div>
-            <p className="text-center text-sm text-gray-500">
+              <p className=" text-sm text-gray-500">
               Already have an account?{" "}
               <Link
                 to={"/signin"}
@@ -343,6 +250,8 @@ const Signup = () => {
                 Login
               </Link>
             </p>
+            </div>
+           
         {successMessage && <p className="text-red-500">{successMessage}</p>}
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
           </form>

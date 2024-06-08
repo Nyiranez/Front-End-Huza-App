@@ -31,7 +31,7 @@ import { Servicecreate } from './assets/pages/servicecreate'
 import { Update } from './assets/pages/serviceupdate';
 
 import EditProfile from './Pages/Components/editProfile';
-import PrivateRoute from './Pages/Components/PrivateRoute';
+// import PrivateRoute from './Pages/Components/PrivateRoute';
 import Client from './assets/pages/client';
 
 import Booking from './Pages/Components/Booking';
@@ -71,9 +71,9 @@ function App() {
                 <Route
                   path="/profile"
                   element={
-                    <PrivateRoute>
+                    
                       <Profile />
-                    </PrivateRoute>
+                  
                   }
                 />
                  <Route path='/Allprofile' element={<AllProfileofSkilled />} />

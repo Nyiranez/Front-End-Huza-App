@@ -24,12 +24,7 @@ export const Dashboard = () => {
                             {!mode?<MdOutlineLightMode className='text-xl' onClick={() => setMode(!mode)} /> : <MdModeNight className='ml-8 text-xl'  onClick={() => setMode(!mode)}/> }
                             
                         </div>
-                        <div className='bg-gray-200 rounded-full p-2'> <IoIosNotificationsOutline />
-                            <div className='w-2 h-2 bg-red-600 rounded-full animate-ping -mt-7 ml-3'></div>
-                            <span className={`${!mode? "text-white": "text-black"} absolute   transform -translate-x-1/2 px-2 py-1  text-sm rounded mt-6 opacity-0 hover:opacity-100 transition-opacity duration-300`}>
-                          Notifications
-                        </span>
-                        </div>
+                      
                         <NavLink to="message" className='bg-gray-200 rounded-full p-2'><BiMessageRoundedDots />
                             <div className='w-2 h-2 bg-red-600 rounded-full -mt-7 ml-3 animate-ping opacity-75'></div>
                             <span className={`${!mode? "text-white": "text-black"} absolute   transform -translate-x-1/2 px-2 py-1  text-sm rounded mt-6 opacity-0 hover:opacity-100 transition-opacity duration-300`}>

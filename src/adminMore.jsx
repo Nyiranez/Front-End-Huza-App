@@ -65,8 +65,7 @@ export const AdminMore = () => {
           </div>
           <div>
             <div className='mt-4   p-4 flex flex-row'><p className='text-white font-bold'>Certificate :</p><img className=' ml-4 h-16 w-16 ' src={profile ? profile.certificate : "Not available"} alt=''></img> </div> */}
-            <div className='mt-4   p-4 flex justify-center'><p className='text-black font-bold'>Did you finished ? :<span className='text-gray-400 ml-4'>{profile ? (profile.didyoufinished) ? "Yes" : "No" : "Not available"}</span></p> </div>
-            {/* <div className='mt-4   p-4'><p className='text-black font-bold'>TimeofStudy :<span className='text-gray-400 ml-4'>{profile ? profile.timeofstudy : "Not available"}</span></p> </div> */}
+            
             <div className='mt-4  p-4 flex justify-center'><p className='text-black font-bold'>Status :<span className='text-gray-400 ml-4'>{profile ? profile.status : "Not available"}</span></p> </div>
             <div className='mt-4   p-4 flex justify-center'><p className='text-black font-bold'>Created on :<span className='text-gray-400 ml-4'>{profile ? profile.createdAt : "Not available"}</span></p> </div>
             <div className='mt-4   p-4 flex justify-center '><p className='text-black font-bold'>updated on :<span className='text-gray-400 ml-4'>{profile ? profile.updatedAt : "Not available"}</span></p> </div>
