@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from '../src/layout';
@@ -26,22 +27,18 @@ import Profile from "./Pages/Components/Profile";
 import AllProfileofSkilled from './Pages/AllProfileofSkilled';
 import DetailsForSkilled from './Pages/DetailsForSkilled';
 import ProfileForSkilled from './Pages/ProfileForSkilled';
-import { AdminMore } from '../src/adminMore'
-import { Servicecreate } from './assets/pages/servicecreate'
+import { AdminMore } from '../src/adminMore';
+import { Servicecreate } from './assets/pages/servicecreate';
 import { Update } from './assets/pages/serviceupdate';
-
 import EditProfile from './Pages/Components/editProfile';
-// import PrivateRoute from './Pages/Components/PrivateRoute';
+import PrivateRoute from './Pages/Components/PrivateRoute';
 import Client from './assets/pages/client';
-
 import Booking from './Pages/Components/Booking';
 import GroupTeam from './assets/pages/GroupTeam';
 import { Pages } from './Pages';
 
-
 function App() {
   return (
-
     <>
       <ContextUser>
         <div className='boddy'>
@@ -52,7 +49,6 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="layout/aboutUs" element={<AboutUs />} />
                 <Route path='/Signin' element={<Signin />} />
-                
                 <Route path="/Signup" element={<Signup />} />
                 <Route path="/MakeupDesign" element={<MakeupDesign />} />
                 <Route path="/Plainters" element={<Plainters />} />
@@ -63,27 +59,19 @@ function App() {
                 <Route path="/CurnaryArt" element={<CurnaryArt />} />
                 <Route path="/Contact" element={<Contact />} />
                 <Route path="/Services" element={<Services />} />
-                {/* <Route path="/Profile" element={<Profile />} /> */}
-                <Route path='/GroupTeam' element={<GroupTeam/>}/>
               </Route>
-              {/* <Route> */}
-                <Route path='/' element={<Pages/>}>
+              <Route path='/' element={<Pages/>}>
                 <Route
                   path="/profile"
-                  element={
-                    
-                      <Profile />
-                  
-                  }
+                  element={<PrivateRoute><Profile /></PrivateRoute>}
                 />
-                 <Route path='/Allprofile' element={<AllProfileofSkilled />} />
+                <Route path='/Allprofile' element={<AllProfileofSkilled />} />
                 <Route path="/DetailsForSkilled/:Id" element={<DetailsForSkilled />} />
                 <Route path='/ProfileForSkilled' element={<ProfileForSkilled />} />
                 <Route path='/editProfile' element={<EditProfile />} />
                 <Route path='/Booking' element={<Booking/>}/>
-
               </Route>
-              <Route path='/dashboard' element={<Dashboard />}>
+              <Route path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>}>
                 <Route path='' element={<Team />} />
                 <Route path='team' element={<Team />} />
                 <Route path='users' element={<Users />} />

@@ -51,18 +51,7 @@ const data = [
         pv: 1200,
         amt: 1228,
     },
-    // {
-    //     name: 'Page E',
-    //     uv: 1520,
-    //     pv: 1108,
-    //     amt: 1100,
-    // },
-    // {
-    //     name: 'Page F',
-    //     uv: 1400,
-    //     pv: 680,
-    //     amt: 1700,
-    // },
+   
 ];
 
 class Team extends PureComponent {
@@ -90,7 +79,7 @@ class Team extends PureComponent {
                             </div>
                             <div className='border-2 border-gray-100 h-32 w-64 flex flex-col items-center justify-center shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]'>
                                 <div className='space-y-1 pb-2'>
-                                    {/* <p className='font-bold text-2xl'>745</p> */}
+                                   
                                     <p className='text-gray-500'>Brainding</p>
                                     <div className='flex flex-row space-x-2'>
                                         <div className='bg-orange-400 text-white rounded-full flex flex-row space-x-1 px-2 py-2 items-center justify-center'><FaArrowTrendDown /><p>-1.5%</p></div>
@@ -102,7 +91,7 @@ class Team extends PureComponent {
                         <div className='flex flex-row space-x-2'>
                             <div className='border-2 border-gray-100  h-32 w-64 flex flex-col items-center justify-center shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]'>
                                 <div className='space-y-1 pb-2'>
-                                    {/* <p className='font-bold text-2xl'>512</p> */}
+                                 
                                     <p className='text-gray-500'>Culinary Art</p>
                                     <div className='flex flex-row space-x-2'>
                                         <div className='bg-blue-400 text-white rounded-full flex flex-row space-x-1 px-2 py-2 items-center justify-center'><FaArrowTrendUp /><p>+0.5%</p></div>

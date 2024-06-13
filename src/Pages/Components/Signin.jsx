@@ -58,6 +58,7 @@ const Signin = () => {
         } else if (response.data.user.role === "user") {
           navigate("/AllProfile");
         } else if (response.data.user.role === "admin") {
+          localStorage.setItem("token", response.data.token);
           navigate("/dashboard");
         }
       }, 3000);

@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,7 +9,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { NavLink } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+
 import { useNavigate } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -31,10 +34,24 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
+const modalStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 export default function CustomizedTables() {
   const [services, setServices] = useState([]);
   const [message, setMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -48,17 +65,27 @@ export default function CustomizedTables() {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`https://huza-backend-app-api-1.onrender.com/api/service/deleteService?id=${id}`).then((res) => {
+    setOpenModal(true);
+    setDeleteId(id);
+  };
+
+  const handleDeleteConfirmed = () => {
+    axios.delete(`https://huza-backend-app-api-1.onrender.com/api/service/deleteService?id=${deleteId}`).then((res) => {
       console.log(res);
       handleServices();
       setMessage("Service successfully deleted");
       setIsSuccess(true);
-      handleServices(); // Refresh the list of services after deletion
+      setOpenModal(false);
     }).catch((err) => {
       console.log(err);
       setMessage("Error deleting service");
       setIsSuccess(false);
+      setOpenModal(false);
     });
+  };
+
+  const handleDeleteCancelled = () => {
+    setOpenModal(false);
   };
 
   const moveToUpdate = (details) => {
@@ -104,7 +131,6 @@ export default function CustomizedTables() {
                   <div className='mt-4 space-x-2'>
                     <button className='text-white bg-blue-900 px-2 py-1 mt-6 ml-6 rounded-lg'
                       onClick={() => moveToUpdate(row)}>Update
-                      {/* <NavLink to={`/dashboard/services/updateservice/${row._id}`}>Update</NavLink> */}
                     </button>
                     <button className='text-white bg-slate-950 px-2 py-1 rounded-lg' onClick={() => handleDelete(row._id)}>Delete</button>
                   </div>
@@ -119,6 +145,19 @@ export default function CustomizedTables() {
           </p>
         )}
       </TableContainer>
+      <Modal
+        open={openModal}
+        onClose={handleDeleteCancelled}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={modalStyle}>
+          <h2 id="modal-modal-title">Confirm Deletion</h2>
+          <p id="modal-modal-description">Are you sure you want to delete this service?</p>
+          <Button onClick={handleDeleteConfirmed}>Confirm</Button>
+          <Button onClick={handleDeleteCancelled}>Cancel</Button>
+        </Box>
+      </Modal>
     </div>
   );
 }

@@ -57,18 +57,7 @@ const Booking = () => {
       details.trim() !== ''
     );
   };
-  // const BookingLogout =()=>{
-  //    axios.get("https://huza-backend-app-api-1.onrender.com/api/allUsers/logout")
-  //    .then((resp)=>{
-  //     console.log(resp.data);
-  //     setTimeout(()=>{
-  //       Navigate("/")
-  //     },2000);
-  //    }).catch((error)=>{
-  //     console.log(error);
-  //     alert("failed to logout");
-  //    })
-  // };
+ 
   
 
   return (

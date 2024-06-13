@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -44,7 +44,7 @@ export default function Message() {
                 setModalOpen(false);
                 setTimeout(() => {
                     setSuccessMessage("");
-                }, 3000); // Clear the message after 3 seconds
+                }, 3000); 
             })
             .catch((err) => {
                 console.log(err);
@@ -97,7 +97,7 @@ export default function Message() {
                 <TableBody>
                     {contacts.slice(startIndex, endIndex).map((row, index) => (
                         <TableRow
-                            key={row.id} // Ensure each row has a unique key
+                            key={row.id} 
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             className={`table-row ${index % 2 === 0 ? 'bg-gray-100' : 'bg-gray-200'}`}
                         >

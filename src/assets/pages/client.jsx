@@ -9,9 +9,16 @@ import Paper from '@mui/material/Paper';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TbHttpDelete } from "react-icons/tb";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 export default function Client() {
     const [booking, setBooking] = useState([]);
+    const [deleteId, setDeleteId] = useState(null);
+    const [openDialog, setOpenDialog] = useState(false);
 
     const handleBooking = () => {
         axios.get("https://huza-backend-app-api-1.onrender.com/api/booking/allbooking")
@@ -23,22 +30,33 @@ export default function Client() {
                 console.error("Error fetching contacts:", err);
             });
     };
-    const handleDelete = (id) => {
-        axios.delete("https://huza-backend-app-api-1.onrender.com/api/booking/delete/" +id)
-            .then((res) => {
-                console.log(res.data);
-                handleBooking();
-               
-                
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+
+    const handleDelete = () => {
+        if (deleteId) {
+            axios.delete(`https://huza-backend-app-api-1.onrender.com/api/booking/delete/${deleteId}`)
+                .then((res) => {
+                    console.log(res.data);
+                    handleBooking();
+                    setOpenDialog(false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
     };
 
     useEffect(() => {
         handleBooking();
     }, []);
+
+    const handleOpenDialog = (id) => {
+        setDeleteId(id);
+        setOpenDialog(true);
+    };
+
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
+    };
 
     return (
         <TableContainer component={Paper} className='mt-44  pt-24 pl-16 pr-16'>
@@ -50,6 +68,7 @@ export default function Client() {
                         <TableCell align="left"><p className='font-bold'>Email</p></TableCell>
                         <TableCell align="left"><p className='font-bold'>PhoneNumber</p></TableCell>
                         <TableCell align="left"><p className='font-bold'>Message</p></TableCell>
+                        <TableCell align="left"><p className='font-bold'>Action</p></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -58,16 +77,38 @@ export default function Client() {
                             key={row.id} // Ensure each row has a unique key
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                         
                             <TableCell align="left">{row.name}</TableCell>
                             <TableCell align="left">{row.email}</TableCell>
                             <TableCell align="left">{row.phoneNumber}</TableCell>
                             <TableCell align="left">{row.details}</TableCell>
-                            <TableCell align="center" className='bg-gray-500'><TbHttpDelete className=' text-red-900 text-4xl' onClick={()=> handleDelete(row._id)}/></TableCell>
+                            <TableCell align="center">
+                                <TbHttpDelete className=' text-red-900 text-4xl' onClick={() => handleOpenDialog(row._id)} />
+                            </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
+            <Dialog
+                open={openDialog}
+                onClose={handleCloseDialog}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">Confirm Deletion</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Are you sure you want to delete this booking?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <button onClick={handleCloseDialog} color="primary">
+                        Cancel
+                    </button>
+                    <button onClick={handleDelete} color="primary" autoFocus>
+                        Confirm
+                    </button>
+                </DialogActions>
+            </Dialog>
         </TableContainer>
     );
 }
