@@ -42,8 +42,8 @@ export const Update = () => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center py-32'>
-      <form>
+    <div className='flex flex-col items-center justify-center py-60'>
+      <form className=' text-gray-400'>
         <label>Photo</label><br />
         <input type="file" placeholder='Upload photo'
           className='w-96 h-12 border-2 pl-2'

@@ -63,7 +63,7 @@ const Contact = () => {
                 <div className="flex flex-col gap-2">
                   <label className="text-gray-500">First Name:</label>
                   <input
-                    className={`w-full rounded-lg border-gray-200 p-3 text-sm ${!mode ? 'bg-gray-700' : 'bg-slate-50'}`}
+                    className={`w-full rounded-lg border-gray-200 p-3 text-lg ${!mode ? 'bg-gray-700' : 'bg-slate-50'}`}
                     type="text"
                     name="firstName"
                     value={firstName}
@@ -73,7 +73,7 @@ const Contact = () => {
                 <div className="flex flex-col gap-2">
                   <label className="text-gray-500">Last Name:</label>
                   <input
-                    className={`w-full rounded-lg border-gray-200 p-3 text-sm ${!mode ? 'bg-gray-700' : 'bg-slate-50'}`}
+                    className={`w-full rounded-lg border-gray-200 p-3 text-lg ${!mode ? 'bg-gray-700' : 'bg-slate-50'}`}
                     type="text"
                     name="lastName"
                     value={lastName}
@@ -85,7 +85,7 @@ const Contact = () => {
                 <div className="flex flex-col gap-2">
                   <label className="text-gray-500">Email:</label>
                   <input
-                    className={`w-full rounded-lg border-gray-200 p-3 text-sm ${!mode ? 'bg-gray-700' : 'bg-slate-50'}`}
+                    className={`w-full rounded-lg border-gray-200 p-3 text-lg ${!mode ? 'bg-gray-700' : 'bg-slate-50'}`}
                     type="email"
                     name="email"
                     value={email}
@@ -95,7 +95,7 @@ const Contact = () => {
                 <div className="flex flex-col gap-2">
                   <label className="text-gray-500">Phone Number:</label>
                   <input
-                    className={`w-full rounded-lg border-gray-200 p-3 text-sm ${!mode ? 'bg-gray-700' : 'bg-slate-50'}`}
+                    className={`w-full rounded-lg border-gray-200 p-3 text-lg ${!mode ? 'bg-gray-700' : 'bg-slate-50'}`}
                     type="tel"
                     name="phoneNumber"
                     value={phoneNumber}
@@ -106,7 +106,7 @@ const Contact = () => {
               <div className="flex flex-col gap-2">
                 <label className="text-gray-500">Message:</label>
                 <textarea
-                  className={`w-full rounded-lg border-gray-200 p-3 text-sm ${!mode ? 'bg-gray-700' : 'bg-slate-50'}`}
+                  className={`w-full rounded-lg border-gray-200 p-3 text-lg ${!mode ? 'bg-gray-700' : 'bg-slate-50'}`}
                   rows="8"
                   name="message"
                   value={message}
@@ -116,7 +116,7 @@ const Contact = () => {
               <div className="mt-4">
                 <button
                   type="submit"
-                  className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
+                  className="inline-block w-full rounded-lg bg-blue-900 px-5 py-3 font-medium text-white sm:w-auto"
                   disabled={loading || !validateForm()}
                 >
                   {loading ? 'Sending message...' : 'Send'}

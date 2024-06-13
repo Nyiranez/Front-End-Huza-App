@@ -8,6 +8,7 @@ const Verify = ({ length = 6, onOtpSubmit = () => {} }) => {
   const inputRefs = useRef([]);
   const { mode } = useContext(AppContext);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // New loading state
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,6 +45,7 @@ const Verify = ({ length = 6, onOtpSubmit = () => {} }) => {
   const handleOtp = async (e) => {
     e.preventDefault();
     const combinedOtp = otp.join("");
+    setLoading(true); // Set loading state to true when form is being submitted
     try {
       const response = await axios.post('https://huza-backend-app-api-1.onrender.com/api/allUsers/verify', { otp: combinedOtp });
       console.log('response.data', response.data);
@@ -51,11 +53,13 @@ const Verify = ({ length = 6, onOtpSubmit = () => {} }) => {
     } catch (error) {
       console.log(error);
       setError("Invalid OTP");
+    } finally {
+      setLoading(false); // Set loading state back to false after request is complete
     }
   };
 
   return (
-    <div className={`mx-auto items-center justify-center flex pt-60 pb-52 ${!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-gray-50'}`}>
+    <div className={`mx-auto items-center justify-center flex py-40 ${!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-gray-50'}`}>
       <div className={`bg-gray-100 w-[35rem] h-[27rem] pt-10 px-14 rounded-sm flex flex-col gap-10 ${!mode ? "bg-gray-800" : "bg-white"} rounded-xl shadow-lg`}>
         <div className='flex flex-col justify-center text-gray-500 gap-2 items-center'>
           <h2 className='font-bold text-2xl'>Verify Your Account</h2>
@@ -81,9 +85,10 @@ const Verify = ({ length = 6, onOtpSubmit = () => {} }) => {
           <div>
             <button
               type="submit"
+              disabled={loading} // Disable button when loading
               className={`block w-full rounded-lg ${!mode ? "bg-blue-900" : "bg-indigo-600"} px-5 py-3 text-sm font-medium text-white hover:bg-slate-700`}
             >
-              Verify
+              {loading ? 'Loading...' : 'Verify'}
             </button>
           </div>
           <p className='text-red-400'>Don't share the verification code with anyone!</p>

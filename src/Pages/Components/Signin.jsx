@@ -82,7 +82,7 @@ const Signin = () => {
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-gray-100"} p-4 text-sm shadow-sm`}
+                className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-gray-100"} p-4 text-lg shadow-sm`}
                 placeholder="Enter Email"
               />
               {emailError && <p className="text-red-400">{emailError}</p>}
@@ -93,7 +93,7 @@ const Signin = () => {
                 name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-gray-100"} p-4 text-sm shadow-sm`}
+                className={`w-full rounded-lg border-gray-200 ${!mode ? "bg-gray-700" : "bg-gray-100"} p-4 text-lg shadow-sm`}
                 placeholder="Enter Password"
               />
               {passwordError && <p className="text-red-400">{passwordError}</p>}
@@ -122,7 +122,7 @@ const Signin = () => {
             </div>
             <button
               type="submit"
-              className={`block w-full rounded-lg ${!mode ? "bg-blue-900" : "bg-indigo-600"} px-5 py-3 text-sm font-medium text-white hover:bg-slate-900`}
+              className={`block w-full rounded-lg ${!mode ? "bg-blue-900" : "bg-indigo-600"} px-5 py-3 text-lg font-medium text-white hover:bg-slate-900`}
               disabled={loading}
             >
               {loading ? "Signing in..." : "Sign in"}

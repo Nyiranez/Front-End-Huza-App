@@ -59,16 +59,19 @@ export default function Client() {
     };
 
     return (
-        <TableContainer component={Paper} className='mt-44  pt-24 pl-16 pr-16'>
-            <div className='bg-slate-100 text-4xl font-bold  flex flex-col items-center justify-center mb-8'><p>All Booking</p></div>
-            <Table sx={{ minWidth: 400 }} size="small" aria-label="a dense table" className=''>
+        <div>
+        <TableContainer component={Paper} className=' py-44 px-32'>
+            <div className=' text-4xl font-bold  flex flex-col items-center justify-center py-5'><p>All Booking</p></div>
+            <Table  aria-label="a dense table">
                 <TableHead>
                     <TableRow>
-                        <TableCell align="left"><p className='font-bold'>FullName</p></TableCell>
-                        <TableCell align="left"><p className='font-bold'>Email</p></TableCell>
-                        <TableCell align="left"><p className='font-bold'>PhoneNumber</p></TableCell>
-                        <TableCell align="left"><p className='font-bold'>Message</p></TableCell>
-                        <TableCell align="left"><p className='font-bold'>Action</p></TableCell>
+
+                        <TableCell align="left"><p className='font-bold text-2xl'>FullName</p></TableCell>
+                        <TableCell align="left"><p className='font-bold text-2xl'>Email</p></TableCell>
+                        <TableCell align="left"><p className='font-bold text-2xl'>PhoneNumber</p></TableCell>
+                        <TableCell align="left"><p className='font-bold text-2xl'>Message</p></TableCell>
+                        <TableCell align="left"><p className='font-bold text-2xl'>Action</p></TableCell>
+
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -77,13 +80,18 @@ export default function Client() {
                             key={row.id} // Ensure each row has a unique key
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
+
                             <TableCell align="left">{row.name}</TableCell>
                             <TableCell align="left">{row.email}</TableCell>
                             <TableCell align="left">{row.phoneNumber}</TableCell>
                             <TableCell align="left">{row.details}</TableCell>
-                            <TableCell align="center">
-                                <TbHttpDelete className=' text-red-900 text-4xl' onClick={() => handleOpenDialog(row._id)} />
+                            <TableCell align="center" className=' bg-blue-900  rounded-lg'>
+                                <TbHttpDelete className=' text-white text-4xl' onClick={() => handleOpenDialog(row._id)} />
                             </TableCell>
+
+                         
+                           
+
                         </TableRow>
                     ))}
                 </TableBody>
@@ -110,5 +118,6 @@ export default function Client() {
                 </DialogActions>
             </Dialog>
         </TableContainer>
+        </div>
     );
 }

@@ -74,8 +74,8 @@ export default function Message() {
     const endIndex = startIndex + rowsPerPage;
 
     return (
-        <TableContainer component={Paper} className='mt-44 h-screen pt-24 pl-16 pr-16 overflow-y-auto'>
-            <div className='bg-gray-50 w-fit mb-8 ml-8 p-4 rounded-xl'>
+        <TableContainer component={Paper} className=' py-24 h-screen pl-16 pr-16 overflow-y-auto'>
+            <div className=' w-fit mb-8 ml-8 p-4 rounded-xl'>
                 <p className='font-bold text-4xl'>All Messages</p>
             </div>
             {successMessage && (
@@ -111,7 +111,7 @@ export default function Message() {
                             <TableCell align="left">
                                 <Button
                                     variant="contained"
-                                    color="error"
+                                    
                                     onClick={() => handleOpenModal(row.id)}
                                 >
                                     Delete

@@ -45,15 +45,10 @@ const DetailsForSkilled = () => {
       <div className=' flex justify-center gap-20'>
         <h2 className="text-2xl font-bold mb-4  text-gray-400">Full Profile</h2>
         <button className=' bg-blue-900 border rounded-lg text-white py-1 px-5 mb-4'>
-          <Link to={"/Booking"} className='flex items-center gap-3'>
-
+          <Link  to={"https://buy.stripe.com/test_5kA5ni8oc2cD7cY4gg"} className='flex items-center gap-3'>
             <p>HIRING</p>
-           
-
-
-            <FaArrowDown />
-          </Link></button>
-          <button className="bg-blue-900 text-white font-bold px-2 py-1 mb-4 rounded-xl"><NavLink to="/Allprofile">Back</NavLink></button>
+        <FaArrowDown />
+        </Link></button>
       </div>
 
 
@@ -91,14 +86,14 @@ const DetailsForSkilled = () => {
               <td className="py-3 px-4 sm:px-6 lg:px-8 font-bold">Address :</td>
               <td className="py-3 px-4 sm:px-6 lg:px-8">{profile.district || "Not available"}</td>
             </tr>
-            <tr>
+            {/* <tr>
               <td className="py-3 px-4 sm:px-6 lg:px-8 font-bold">Did you finish?</td>
               <td className="py-3 px-4 sm:px-6 lg:px-8">{profile.didyoufinished ? "Yes" : "No"}</td>
             </tr>
             <tr>
               <td className="py-3 px-4 sm:px-6 lg:px-8 font-bold">Time of Study :</td>
               <td className="py-3 px-4 sm:px-6 lg:px-8">{profile.timeofstudy || "Not available"}</td>
-            </tr>
+            </tr> */}
             <tr>
               <td className="py-3 px-4 sm:px-6 lg:px-8 font-bold">Status :</td>
               <td className="py-3 px-4 sm:px-6 lg:px-8">{profile.status || "Not available"}</td>

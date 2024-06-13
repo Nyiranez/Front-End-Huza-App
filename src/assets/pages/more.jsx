@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor:'#003566',
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -98,7 +98,7 @@ export default function CustomizedTables() {
 
   return (
     <div className='h-full'>
-      <TableContainer component={Paper} className='mt-[10rem] px-16 py-6'>
+      <TableContainer component={Paper} className='px-16 py-40'>
         <div className='flex flex-col justify-center items-end mb-4'>
           <div>
             <button className='bg-slate-100 border border-gray-400 rounded-full px-4 py-2'>
