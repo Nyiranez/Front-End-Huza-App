@@ -186,20 +186,7 @@ const Profile = () => {
       console.log(error);
     }
   };
-// const navigate=useNavigate()
-//   const handleLogout = () => {
-//     axios.get("https://huza-backend-app-api-1.onrender.com/api/allUsers/logout")
-//       .then((resp) => {
-//         localStorage.clear()
-//         console.log(resp.data);
-//         setTimeout(() => {
-//           navigate("/");
-//         }, 2000);
-//       }).catch((error) => {
-//         console.log(error);
-//         alert("Failed to log out");
-//       });
-//   }
+
 
   useEffect(() => {
     if (getId) {

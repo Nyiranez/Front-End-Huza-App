@@ -3,8 +3,7 @@ import { CgProfile } from "react-icons/cg";
 import { FcBarChart } from "react-icons/fc";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { GrServices } from "react-icons/gr";
-import { GiNetworkBars } from "react-icons/gi";
-import { FaArrowTrendUp } from "react-icons/fa6";
+
 import axios from "axios";
 import Huza from '../images/black.jpeg'
 import { NavLink } from 'react-router-dom';
