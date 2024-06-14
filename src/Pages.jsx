@@ -9,6 +9,7 @@ import { NavLink } from 'react-router-dom';
 import { FiSun } from 'react-icons/fi';
 import { IoMenu } from 'react-icons/io5';
 import { IoClose } from 'react-icons/io5';
+import { MdOutlineModeNight } from 'react-icons/md';
 export const Pages = () => {
     const { mode, setMode } = useContext(AppContext);
     const Navigate= useNavigate();
@@ -52,9 +53,9 @@ export const Pages = () => {
                         <button onClick={BookingLogout} className=" ">Logout</button>
                     </div> 
                     {mode ? (
-                        <MdOutlineModeNight onClick={() => setMode(!mode)} className="text-2xl mt-4" />
+                        <MdOutlineModeNight onClick={() => setMode(!mode)} className="text-2xl mt-2" />
                     ) : (
-                        <FiSun onClick={() => setMode(!mode)} className="text-white text-2xl mt-4" />
+                        <FiSun onClick={() => setMode(!mode)} className="text-white text-2xl mt-2" />
                     )}
                 </div>
                 <div className="md:hidden flex">

@@ -60,7 +60,7 @@ export default function Client() {
 
     return (
         <div>
-        <TableContainer component={Paper} className=' py-44 px-32'>
+        <TableContainer component={Paper} className=' py-64 px-32 h-full'>
             <div className=' text-4xl font-bold  flex flex-col items-center justify-center py-5'><p>All Booking</p></div>
             <Table  aria-label="a dense table">
                 <TableHead>
@@ -85,8 +85,8 @@ export default function Client() {
                             <TableCell align="left">{row.email}</TableCell>
                             <TableCell align="left">{row.phoneNumber}</TableCell>
                             <TableCell align="left">{row.details}</TableCell>
-                            <TableCell align="center" className=' bg-blue-900  rounded-lg'>
-                                <TbHttpDelete className=' text-white text-4xl' onClick={() => handleOpenDialog(row._id)} />
+                            <TableCell align="center" className=' bg-blue-900  rounded-lg '>
+                                <TbHttpDelete className=' text-white text-2xl' onClick={() => handleOpenDialog(row._id)} />
                             </TableCell>
 
                          
