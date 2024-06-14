@@ -34,8 +34,8 @@ import EditProfile from './Pages/Components/editProfile';
 import PrivateRoute from './Pages/Components/PrivateRoute';
 import Client from './assets/pages/client';
 import Booking from './Pages/Components/Booking';
-import GroupTeam from './assets/pages/GroupTeam';
 import { Pages } from './Pages';
+
 
 function App() {
   return (
@@ -59,6 +59,7 @@ function App() {
                 <Route path="/CurnaryArt" element={<CurnaryArt />} />
                 <Route path="/Contact" element={<Contact />} />
                 <Route path="/Services" element={<Services />} />
+               
               </Route>
               <Route path='/' element={<Pages/>}>
                 <Route

@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AppContext } from './context';
 import { NavLink } from 'react-router-dom';
 import { IoArrowForward, IoPlayOutline } from "react-icons/io5";
+import VideoPlayer from '../../../src/Pages/videosPlayer';
 
 export const Home = () => {
   const { mode } = useContext(AppContext);
+  const [video,setVideo]= useState(false)
   return (
     <div className={`flex flex-col md:flex-row flex-wrap justify-between py-24 px-6 md:px-32 ${!mode ? 'bg-gradient-to-r from-slate-950 to-slate-700' : 'bg-gray-50'} h-full`}>
       <div className='space-y-10 pt-20 md:pt-52 md:w-1/2'>
@@ -28,9 +30,12 @@ export const Home = () => {
             <span><IoArrowForward /></span>
           </div>
           <div className='rounded-md w-48 h-12 text-white font-bold flex flex-row justify-center items-center space-x-4'>
-            <IoPlayOutline className={!mode ? "text-white" : "text-black"} />
-            <NavLink to='#' className={!mode ? "text-white" : "text-black"}>How it Works</NavLink>
+           
+            <button onClick={()=>{setVideo(!video)}}><IoPlayOutline className={!mode ? "text-white" : "text-black"} /></button>
+            
+            <NavLink className={!mode ? "text-white" : "text-black"}>How it Works</NavLink>
           </div>
+          {video && <VideoPlayer/>}
         </div>
       </div>
       <div className='mt-10 md:mt-0 md:w-1/2 flex justify-center items-center'>
