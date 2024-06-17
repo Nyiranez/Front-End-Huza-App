@@ -28,7 +28,7 @@ const Services = () => {
         <h1 className='text-gray-500 text-2xl '>All  offered  Services are bellow</h1>
       </div>
 
-      <div className='flex  justify-between flex-wrap px-28 py-32 gap-2 '>
+      <div className='flex  justify-between flex-wrap px-28 py-32 gap-3'>
         {servicess.map((service, index) => (
           <article key={index} className="overflow-hidden rounded-lg border border-gray-100 bg-slate-50  shadow-sm w-[17rem]">
             <div className="sm:p-6">
