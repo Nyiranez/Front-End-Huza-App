@@ -52,7 +52,7 @@ const DetailsForSkilled = () => {
       </div>
 
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto px-28">
         <table className="w-full bg-slate-50 border border-gray-200">
           <tbody>
             <tr>
