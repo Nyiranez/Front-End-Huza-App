@@ -38,32 +38,32 @@ export const NavBar = () => {
                 <div>
                     <div className='flex flex-col space-y-4 py-4'>
                         
-                        <div className='flex flex-row hover:bg-gray-800 py-4'>
-                            <div className='flex flex-row justify-center items-center space-x-4'>
+                        <div className='flex flex-row hover:bg-gray-800 py-4 '>
+                            <div className='flex flex-row justify-center items-center space-x-4 ml-4'>
                                 <div className=' py-1'><FcBarChart className='text-white' /></div>
                                 <NavLink to="team" className='text-white'>Analytics</NavLink>
                             </div>
                         </div>
                         <div className='flex flex-row  hover:bg-gray-800 py-4'>
-                            <div className='flex flex-row justify-center items-center space-x-4'>
+                            <div className='flex flex-row justify-center items-center space-x-4 ml-4'>
                                 <div className=' py-1'><CgProfile className='text-white' /></div>
                                 <NavLink to="enhancedTable" className='text-white'>Profiles</NavLink>
                             </div>
                         </div>
                         <div className='flex flex-row hover:bg-gray-800 py-4'>
-                            <div className='flex flex-row  space-x-4'>
+                            <div className='flex flex-row  space-x-4 ml-4'>
                                 <div className=' py-1'><CgProfile className='text-white' /></div>
                                 <NavLink to="client" className='text-white'>Bookings</NavLink>
                             </div>
                         </div>
                         <div className='flex flex-row  hover:bg-gray-800 py-4'>
-                            <div className='flex flex-row justify-center items-center space-x-4'>
+                            <div className='flex flex-row justify-center items-center space-x-4 ml-4'>
                                 <div className=' py-1'><GrServices className='text-white' /></div>
                                 <NavLink to="services" className='text-white'>Services</NavLink>
                             </div>
                         </div>
                         <div className='flex flex-row  hover:bg-gray-800 py-4 mt-24'>
-                            <div className='flex flex-row justify-center items-center space-x-4'>
+                            <div className='flex flex-row justify-center items-center space-x-4 ml-4'>
                                 <div className=' py-1'><RiLockPasswordFill className='text-white' /></div>
                                 <button className='text-white bg-blue-900 px-2 py-1 hover:bg-blue-500 rounded-xl' onClick={handleLogOut}>LogOut</button>
                             </div>

@@ -43,18 +43,21 @@ export const AdminMore = () => {
         <div className='py-10'>
           <img src={profile ? profile.photo : "not found"} className='h-[10rem] w-[10rem] md:h-[12rem] md:w-[12rem] lg:h-[14rem] lg:w-[14rem] mt-10 rounded-full' alt="Profile"></img>
         </div>
-        <div className='py-5'>
-          <div className='mt-4 p-4'><p className='text-black font-bold'>FirstName : <span className='text-gray-400 ml-4'>{profile ? profile.firstName : "Not available"}</span></p></div>
-          <div className='mt-4 p-4'><p className='text-black font-bold'>LastName : <span className='text-gray-400 ml-4'>{profile ? profile.lastName : "Not available"}</span></p> </div>
-          <div className='mt-4 p-4'><p className='text-black font-bold'>E-mail :<span className='text-gray-400 ml-4'>{profile ? profile.email : "Not available"}</span></p> </div>
-          <div className='mt-4 p-4'><p className='text-black font-bold'>Category :<span className='text-gray-400 ml-4'>{profile ? profile.category : "Not available"}</span></p> </div>
-          <div className='mt-4 p-4'><p className='text-black font-bold'>Address :<span className='text-gray-400 ml-4'>{profile ? profile.district : "Not available"}</span></p> </div>
-          <div className='mt-4 p-4'><p className='text-black font-bold'>Status :<span className='text-gray-400 ml-4'>{profile ? profile.status : "Not available"}</span></p> </div>
-          <div className='mt-4 p-4'><p className='text-black font-bold'>Created on :<span className='text-gray-400 ml-4'>{profile ? profile.createdAt : "Not available"}</span></p> </div>
-          <div className='mt-4 p-4'><p className='text-black font-bold'>Updated on :<span className='text-gray-400 ml-4'>{profile ? profile.updatedAt : "Not available"}</span></p> </div>
-          <div className='mt-16 md:mt-20 lg:mt-24 space-x-4 '>
-          <button className='bg-green-900 text-white px-4 py-2 hover:bg-blue-600 rounded-full' onClick={() => handleApprove(profile.email)}>Approve</button>
-          <button className='hover:bg-red-950 hover:text-white px-4 py-2 bg-black text-white rounded-full' onClick={() => handleReject(profile.email)}>Reject</button>
+        <div className='py-5 bg-slate-100'>
+          <div className='mt-2 p-4'><p className='text-black font-bold'>FirstName : <span className='text-gray-400 ml-4'>{profile ? profile.firstName : "Not available"}</span></p></div>
+          <div className='mt-2 p-4'><p className='text-black font-bold'>LastName : <span className='text-gray-400 ml-4'>{profile ? profile.lastName : "Not available"}</span></p> </div>
+          <div className='mt-2 p-4'><p className='text-black font-bold'>E-mail :<span className='text-gray-400 ml-4'>{profile ? profile.email : "Not available"}</span></p> </div>
+          <div className='mt-2 p-4'><p className='text-black font-bold'>Category :<span className='text-gray-400 ml-4'>{profile ? profile.category : "Not available"}</span></p> </div>
+          <div className='mt-2 p-4'><p className='text-black font-bold'>Address :<span className='text-gray-400 ml-4'>{profile ? profile.district : "Not available"}</span></p> </div>
+          <div className='mt-2 p-4'><p className='text-black font-bold'>Status :<span className='text-gray-400 ml-4'>{profile ? profile.status : "Not available"}</span></p> </div>
+          <div className='mt-2 p-4'><p className='text-black font-bold'>Created on :<span className='text-gray-400 ml-4'>{profile ? profile.createdAt : "Not available"}</span></p> </div>
+          <div className='mt-2 p-4'><p className='text-black font-bold'>Updated on :<span className='text-gray-400 ml-4'>{profile ? profile.updatedAt : "Not available"}</span></p> </div>
+          <div className='mt-16 md:mt-16 lg:mt-24 space-x-4 bg-slate-200 flex flex-col justify-center items-center w-fit p-4 rounded-xl ml-8 '>
+            <div className='space-x-4'>
+            <button className='bg-green-900 text-white px-4 py-2 hover:bg-blue-600 rounded-full' onClick={() => handleApprove(profile.email)}>Approve</button>
+            <button className='hover:bg-red-950 hover:text-white px-4 py-2 bg-black text-white rounded-full' onClick={() => handleReject(profile.email)}>Reject</button>
+            </div>
+     
         </div>
         </div>
        

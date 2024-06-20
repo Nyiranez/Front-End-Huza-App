@@ -202,7 +202,7 @@ export default function EnhancedTable() {
   const [orderBy, setOrderBy] = useState('firstName');
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
-  const [dense, setDense] = useState(true);
+  const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [deleteMessage, setDeleteMessage] = useState('');
   const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);

@@ -86,14 +86,7 @@ const DetailsForSkilled = () => {
               <td className="py-3 px-4 sm:px-6 lg:px-8 font-bold">Address :</td>
               <td className="py-3 px-4 sm:px-6 lg:px-8">{profile.district || "Not available"}</td>
             </tr>
-            {/* <tr>
-              <td className="py-3 px-4 sm:px-6 lg:px-8 font-bold">Did you finish?</td>
-              <td className="py-3 px-4 sm:px-6 lg:px-8">{profile.didyoufinished ? "Yes" : "No"}</td>
-            </tr>
-            <tr>
-              <td className="py-3 px-4 sm:px-6 lg:px-8 font-bold">Time of Study :</td>
-              <td className="py-3 px-4 sm:px-6 lg:px-8">{profile.timeofstudy || "Not available"}</td>
-            </tr> */}
+           
             <tr>
               <td className="py-3 px-4 sm:px-6 lg:px-8 font-bold">Status :</td>
               <td className="py-3 px-4 sm:px-6 lg:px-8">{profile.status || "Not available"}</td>

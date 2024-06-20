@@ -24,13 +24,13 @@ const Services = () => {
   return (
     <div className={`pt-32 ${!mode ? 'bg-gradient-to-r from-slate-900 to-blue-950' : 'bg-gray-50'}`}>
       <div className=' flex flex-col  items-center p-4 '>
-        <h1 className='text-blue-500 text-4xl '>Welcome</h1>
-        <h1 className='text-gray-500 text-2xl '>All  offered  Services are bellow</h1>
+        {/* <h1 className='text-blue-500 text-4xl '>Welcome</h1> */}
+        <h1 className='text-gray-500 text-2xl '>All  offered  Services </h1>
       </div>
 
-      <div className=' w-11/12 flex flex-wrap py-8 pl-20 gap-4 justify-center items-center '>
+      <div className='flex flex-wrap py-8  px-32 justify-between'>
         {servicess.map((service, index) => (
-          <article key={index} className="overflow-hidden rounded-lg border border-gray-100 bg-slate-50  shadow-sm w-[17rem]">
+          <article key={index} className="overflow-hidden rounded-lg border border-gray-100 bg-slate-100  shadow-sm w-[17rem]">
             <div className="sm:p-6">
               <img
                 alt=""

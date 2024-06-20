@@ -42,7 +42,7 @@ const AllProfileofSkilled = () => {
 
   return (
     <div className={`${!mode ? 'bg-gradient-to-r from-slate-900 to-slate-950' : 'bg-gray-100'} min-h-screen py-10 `}>
-      <div className='container mx-auto px-4 sm:px-6 lg:px-24'>
+      <div className='container mx-auto px-4 sm:px-6 lg:px-32'>
         <div className='flex justify-center lg:justify-end mb-8 mt-28'>
           <div className='flex items-center bg-blue-950 rounded-full p-2'>
             <GoSearch className="text-white mr-2" />
@@ -55,7 +55,7 @@ const AllProfileofSkilled = () => {
             </select>
           </div>
         </div>
-        <div className="flex  justify-between flex-wrap  px-3 py-6 gap-4 ">
+        <div className="flex flex-wrap justify-between item-center py-6 gap-5  ">
           {loading ? (
             <div className="col-span-full flex justify-center items-center">
               <p className="text-gray-200">Loading...</p>
