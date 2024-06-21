@@ -38,8 +38,6 @@ const Profile = () => {
       sector?.trim() !== "" &&
       school?.trim() !== "" &&
       major?.trim() !== "" &&
-      didYouFinish?.trim() !== "" &&
-      timeOfStudy?.trim() !== "" &&
       resume !== null &&
       nationalID !== null &&
       certificate !== null &&
@@ -52,7 +50,7 @@ const Profile = () => {
 
   const handleProfile = async (e) => {
     e.preventDefault();
-
+console.log("hello")
     if (!validateForm()) {
       setErrorMessage("Please fill out all required fields.");
       return;
@@ -68,8 +66,7 @@ const Profile = () => {
     formData.append("sector", sector);
     formData.append("school", school);
     formData.append("major", major);
-    formData.append("didYouFinish", didYouFinish);
-    formData.append("timeOfStudy", timeOfStudy);
+  
     formData.append("resume", resume);
     formData.append("nationalID", nationalID);
     formData.append("certificate", certificate);
@@ -81,7 +78,10 @@ const Profile = () => {
     setErrorMessage("");
     setSuccessMessage("");
 
+    console.log(formData,'cosdfhkjsn')
     try {
+
+      
       const response = await axios.post(
         "https://huza-backend-app-api-1.onrender.com/api/profile/createProfile",
         formData,
@@ -335,10 +335,10 @@ const Profile = () => {
                   className="border border-gray-500 rounded-lg py-3 px-5 mt-4"
                   placeholder="Enter Your Category"
                 >
-                  <option value="CulnaryArt">CulinaryArt</option>
+                  <option value="CalinaryArt">CulinaryArt</option>
                   <option value="MakeupDesign">MakeupDesign</option>
                   <option value="Braiding">Braiding</option>
-                  <option value="Painting">Painting</option>
+                  <option value="Paint">Painting</option>
                 </select>
               </div>
             </div>
@@ -385,6 +385,7 @@ const Profile = () => {
             </div>
             <button
               type="submit"
+              
               className="inline-block w-full rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
               disabled={loading}
             >

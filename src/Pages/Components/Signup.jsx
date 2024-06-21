@@ -35,7 +35,7 @@ const Signup = () => {
 
 
     await axios({
-      url: "https://huza-backend-app-api.onrender.com/api/allUsers/create",
+      url: "https://huza-backend-app-api-1.onrender.com/api/allUsers/create",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
